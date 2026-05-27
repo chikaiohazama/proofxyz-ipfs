@@ -26,7 +26,7 @@ Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens
 |---|---|---|---:|---:|---|
 | 1 | **Grails V** (prototype) | [`0x92a50…349b8`](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8) | 785 | ~732 (~93%) | ✅ pinned & verified |
 | 2 | **Grails IV** | [`0x069ee…b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885) | 904 | 734 (~81%) | ✅ pinned & verified |
-| 3 | **Grails III** | [`0x503a3…84A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3) | 1,000 | 1,000 (100%) | to do |
+| 3 | **Grails III** | [`0x503a3…84A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3) | 1,000 | 1,000 (100%) | ✅ pinned & verified |
 | 4 | **Grails II** | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) | 1,178 | 1,178 (100%) | ✅ pinned & verified |
 | 5 | **Grails I** ⚠️ special URI shape | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | 1,036 | 1,036 (100%) | ✅ pinned & verified — nested layout |
 | 6 | Diamond Exhibition | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | 5,093 | ~1,170 (~23%) | to do |
@@ -409,6 +409,40 @@ setBaseTokenURI("https://metadata.proof.xyz/grails-v/art/")
 It's a one-string state change — fully reversible, no on-chain migration.
 
 **Recommended: re-pin under your own Pinata account.** The pins listed in this repo are hosted on the account that ran the pipeline. For long-term durability under Proof's control, re-pin every CID from your own Pinata account (or any pinning service) before — or shortly after — flipping `baseURI`. Because IPFS is content-addressed, re-pinning the same bytes produces the **exact same CID**: no metadata edit, no on-chain change, nothing in this repo to update. To do it: fetch each CID (the metadata directory plus every entry in `state.json` → `mediaPins`) via any IPFS gateway and re-upload it through Pinata's web UI or API. Once Proof's pin exists, this account's pins can be unpinned without breaking anything.
+
+---
+
+### Grails III — **READY TO SEND**
+
+Pipeline complete: 1000/1000 metadata + 424/424 media verified end-to-end. Full handoff doc: [`collections/grails-iii/INSTRUCTIONS.md`](collections/grails-iii/INSTRUCTIONS.md).
+
+| | |
+|---|---|
+| Contract | [`0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3) |
+| Function | `setBaseTokenURI(string)` |
+| **Argument to pass** | `ipfs://bafybeibywzutnorhrucp5lbhnd54kke5eclta7k5cgl34mhkyh45gl747q/` &nbsp;_(trailing slash required)_ |
+| Etherscan: read | [readContract](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3#readContract) |
+| Etherscan: write | [writeContract](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3#writeContract) |
+| Caller permission | Standard ERC721A + Ownable; sign from `owner()`. |
+| Token indexing | **0-indexed**, tokens `0..999` (totalSupply 1000) |
+
+**Pre-flight verification links:**
+- https://ipfs.io/ipfs/bafybeibywzutnorhrucp5lbhnd54kke5eclta7k5cgl34mhkyh45gl747q/0
+- https://dweb.link/ipfs/bafybeibywzutnorhrucp5lbhnd54kke5eclta7k5cgl34mhkyh45gl747q/500
+
+**Revert plan:** `setBaseTokenURI("https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/3/")`
+
+**Findings worth noting:**
+
+- 1,000 tokens across **20 artists** (0xDEAFBEEF, Rik Oostenbroek, Mika Tajima, Matt Kane, …); the contract uses a single `metadata/3/<id>` baseURI (no nested grailId path like Grails I).
+- Mixed source hosts inside the metadata:
+  - **GCS signed URLs** (most images) — expire 30 min after issue. Pipeline race-condition hazard.
+  - **Arweave** (60 fields across the "there goes that kid" series — Alpha Centauri Kid) — permanent storage; the 1.1 KB animation URL is an HTML wrapper rather than the image itself.
+  - **Pre-existing `ipfs://`** URLs (100 fields, all on Matt Kane's *Picture of the Planets*) — these were already content-addressed before the migration; the rewrite step correctly leaves them untouched.
+- **Recovery from expired-signature trap:** the first run of step 03 left only 221/1000 tokens with a working image entry because the 30-minute GCS signatures expired during the download window. Recovery: re-fetched fresh metadata, used HEAD-only `x-goog-hash` MD5 lookups to map fresh signed URLs to the **423 sha256-named files already on disk** (no re-downloading bytes for content we already have), downloaded only the 42 new GCS objects + 2 Arweave URLs that had no local match, and re-built the manifest. **The HEAD-MD5-map trick is the right way to handle expiring-signed-URL re-runs** — saved hours of bandwidth.
+- Heavy media dedup: 1,000 tokens → **424 unique media files** (8 of those are 100–285 MB MP4s; the rest are small images).
+- 1 verify mismatch ended up being an `ipfs.io` gateway cache bug: it returns 1397 bytes for a CID whose content is genuinely 1126 bytes (verified directly via `gateway.pinata.cloud` and by re-fetching from Pinata). The pin itself is correct; the report's `notes` field documents the gateway issue.
+- **Per-upload timeout added** (`scripts/04-pin-media.js`): pin-media now wraps each upload in a 15-min `Promise.race` deadline because the Pinata SDK was hard-hanging on some large MP4s without aborting; previously this had to be killed manually.
 
 ---
 

@@ -1,0 +1,20 @@
+{
+  "name": "Mud Slide",
+  "image": "ipfs://bafybeidyml45ahfz7oqyv7ncewlsysygk6zdq2bbccg67okcjmjgheheqa",
+  "animation_url": "ipfs://bafybeidyml45ahfz7oqyv7ncewlsysygk6zdq2bbccg67okcjmjgheheqa",
+  "collection_name": "Mud Slide by Jon Gray",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#19"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Jon Gray"
+    }
+  ]
+}

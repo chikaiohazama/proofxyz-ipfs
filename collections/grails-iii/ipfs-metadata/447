@@ -1,0 +1,20 @@
+{
+  "name": "Man Machine",
+  "description": "Man Machine\n\nby Killer Acid\n\n2023",
+  "image": "ipfs://bafybeia42rdesazejcuey4lwir7wbznxxprixrm3nmcbqwtck2smtyvzfi",
+  "collection_name": "Man Machine by Killer Acid",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#10"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Killer Acid"
+    }
+  ]
+}

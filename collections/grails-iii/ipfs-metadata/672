@@ -1,0 +1,24 @@
+{
+  "name": "Realization",
+  "description": "An intangible resolution becoming apparent, frustrations transform into beautiful efficiencies, nothing else matters. Realization is a 150-piece generative collection written in GLSL.",
+  "image": "ipfs://bafybeidh65pu32p5swylliy7vww67irymnjyexzccitlzstjx4pfadhcry",
+  "collection_name": "Realization by Mpkoz",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#07"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Variant",
+      "value": "#67"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Mpkoz"
+    }
+  ]
+}

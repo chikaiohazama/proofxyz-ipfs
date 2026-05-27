@@ -1,0 +1,29 @@
+{
+  "name": "Copper Grail",
+  "description": "A hand hammered vessel and variations of stands forged from pure copper.\n\nForging is the process of heating a metal until it becomes malleable, like clay, and can be shaped with hammer and anvil, or other means of force. Forging is distinct from casting, where a metal is melted and poured into a mold. \n\nThe vessel is hand hammered from a thick sheet of copper. One stand is of riveted construction, the other a coiling formed from a single flat bar.",
+  "image": "ipfs://bafybeifps7q2jcu7euwdwkmhooyxbvxvsvan4d4vgofbeu7miobjvehnai",
+  "animation_url": "ipfs://bafybeifps7q2jcu7euwdwkmhooyxbvxvsvan4d4vgofbeu7miobjvehnai",
+  "collection_name": "GRAILS by 0xDEAFBEEF",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#01"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "0xDEAFBEEF"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Dark"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Copper"
+    }
+  ]
+}

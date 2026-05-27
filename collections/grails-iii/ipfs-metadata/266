@@ -1,0 +1,20 @@
+{
+  "name": "Tempelfjord",
+  "description": "Expired Polaroid Time Zero photograph of my guide standing on the frozen ice of Tempelfjorden, Svalbard Archipelago, 2011.\n\nPart of my first photo series of Svalbard, a trip that motivated me to dedicate my artistic practice to photography, as my time as a full-time musician drew to a close.",
+  "image": "ipfs://bafybeibbouuxzj6rc2vb57t6ncbsyhcyn6ssla7urxnjxsbdsjhp3vdwre",
+  "collection_name": "Tempelfjord by Reuben Wu",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#15"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Reuben Wu"
+    }
+  ]
+}

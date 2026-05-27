@@ -1,0 +1,24 @@
+{
+  "name": "How things fit together",
+  "description": "A map, but of what?  A landscape, but where?  \n\nDon't worry too much about it.  Listen to the colors talk.  When you need it, they will tell you where you are and where to go.",
+  "image": "ipfs://bafybeibyosgxqp75qn72ceny6uawhlgd7nqlc4bsjpdaiz3we7kc72pwb4",
+  "collection_name": "How things fit together by Zach Lieberman",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#18"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Variant",
+      "value": "#81"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Zach Lieberman"
+    }
+  ]
+}

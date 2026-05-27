@@ -1,0 +1,21 @@
+{
+  "name": "there goes that kid",
+  "description": "can't be stopped",
+  "image": "ipfs://bafybeia2cyvcyv4m54nuwum3d5la23ikvsdit6rwqolpy3xmev7g5azfnu",
+  "animation_url": "ipfs://bafkreihapudbkhiji7lzabcapvjootdr3xuazm7wvdcehfxfysc7jehriq",
+  "collection_name": "There goes that kid by Alpha Centauri Kid",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#17"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Alpha Centauri Kid"
+    }
+  ]
+}

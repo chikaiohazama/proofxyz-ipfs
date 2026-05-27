@@ -13,7 +13,7 @@ import { uploadFile } from "../lib/pinata.js";
 import { Concurrency } from "../lib/fetchWithRetry.js";
 import { collectionDir, loadState, recordStep, saveState } from "../lib/state.js";
 
-const CONCURRENCY = 4;
+const CONCURRENCY = 2;
 
 async function main() {
   const slug = process.argv[2];
@@ -50,15 +50,29 @@ async function main() {
 
   // Persist state every N files so a crash doesn't lose progress.
   let pendingFlush = 0;
-  const flushEvery = 5;
+  const flushEvery = 1;
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  // Per-upload timeout. Pinata's SDK doesn't expose one and large files (>100MB)
+  // can hang the request indefinitely under back-pressure; wrap each attempt in
+  // a Promise.race with a hard deadline so a hung upload aborts instead of
+  // blocking the whole script forever.
+  const UPLOAD_TIMEOUT_MS = 15 * 60 * 1000; // 15 min — generous for 300MB uploads
+  async function uploadWithTimeout(localPath, name) {
+    return Promise.race([
+      uploadFile(localPath, name),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error(`upload timeout after ${UPLOAD_TIMEOUT_MS / 1000}s`)), UPLOAD_TIMEOUT_MS)
+      ),
+    ]);
+  }
 
   async function pinWithRetry(f, maxAttempts = 4) {
     let lastErr;
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
-        return await uploadFile(join(mediaDir, f), f);
+        return await uploadWithTimeout(join(mediaDir, f), f);
       } catch (e) {
         lastErr = e;
         if (attempt < maxAttempts) {
@@ -71,11 +85,23 @@ async function main() {
     throw lastErr;
   }
 
+  function fmtBytes(n) {
+    if (n >= 1024 * 1024 * 1024) return (n / 1024 / 1024 / 1024).toFixed(2) + " GB";
+    if (n >= 1024 * 1024) return (n / 1024 / 1024).toFixed(2) + " MB";
+    if (n >= 1024) return (n / 1024).toFixed(1) + " KB";
+    return n + " B";
+  }
+
   await Promise.all(
     toPin.map((f) =>
       gate.run(async () => {
         try {
+          const fileSize = statSync(join(mediaDir, f)).size;
+          const t0 = Date.now();
+          console.log(`  [${done + 1}/${toPin.length}] starting ${f.slice(0, 12)}... (${fmtBytes(fileSize)})`);
           const res = await pinWithRetry(f);
+          const elapsed = (Date.now() - t0) / 1000;
+          const mbps = (fileSize / 1024 / 1024) / elapsed;
           mediaPins[f] = { cid: res.cid, size: res.size, pinnedAt: res.pinnedAt };
           done++;
           pendingFlush++;
@@ -83,13 +109,10 @@ async function main() {
             saveState(slug, state);
             pendingFlush = 0;
           }
-          const rate = done / ((Date.now() - start) / 1000);
-          if (done % 5 === 0) {
-            const eta = Math.round((toPin.length - done) / rate);
-            console.log(`  ${done}/${toPin.length} pinned (${rate.toFixed(1)}/s, eta ${eta}s) — ${f.slice(0, 12)}... → ${res.cid}`);
-          }
+          console.log(`  [${done}/${toPin.length}] DONE  ${f.slice(0, 12)}... (${fmtBytes(fileSize)}) in ${elapsed.toFixed(1)}s = ${mbps.toFixed(1)} MB/s → ${res.cid}`);
         } catch (e) {
           errors.push({ file: f, error: e.message });
+          console.log(`  [FAIL] ${f.slice(0, 12)}... — ${e.message}`);
         }
       })
     )

@@ -1,0 +1,21 @@
+{
+  "name": "Bathybius Haeckelii",
+  "description": "Bathybius Haeckelii is the genesis NFT by Mika Tajima, presented by Pace Verso, the web3 hub of Pace Gallery. The artwork is a visualization of New Humans (2019), in which emergent gatherings of synthetic humans rise from the surface of a black ferrofluid pool. Appearing to morph like a supernatural life form, these dynamic clusters of magnetic liquid produced by machine learning processes are images of communities of synthetic people — hybrid profiles modeled from actual DNA, fitness, and dating profile data sets sourced from public and leaked caches. The work questions the very nature of identity as something liquid, ever-evolving, and emerging, much like Bathybius Haeckelii, a substance that British biologist Thomas Henry Huxley discovered and initially believed to be a form of primordial matter, a source of all organic life.",
+  "image": "ipfs://bafybeih7bex7gtrbk4rpfsr3xmhiaaqa2qtptjti532sai3oh42fxaj2ky",
+  "animation_url": "ipfs://bafybeih7bex7gtrbk4rpfsr3xmhiaaqa2qtptjti532sai3oh42fxaj2ky",
+  "collection_name": "Bathybius Haeckelii by Mika Tajima",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#16"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Mika Tajima"
+    }
+  ]
+}

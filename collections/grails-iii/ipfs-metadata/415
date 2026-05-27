@@ -1,0 +1,29 @@
+{
+  "name": "Iron Cauldron",
+  "description": "The belief that the Holy Grail can heal or provide eternal youth is likely based on the cauldrons of Celtic Mythology and their life restoring powers.\n\nThis small iron cauldron is made out of overlapping curved steel sheets, held together by rivets. Cauldrons were often traditionally made this way due to the difficulty of shaping a single piece of iron into a deeply recessed form. The drawback is that they often leak; this one is no exception.\n\nLowly iron is among the most common and abundant metals on earth. However, the cost of the material is not as important as its symbolism. Just as Rumpelstiltskin spins straw into gold, blacksmiths pride themselves on using primitive tools to transform raw base materials into something of beauty or utility.\n\nUsing fire, hammer, and anvil to spin scraps of iron into an object of powerful ritual magic: like alchemy, the ultimate purpose is not the forging of objects, but rather the forging of meaning.",
+  "image": "ipfs://bafybeidnlm36elyntsbcx4z7i72qg23ipdveokhtw67n4i6n3fsuftfqle",
+  "animation_url": "ipfs://bafybeidnlm36elyntsbcx4z7i72qg23ipdveokhtw67n4i6n3fsuftfqle",
+  "collection_name": "GRAILS by 0xDEAFBEEF",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#01"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "0xDEAFBEEF"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Light"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Iron"
+    }
+  ]
+}

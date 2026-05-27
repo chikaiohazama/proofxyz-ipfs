@@ -1,0 +1,20 @@
+{
+  "name": "Cigarette and heartbreaks",
+  "description": "one cigarette that I never finished",
+  "image": "ipfs://bafybeidat3fgkgkltlykq7a54aakqdkp2tml4voq2w2jygypj54ko2zp44",
+  "collection_name": "Cigarette and heartbreaks by Tjo",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#12"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Tjo"
+    }
+  ]
+}

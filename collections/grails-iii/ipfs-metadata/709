@@ -1,0 +1,20 @@
+{
+  "name": "Shores",
+  "description": "Woosh... Woosh...",
+  "image": "ipfs://bafkreifucfo5tydoyh46tlzwd65acci3ceoc3tknqwhipd476fmemony2q",
+  "collection_name": "Shores by Seerlight",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#14"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Seerlight"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Grail Sale",
+  "description": "Some of the pieces in this series explicitly depict the social contexts in which we experience NFT art, whether that's in public places, art exhibitions, or social media documentation of those events. I hope this prompts a reflection on what grants “grail” status, and how that's influenced as much or more by social queues and native distribution medium, as it is by qualities of the art object itself.",
+  "image": "ipfs://bafybeiay5r4zwwwf7vrljyrm6uhp7qwpug2oocvahll4ndgdrrbrij56jy",
+  "collection_name": "GRAILS by 0xDEAFBEEF",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#01"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "0xDEAFBEEF"
+    },
+    {
+      "trait_type": "Background",
+      "value": "None"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Tweet"
+    }
+  ]
+}

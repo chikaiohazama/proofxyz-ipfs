@@ -1,0 +1,29 @@
+{
+  "name": "Discount Grail",
+  "description": "A stout grail fabricated from pure silver.\n\nThings don't always work out as planned. Experimenting with methods of joining silver, mistakes were made. Rather than tossing it, leaning into the aesthetic produced this stout vessel of unique and strong character. A grail in all respects.",
+  "image": "ipfs://bafybeigxs3tzrsafs2nn6fkptitbofu52efzmqhmfybt6rvcloxih22bcq",
+  "animation_url": "ipfs://bafybeigxs3tzrsafs2nn6fkptitbofu52efzmqhmfybt6rvcloxih22bcq",
+  "collection_name": "GRAILS by 0xDEAFBEEF",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#01"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "0xDEAFBEEF"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Light"
+    },
+    {
+      "trait_type": "Type",
+      "value": ".999 Silver"
+    }
+  ]
+}

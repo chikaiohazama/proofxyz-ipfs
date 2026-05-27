@@ -1,0 +1,247 @@
+[
+  {
+    "url": "https://arweave.net/Z7aTzXwQRlHP5EaWrai2Ys2k9bu5tLAOPRKGbtm1lFw",
+    "md5": null,
+    "reason": "no md5 header"
+  },
+  {
+    "url": "https://arweave.net/CS-IgbCDPRqVWVWN7OiVoXk4v_5tBNSq1FaMvP077PQ",
+    "md5": null,
+    "reason": "no md5 header"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/11/10?X-Goog-Algorithm=G",
+    "md5": "6QiE4viARLj4c55eShcFUg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/9/0?X-Goog-Algorithm=GOO",
+    "md5": "vIhhCHUzsPPro+gluIA+Lw==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/11/10?X-Goog-Algorithm=G",
+    "md5": "6QiE4viARLj4c55eShcFUg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/4?X-Goog-Algorithm=GO",
+    "md5": "MunN0ZAQzf5WwYO/YVN3+w==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/9/0?X-Goog-Algorithm=GOO",
+    "md5": "vIhhCHUzsPPro+gluIA+Lw==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/8?X-Goog-Algorithm=GOO",
+    "md5": "0e6TvSsPlRI4KwcyX8HTeg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/123?X-Goog-Algorithm=",
+    "md5": "KpIB90i5I7viHB+c/eto0w==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/12?X-Goog-Algorithm=G",
+    "md5": "aZQmN/8nbYKWwTSSmHREig==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/32?X-Goog-Algorithm=G",
+    "md5": "6Q4i7j0vb5hPVSron+ngZQ==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/91?X-Goog-Algorithm=G",
+    "md5": "yjeb5vf3FU96MtF9QSHQZg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/76?X-Goog-Algorithm=GO",
+    "md5": "6n2tclSwiBirdwVwGl5YeA==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/98?X-Goog-Algorithm=GO",
+    "md5": "o1A2SE/PwFy0w7Hkc5K7Ag==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/64?X-Goog-Algorithm=GO",
+    "md5": "4bgkbB1QQ38BifuFz0m+XA==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/68?X-Goog-Algorithm=G",
+    "md5": "JWlqwRusyw368CAjGxrQeQ==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/114?X-Goog-Algorithm=G",
+    "md5": "eGrk9FcYuo4V4GrvqL3rsw==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/22?X-Goog-Algorithm=GO",
+    "md5": "vg7OMoLgHxlK2e9rQBsMtw==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/62?X-Goog-Algorithm=G",
+    "md5": "5xYQBsmg/eu2MKZzEDwUEw==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/134?X-Goog-Algorithm=G",
+    "md5": "Sm7xMmELFytYT8mwDpQYOQ==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/131?X-Goog-Algorithm=G",
+    "md5": "/VlkRD81P6/+lZCzG9MEpQ==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/104?X-Goog-Algorithm=G",
+    "md5": "rXXZqYaerUKPa3TWBsLV+w==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/123?X-Goog-Algorithm=G",
+    "md5": "ucrLzRHJQx4l/C/o1LvPsg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/1?X-Goog-Algorithm=GOO",
+    "md5": "FEtg8Ikyqxoer1kO0YSp3w==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/7/55?X-Goog-Algorithm=GO",
+    "md5": "3bx2P/gOdnoWRi+BxiZuuw==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/106?X-Goog-Algorithm=",
+    "md5": "n7W5/yEnkT8iwdxWFgvwgA==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/11/10?X-Goog-Algorithm=G",
+    "md5": "6QiE4viARLj4c55eShcFUg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/7?X-Goog-Algorithm=GO",
+    "md5": "LyuTwx5JhCNOEMHnEsq1ag==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/148?X-Goog-Algorithm=",
+    "md5": "4AR1hwBoBpdz+iE3BjUVTg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/81?X-Goog-Algorithm=G",
+    "md5": "cDpW4rUzl/4NOl7B+3xDQg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/93?X-Goog-Algorithm=G",
+    "md5": "tNqKEfj1MMhRtTkVFF+/sA==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/13?X-Goog-Algorithm=G",
+    "md5": "IKAhgtfY27WvC/ceh/0pNw==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/143?X-Goog-Algorithm=",
+    "md5": "d97UKdNFGg3+zmm8Q1U2pg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/35?X-Goog-Algorithm=G",
+    "md5": "aqmg7aY+86rgZRlBnjoA2w==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/3?X-Goog-Algorithm=GO",
+    "md5": "sjF49xYUeSqdfY4xjo2ApQ==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/37?X-Goog-Algorithm=G",
+    "md5": "NzGBZRKOnVfkfJw5zpsHBQ==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/38?X-Goog-Algorithm=G",
+    "md5": "RmFBKod/1AJp2GRu5nCqSA==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/9/0?X-Goog-Algorithm=GOO",
+    "md5": "vIhhCHUzsPPro+gluIA+Lw==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/31?X-Goog-Algorithm=G",
+    "md5": "iKj0NS1uDF1sgRGRPwG3uA==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/122?X-Goog-Algorithm=",
+    "md5": "/9sbtpA5wWfKrnorsV1/Tg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/27?X-Goog-Algorithm=G",
+    "md5": "c3lGEKIw68nmfmiL35U5Dw==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/5?X-Goog-Algorithm=GO",
+    "md5": "BR5mh/nubeO4bYS97ZkIlA==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/104?X-Goog-Algorithm=",
+    "md5": "F5zrNW25+WolXpa8OSWpBg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/26?X-Goog-Algorithm=G",
+    "md5": "kTmpmT0zJIZ9oLfBxjoJWQ==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/121?X-Goog-Algorithm=",
+    "md5": "Ze6/t4PH5OrA5VTEG5NdNQ==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/64?X-Goog-Algorithm=G",
+    "md5": "Tpv7wXvQwi+gXJ3FevtT0A==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/145?X-Goog-Algorithm=",
+    "md5": "fSB24eSQVjTRM5nYkz1d6g==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/11/10?X-Goog-Algorithm=G",
+    "md5": "6QiE4viARLj4c55eShcFUg==",
+    "reason": "md5 not in local files"
+  },
+  {
+    "url": "https://storage.googleapis.com/grails3-artwork-revealed/18/120?X-Goog-Algorithm=",
+    "md5": "WCpvWrgs59lH7nHKopXmig==",
+    "reason": "md5 not in local files"
+  }
+]

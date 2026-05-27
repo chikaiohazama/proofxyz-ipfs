@@ -1,0 +1,29 @@
+{
+  "name": "Silver Grail",
+  "description": "A grail forged from pure silver. Forging is the process of heating a metal until it becomes malleable, like clay, and can be shaped with hammer and anvil, or other means of force.\n\nForging is distinct from casting, where a metal is melted and poured into a mold. Forging naturally gives rise to forms of a unique character, such as  organic lengthy protrusions that would be very difficult to cast.\n\nIn this design, a vessel and leafy base are grasped and held mechanically in place by vine-like appendages. Some of the lighting variations in the photography emphasize the symbolic connection between silver and the moon.",
+  "image": "ipfs://bafybeiexjoteukt7qtw3xmo2vm3cvcoxybe54wjkuk455mtu6zpzv7hdpe",
+  "animation_url": "ipfs://bafybeiexjoteukt7qtw3xmo2vm3cvcoxybe54wjkuk455mtu6zpzv7hdpe",
+  "collection_name": "GRAILS by 0xDEAFBEEF",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#01"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "0xDEAFBEEF"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Light"
+    },
+    {
+      "trait_type": "Type",
+      "value": ".999 Silver"
+    }
+  ]
+}

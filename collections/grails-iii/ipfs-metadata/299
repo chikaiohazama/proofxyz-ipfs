@@ -1,0 +1,25 @@
+{
+  "name": "Proof of Origin - Picture of the Planets",
+  "description": "Crayon and code are united after four decades in a collaboration with the self. Artist Matt Kane has become well known for using time and change as artistic mediums. Additionally, Kane has referenced space and the cosmos in several series including his 2021 magnum opus, Gazers, a generative lunar phase calendar released on Art Blocks in 2021. In fact, Kane's very first NFTs in 2019 were depictions of the M87 Black Hole. The subject of 'Proof of Origin' is a red crayon drawing that the artist made when he was just 4 years old, which he titled at the time 'Picture of the Planets.' 38 years later, as a cryptoartist, Kane reminds us \"don't trust, verify. I've explained how my interest in the cosmos extends back as long as I can remember. This drawing is proof of my early passion and to my estimate, my very first visual expression of outer space. My father remembers the drawing hanging on our refrigerator for a very long time. That's probably where the stains came from. He and my mother were both very happy to see it again.\"\n\nEach NFT has a unique set of stars which are deterministically generated according to an NFT's minting transaction hash. The sky is made up of one star for every month that has passed since the original drawing was made on March 1st, 1985. The work begins with 454 stars. A new star is added to shine brightly at the top of each new month.\n\nIn addition to archiving and responsively presenting the original crayon drawing, the work also serves as a 24 hour clock. Each hour is represented by a different color from the 24 pack of crayons Kane would have drawn from in 1985. \"I've traded black and gray for 'Cornflower Blue' and 'Sea Green' - my favorite colors from the larger packs of crayons. I remember trading these with my kindergarten class's box of 64. I'm pretty sure I got in trouble for that.\" The sky fades according to the minutes that have passed, appearing darkest at the top of each hour.\n\nClicking on the left and right edge of the screen or pressing the spacebar changes the viewing mode of the artwork. Viewers are encouraged to reflect on their own memories of interacting with the night sky, especially at an early age.",
+  "image": "ipfs://QmQHDrkkyuZmAcNkc55JLNNEYjmBFFUmuCriG2cKouJLzr/Proof_of_Origin_-_Picture_of_the_Planets_-_299.jpg",
+  "animation_url": "ipfs://QmTbh6tw3AJ13QQh8gHkn6GJnX22h4xcCgXA8T9wFR2dtt/?tokenId=299",
+  "collection_name": "Proof of Origin - Picture of the Planets by Matt Kane",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#03"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Matt Kane"
+    },
+    {
+      "trait_type": "Star Appearance",
+      "value": "🦠"
+    }
+  ]
+}

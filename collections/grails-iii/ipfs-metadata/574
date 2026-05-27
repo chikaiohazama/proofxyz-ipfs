@@ -1,0 +1,24 @@
+{
+  "name": "Systems",
+  "description": "Systems is an 8 piece series of modern megacity skyscrapers cast in colour tones that contrast with the textures of the manufactured landscape.",
+  "image": "ipfs://bafybeieounecldje2oxoscowdtg2urqccsctbldybzfz6owfvgmsuwfwda",
+  "collection_name": "Systems by Ryan Koopmans",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#09"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Variant",
+      "value": "#0"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Ryan Koopmans"
+    }
+  ]
+}

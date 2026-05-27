@@ -1,0 +1,29 @@
+{
+  "name": "Gold Grail",
+  "description": "Gold is expensive, but just as noted for the iron cauldron, the symbolism of the material far outweighs its cost. Gold is valued in many cultures for its unique properties. In its purest form (24k), it is delightful material to work with: extremely soft and malleable, and of a rich hue nearly orange.\n\nHere, the symbolism of gold goes beyond luxury or gaudiness, something I attempt to emphasize through a design that reflects simplicity and natural form. Something evoking powerful ritual symbolism, more at place in pagan magic than in the hall of an emperor.\n\nA tripod base of three \"branches\" is held together mechanically, passing through each other like through the eye of a needle, supporting a fragile domed shape suggestive of an egg, a recurring symbol in myths of creation.",
+  "image": "ipfs://bafybeihisabguvbecksjcwpbotqsci6fnf2t2doipf6qretlyzypvbhf3i",
+  "animation_url": "ipfs://bafybeihisabguvbecksjcwpbotqsci6fnf2t2doipf6qretlyzypvbhf3i",
+  "collection_name": "GRAILS by 0xDEAFBEEF",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#01"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "0xDEAFBEEF"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Dark"
+    },
+    {
+      "trait_type": "Type",
+      "value": "24k Gold"
+    }
+  ]
+}

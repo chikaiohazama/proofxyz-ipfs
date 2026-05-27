@@ -1,0 +1,25 @@
+{
+  "name": "Into the blue",
+  "description": "Into the Blue is an art series that explores the abstract digital depths with movement of light and colour. \n\nCurious and vivid, blue light becomes the viewer's guide through virtual landscapes. Closely inspecting every corner of digital depths, beams emitting from without become an expansion of our senses that helps us perceive artificial worlds. \n\nStill, as we strive to comprehend the digital reality that we created, it remains as unattainable as distant stars. It is a world that is separated from us by its immaterial nature. Diving into the depth of the screen with our attention, we are imagining mere projections of our reality onto the digital canvas and stay defined by our three-dimensional mind.",
+  "image": "ipfs://bafybeia7lodlwa5d773m2rf2z7ybmesl7uzuf34bzyi4ux7age2ez42eom",
+  "animation_url": "ipfs://bafybeiepurntze4zr5735gi27i6tnuuoz3cmlosnhy3tyamo2wmxdhliqy",
+  "collection_name": "Into the blue by Maxim Zhestkov",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#11"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Variant",
+      "value": "#10"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Maxim Zhestkov"
+    }
+  ]
+}

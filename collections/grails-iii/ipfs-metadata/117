@@ -1,0 +1,20 @@
+{
+  "name": "Shermie",
+  "description": "A good boy lost in wonderment.",
+  "image": "ipfs://bafybeichgq3qd6paidiw3yzuu6qm327lsnhsed5vpxtvrj4mmeyiqtur5e",
+  "collection_name": "Shermie by Seneca",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#04"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Seneca"
+    }
+  ]
+}

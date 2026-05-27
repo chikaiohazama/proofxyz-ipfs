@@ -1,0 +1,21 @@
+{
+  "name": "Dorze Duressa",
+  "description": "The \"Duressa\" dance from the Dorze community of Southern Ethiopia. It represents power and courage, and is usually performed at funerals to honor a hero. The women sing \"Come my Lion, come my Hero.\" Traditional dances are kept alive in the Dorze community by allowing kids to dance from an early age in weddings and other important ceremonies marking rights of passage.",
+  "image": "ipfs://bafybeigg5tg6pucwmx6z4h4qcjm3uey6b4ylbpdlp23ibqwurpagkmj25i",
+  "animation_url": "ipfs://bafybeigg5tg6pucwmx6z4h4qcjm3uey6b4ylbpdlp23ibqwurpagkmj25i",
+  "collection_name": "Dorze Duressa by Yatreda",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#08"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Yatreda"
+    }
+  ]
+}

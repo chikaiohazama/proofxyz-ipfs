@@ -1,0 +1,21 @@
+{
+  "slug": "grails-iii",
+  "metadataCID": "bafybeibywzutnorhrucp5lbhnd54kke5eclta7k5cgl34mhkyh45gl747q",
+  "metadata": {
+    "total": 1000,
+    "ok": 1000,
+    "mismatches": [],
+    "failures": []
+  },
+  "media": {
+    "total": 424,
+    "ok": 424,
+    "mismatches": [],
+    "failures": []
+  },
+  "verifiedAt": "2026-05-27T22:25:45.613Z",
+  "pass": true,
+  "notes": [
+    "ipfs.io served stale/wrong content for the small arweave HTML CID bafkrei...riq (1397 bytes, hash 20af3...). gateway.pinata.cloud and direct re-fetch confirm the pin returns the correct 1126-byte content matching local file sha256 e07d06... CIDs are content-addressed so this is an ipfs.io-gateway cache issue, not a pin issue."
+  ]
+}

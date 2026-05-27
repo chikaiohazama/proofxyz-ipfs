@@ -1,0 +1,20 @@
+{
+  "name": "Echoes",
+  "image": "ipfs://bafybeiaxukrgiuqgpl63m52hkx2apusuxy5z4dytu5yagqzvcx7buuyg4u",
+  "animation_url": "ipfs://bafybeiaxukrgiuqgpl63m52hkx2apusuxy5z4dytu5yagqzvcx7buuyg4u",
+  "collection_name": "Echoes by Rik Oostenbroek",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#05"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Rik Oostenbroek"
+    }
+  ]
+}

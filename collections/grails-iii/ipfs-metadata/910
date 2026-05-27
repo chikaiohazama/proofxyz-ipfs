@@ -1,0 +1,20 @@
+{
+  "name": "Her",
+  "description": "Wrapped in ribbons with an introspective gaze, she is a symbol of balance, energy, life, power, and beauty in the world. \n\nThe title \"Her\" is a nod to the ideal that many creatives like myself strive for: a state of flow where the world melts away and we are one with the muse. In Her, we all see different things: a reflection of ourselves or those around us, inspiring us to tap into our own potential and lead the way to balance, love, or the next challenge. When I look at Her, I see my own journey as an artist, creator, builder, and the struggles and triumphs that we face everyday.\n\nThis piece is the first time I have used artificial intelligence in my artwork. I was fortunate to be trained by an AI engineer, James, who taught me how to create training sets from scratch, run trained text to image and image to image models, and of course how to write successful prompts. It was a pleasure and honor to have this hands-on learning experience with this new technology.\n\nI added my human touch, enhancing the work with hand-drawn layers. In a collaboration between human and machine, her spirit embodies the beauty of both worlds.",
+  "image": "ipfs://bafybeihfaqa6rrdv2uljxpoziupehn32wimlsg5fmtiebcq2iwudkacggm",
+  "collection_name": "Her by Josie Bellini",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#02"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Josie Bellini"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Bronze Grail",
+  "description": "A grail forged from bronze. Bronze is an alloy of copper, with a deep lustrous color.\n\nNeck and vessel hand forged from a single piece, with riveted base.\n\nBeing reflective, metals are difficult to photograph and sensitive to lighting conditions. The forging process produces a pattern of overlapping facets that reflect in interesting ways in rotating light, bearing the mark of a unique hand made object.",
+  "image": "ipfs://bafybeiei5saieua6qpovjp37xlsfbv764t2rr75dldl5ade4akspazgrqe",
+  "animation_url": "ipfs://bafybeiei5saieua6qpovjp37xlsfbv764t2rr75dldl5ade4akspazgrqe",
+  "collection_name": "GRAILS by 0xDEAFBEEF",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#01"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "0xDEAFBEEF"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Light"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Bronze"
+    }
+  ]
+}

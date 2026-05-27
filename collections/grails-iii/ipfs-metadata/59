@@ -1,0 +1,80 @@
+{
+  "name": "Reticulum",
+  "description": "Reticulum is part of my continued exploration of developing deep color and texture using 100% generative approaches. For this project I created an entirely new generative color model and for the first time rendered the entire artworks using SVG making it possible to scale the outputs to any size in live mode.\n\nI wanted this series to look like rudimentary and mutating networks. Crude interconnecting webs of primordial elements. I love the idea of a network coming online in terms of self awareness. Networks seem to pervade all of life from the vast Mycelium webs in forests through to the circulatory, nervous and neurological systems in our own bodies. More inspiring for me however is thinking about the first pulses of life that evolved in microbial networks in ancient epochs and also the possibility of self awareness evolving quietly and wildly within the interconnected machinery of the internet. This series of artworks I hope are a playful expression of my fascination with this subject. \n\nA recurrent theme in all my work is an attempt to create a simultaneous sense of both macro and micro vistas. In building the primitives for this project I was inspired by images of both microorganisms and vast skeletal gas clouds in interstellar nurseries revealed by the James Webb telescope. I often have the sense when looking out into the cosmos that this might be what it's like for a cell or even an atom looking around at its neighbors and unfathomably distant cousins. In this way I am filled with a sense that we ourselves might be nodes in a much larger self aware network. \n\nWhen I’m at my desk developing a work I don’t tend to think about much else other than the code and what is directly in front of me. Mostly I’m thinking visually or just involved with technical problem solving. It is exciting and sometimes even surprising for me to see how the subjects I have been contemplating and reading about recently reveal themselves in my work. When I write about my work it may seem contrived, but I would say the subjects I write about are genuinely inspiring a series, it's just that the means by which they get translated into visual forms is often a mystery even to me.  \n\nAs a way to make this a true Long Form Project in the sense that it is not just a curated collection of generative outputs I used a list of Seed Phrases to generate each output. These are included as a feature so collectors can see them and potentially use them as a name for each piece. I started out by forming a list of words that describe the project plus a few other words related to Long Form Generative art and the Web3 space. 'Proof' is in there! Each seed phrase is then passed to an algorithm that turns it into a hash of the same variety that is generated on the Ethereum network. This hash is then passed to the algorithm and the artwork is created in the same way an standard Art Blocks project is built.",
+  "image": "ipfs://bafybeif5mdzz37ztnxss2sghfnqcs2zhc25rwnpjfx3szfgn2yfiturmt4",
+  "collection_name": "Reticulum by Harvey Rayner",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#13"
+    },
+    {
+      "trait_type": "Season",
+      "value": "3"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Harvey Rayner"
+    },
+    {
+      "trait_type": "Fuzzy Moon",
+      "value": "No"
+    },
+    {
+      "trait_type": "Seed Phrase",
+      "value": "Proof"
+    },
+    {
+      "trait_type": "Filament Control Points",
+      "value": "No"
+    },
+    {
+      "trait_type": "Color Mode",
+      "value": "Dark on Light"
+    },
+    {
+      "trait_type": "Filament Frequency",
+      "value": "Low"
+    },
+    {
+      "trait_type": "Cell Edge Bind",
+      "value": "No"
+    },
+    {
+      "trait_type": "Fairy Ring Deffusion",
+      "value": "Tight"
+    },
+    {
+      "trait_type": "Border Cover",
+      "value": "No"
+    },
+    {
+      "trait_type": "Filament Echo",
+      "value": "No"
+    },
+    {
+      "trait_type": "Fairy Ring Frequency",
+      "value": "Low"
+    },
+    {
+      "trait_type": "Filament Ribbon Frequency",
+      "value": "Low"
+    },
+    {
+      "trait_type": "Cell Frequency",
+      "value": "High"
+    },
+    {
+      "trait_type": "Fan Frequency",
+      "value": "Medium"
+    },
+    {
+      "trait_type": "Filament Type",
+      "value": "Wave"
+    },
+    {
+      "trait_type": "Border Type",
+      "value": "Deep Horizontal"
+    }
+  ]
+}

@@ -26,10 +26,13 @@ Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens
 |---|---|---|---:|---:|---|
 | 1 | **Grails V** (prototype) | [`0x92a50…349b8`](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8) | 785 | ~732 (~93%) | ✅ pinned & verified |
 | 2 | Grails IV | [`0x069ee…b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885) | 904 | ~750 (~83%) | to do |
-| 3 | Grails III | _main on-chain contract TBD — see below_ | ~1000+ | TBD | needs contract address |
+| 3 | **Grails III** | [`0x503a3…84A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3) | 1,000 | 1,000 (100%) | to do |
 | 4 | Grails II | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) | 1,178 | 1,178 (100%) | to do |
 | 5 | Grails I | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | 1,036 | 1,036 (100%) | to do |
 | 6 | Diamond Exhibition | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | 5,093 | ~1,170 (~23%) | to do |
+| 7 | Archive of Feelings (Mika Tajima) | [`0x24607…13762`](https://etherscan.io/address/0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762) | 1,152 | 1,152 (100%) | to do |
+| 8 | PROOF Curated: Evolving Pixels | [`0x48b17…502b7`](https://etherscan.io/address/0x48b17a2c46007471b3eb72d16268eaecdd1502b7) | 891 | ~360 (~40%) | to do |
+| 9 | The Journey | [`0xd5386…1900b`](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b) | 96 | 96 (100%) | to do |
 
 ### How Art Blocks tokens are handled
 

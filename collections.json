@@ -5,43 +5,92 @@
       "name": "Grails V",
       "contract": "0x92a50fe6ede411bd26e171b97472e24d245349b8",
       "chain": "ethereum",
+      "deployer": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
       "prototype": true,
-      "note": "All 785 tokens Proof-hosted (no Art Blocks); fully pinned and verified."
+      "note": "785 tokens; 732 Proof-routed + 53 Art Blocks-routed. Fully pinned and verified."
     },
     {
       "slug": "grails-iv",
       "name": "Grails IV",
       "contract": "0x069eeda3395242bd0d382e3ec5738704569b8885",
       "chain": "ethereum",
-      "note": "Mixed routing: ~83% of tokens Proof-hosted, ~17% Art Blocks. Per-token filter handles it."
+      "deployer": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
+      "note": "904 tokens; mixed routing ~83% Proof-hosted (~750), ~17% Art Blocks (~150)."
     },
     {
       "slug": "grails-iii",
       "name": "Grails III",
-      "contract": null,
+      "contract": "0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3",
       "chain": "ethereum",
-      "note": "Metadata served at live---grails-metadata...run.app/metadata/3/<id>; main on-chain contract TBD (the OpenSea slugs grails-3 and grails-iii-by-proof both point at non-canonical contracts)."
+      "deployer": "0x1b945Af93d5A27A0041EfEa8FFD84AFbBc478895",
+      "note": "1000 tokens, 100% Proof-hosted at metadata/3/<id>. Multiple artists (0xDEAFBEEF, Rik Oostenbroek, Mika Tajima, Matt Kane, ...)."
     },
     {
       "slug": "proof-grails-ii",
       "name": "Grails II",
       "contract": "0xd78afb925a21f87fa0e35abae2aead3f70ced96b",
       "chain": "ethereum",
-      "note": "1178 tokens, all Proof-hosted at metadata/2/<id>."
+      "deployer": "0x1b945Af93d5A27A0041EfEa8FFD84AFbBc478895",
+      "note": "1178 tokens, 100% Proof-hosted at metadata/2/<id>."
     },
     {
       "slug": "proof-grails",
       "name": "Grails I",
       "contract": "0xb6329bd2741c4e5e91e26c4e653db643e74b2b19",
       "chain": "ethereum",
-      "note": "1036 tokens, all Proof-hosted at metadata/1/<grailIdx>/<id>."
+      "deployer": "0x6c8984bAf566Db08675310b122BF0be9Ea269ecA",
+      "note": "1036 tokens, 100% Proof-hosted at metadata/1/<grailIdx>/<id>."
     },
     {
       "slug": "diamond-exhibition-by-proof",
       "name": "Diamond Exhibition",
       "contract": "0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e",
       "chain": "ethereum",
-      "note": "Mixed routing: ~23% of 5093 tokens Proof-hosted (~1170), ~77% Art Blocks (~3920). Per-token filter handles it."
+      "deployer": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
+      "note": "5093 tokens; mixed routing ~23% Proof-hosted (~1170), ~77% Art Blocks (~3920)."
+    },
+    {
+      "slug": "archive-of-feelings-by-mika-tajima",
+      "name": "Archive of Feelings by Mika Tajima",
+      "contract": "0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762",
+      "chain": "ethereum",
+      "deployer": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
+      "note": "1152 tokens, 100% Proof-hosted."
+    },
+    {
+      "slug": "proof-curated-evolving-pixels",
+      "name": "PROOF Curated: Evolving Pixels",
+      "contract": "0x48b17a2c46007471b3eb72d16268eaecdd1502b7",
+      "chain": "ethereum",
+      "deployer": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
+      "note": "891 tokens; mixed routing ~40% Proof-hosted (~360), ~60% Art Blocks (~530)."
+    },
+    {
+      "slug": "mb-the-journey",
+      "name": "The Journey",
+      "contract": "0xd5386794f57697ab4ecb930b049da70fc771900b",
+      "chain": "ethereum",
+      "deployer": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
+      "note": "96 tokens, 100% hosted at storage.googleapis.com (Proof-controlled)."
     }
+  ],
+  "skipped": [
+    { "name": "COCKPUNCH by Tim Ferriss", "contract": "0xC178994cB9b66307Cd62dB8b411759Dd36D9C2EE", "reason": "PFP shape (5555 supply); explicit user skip." },
+    { "name": "Run Ed (Moonbirds Miami)", "contract": "0x1165840AE3f426Bf09a9575e1696badEB4be5198", "reason": "Moonbirds-adjacent merch/event; out of art scope." },
+    { "name": "Resurrection by Alma Thomas", "contract": "0x75ebBd11bA81089b200BDf8dD0b48B6506270A0C", "reason": "Already on ipfs:// — no mirroring needed." },
+    { "name": "PROOF EAC", "contract": "0x19d5de8695e66c34c0a51b61cf63477de77af977", "reason": "Already on ipfs:// — no mirroring needed." },
+    { "name": "Moonbirds", "contract": "0x23581767a106ae21c074b2276D25e5C3e136a68b", "reason": "PFP — out of scope." },
+    { "name": "Moonbirds Oddities", "contract": "0x1792a96E5668ad7C167ab804a100ce42395Ce54D", "reason": "PFP/Oddities — out of scope." },
+    { "name": "Mythics: Egg", "contract": "0x13303b4ee819fac204be5ef77523cfcd558c082f", "reason": "Mythics/PFP — out of scope." },
+    { "name": "Defybirds", "contract": "0x83d37295507f7c838f6a7dd1e41a4a81ac7c9a5e", "reason": "PFP — out of scope." },
+    { "name": "Deadities", "contract": "0xce42ca363031af3a6d5e60b8da5a9db0c5e6aa43", "reason": "Oddities-adjacent PFP — out of scope." },
+    { "name": "PROOF Pass (Collective)", "contract": "0x08D7C0242953446436F34b4C78Fe9da38c73668d", "reason": "Pass — out of scope." },
+    { "name": "Diamond Exhibition Passes", "contract": "0x94d7ee989e4ac2b8dcd7066de6f94c9426e5a0ca,0xfab34fd377f0cfe9703e2d84477076b64b42b845", "reason": "Passes." },
+    { "name": "Grails IV Mint Pass", "contract": "0xb6cac678cefd488b3d02ca69c40dbafb48e593b0", "reason": "Mint pass." },
+    { "name": "Grails V Mint Pass", "contract": "0x292cb6c1bc4940eba492503c0c7d9efa5001cbff", "reason": "Mint pass." },
+    { "name": "Grails II Mint Pass", "contract": "0x2C3FC1D826bC12027D05fBE3AeaCE0a2453bF9FD", "reason": "Mint pass." },
+    { "name": "Grails III Mint Pass", "contract": "0x10F1d490B98b65CF5Ad8BABaB840a979a49C9b84", "reason": "Mint pass." },
+    { "name": "Moonbirds X MadHappy: Black Hoodie", "contract": "0x1e2478970840a23db0afd558159a400bfb9a7b15", "reason": "Voucher/merch — out of art scope." },
+    { "name": "Moonbirds X MadHappy: Blue Hoodie", "contract": "0xf265a8cad057d4f9e8785bbb4e8780663e24bb5b", "reason": "Voucher/merch — out of art scope." }
   ]
 }

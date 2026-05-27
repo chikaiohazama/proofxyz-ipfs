@@ -46,7 +46,7 @@
     },
     "08-instructions": {
       "path": "/Users/chikai/Github/proofxyz-ipfs/collections/grails-v/INSTRUCTIONS.md",
-      "completedAt": "2026-05-27T04:23:34.642Z"
+      "completedAt": "2026-05-27T04:55:31.343Z"
     }
   },
   "discovered": {
@@ -68,7 +68,8 @@
       "signature": "setBaseTokenURI(string)"
     },
     "skipReason": null,
-    "discoveredAt": "2026-05-27T02:03:07.282Z"
+    "discoveredAt": "2026-05-27T02:03:07.282Z",
+    "currentBaseTokenURI": "https://metadata.proof.xyz/grails-v/art/"
   },
   "mediaPins": {
     "02bcbe583baae3c67b0fe7adc3a0dc0640137c4d2369e0a18eb89b2a78070802.png": {

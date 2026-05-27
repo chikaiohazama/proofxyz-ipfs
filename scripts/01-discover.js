@@ -9,7 +9,7 @@
 // Why skipReason="artblocks": if tokenURI resolves to an artblocks.io host, the art is
 // dynamically rendered and a static pin would freeze it (see README → "Why Grails IV is skipped").
 import { getCollection } from "../lib/opensea.js";
-import { name, symbol, totalSupply, owner, tokenURI, getContractCreator } from "../lib/alchemy.js";
+import { name, symbol, totalSupply, owner, tokenURI, baseURI, getContractCreator } from "../lib/alchemy.js";
 import { getAbi, detectUriSetter } from "../lib/etherscan.js";
 import { getCollectionConfig, recordStep, updateState } from "../lib/state.js";
 
@@ -53,7 +53,7 @@ async function main() {
   }
   console.log(`  contract: ${contract}`);
 
-  const [collectionName, collectionSymbol, supply, ownerAddr, indexInfo, creator] =
+  const [collectionName, collectionSymbol, supply, ownerAddr, indexInfo, creator, currentBase] =
     await Promise.all([
       name(contract),
       symbol(contract),
@@ -61,6 +61,7 @@ async function main() {
       owner(contract),
       detectIndexBase(contract),
       getContractCreator(contract),
+      baseURI(contract),
     ]);
 
   const skipReason = isArtblocks(indexInfo.sample) ? "artblocks" : null;
@@ -85,6 +86,7 @@ async function main() {
     contractCreator: creator,
     tokenIndexBase: indexInfo.base,
     tokenUriSample: indexInfo.sample,
+    currentBaseTokenURI: currentBase,
     setter,
     skipReason,
     discoveredAt: new Date().toISOString(),

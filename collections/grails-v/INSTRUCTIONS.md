@@ -10,6 +10,7 @@
 | Total supply | 785 (tokens 0..784, **0-indexed**) |
 | Deployer | `0x32220f07DBcd18149f619F28cD09FD911cc0372D` |
 | Current baseURI sample | `https://metadata.proof.xyz/grails-v/art/0` |
+| Current `baseTokenURI()` | `https://metadata.proof.xyz/grails-v/art/` |
 | New baseURI | `ipfs://bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/` |
 | Metadata CID (directory pin) | `bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq` |
 | Media pins | 202 files, each pinned with its own CID (see `state.json` → `mediaPins` for the full map) |
@@ -58,7 +59,13 @@ await c.setBaseTokenURI("ipfs://bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6
 
 ## Revert plan
 
-If anything is wrong, call the same setter with the **old** baseURI captured above. The change is fully reversible — no state migration, just a string replacement.
+If anything is wrong, call the same setter with the **previous** baseURI captured at the time of generation:
+
+```
+setBaseTokenURI("https://metadata.proof.xyz/grails-v/art/")
+```
+
+The change is fully reversible — no state migration, just a string replacement.
 
 ## Read-contract URL (for sanity checks before & after)
 
@@ -66,4 +73,4 @@ https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8#readCont
 
 ---
 
-_Generated 2026-05-27T04:23:34.641Z by proofxyz-ipfs pipeline. Verification report (sha256 round-trip vs the pin) is in this collection's directory at `verification-report.json`._
+_Generated 2026-05-27T04:55:31.341Z by proofxyz-ipfs pipeline. Verification report (sha256 round-trip vs the pin) is in this collection's directory at `verification-report.json`._

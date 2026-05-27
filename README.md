@@ -164,14 +164,20 @@ cast send 0x92a50fe6ede411bd26e171b97472e24d245349b8 \
 
 **Pre-flight (must do before sending):**
 
-1. Capture the current `baseTokenURI()` value from [Etherscan readContract](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8#readContract) — this is the revert string if anything goes wrong.
+1. Re-confirm the current `baseTokenURI()` value on [Etherscan readContract](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8#readContract) — at the time the pin was generated it was `https://metadata.proof.xyz/grails-v/art/` (already recorded for the revert plan below). Worth re-checking in case it's changed.
 2. Spot-check the new pin via 2–3 gateways and confirm the JSON loads and the `image` IPFS CID inside it also resolves:
    - https://gateway.pinata.cloud/ipfs/bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/0
    - https://ipfs.io/ipfs/bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/0
    - https://dweb.link/ipfs/bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/0
 3. After the tx lands, trigger an OpenSea metadata refresh for one token first to confirm marketplaces pick it up. Then trigger a collection-wide refresh.
 
-**Revert plan:** call the same setter with the captured old `baseTokenURI` value. It's a one-string state change — fully reversible, no on-chain migration.
+**Revert plan:** call the setter with the **previous** value captured at pin time:
+
+```
+setBaseTokenURI("https://metadata.proof.xyz/grails-v/art/")
+```
+
+It's a one-string state change — fully reversible, no on-chain migration.
 
 **Recommended: re-pin under your own Pinata account.** The pins listed in this repo are hosted on the account that ran the pipeline. For long-term durability under Proof's control, re-pin every CID from your own Pinata account (or any pinning service) before — or shortly after — flipping `baseURI`. Because IPFS is content-addressed, re-pinning the same bytes produces the **exact same CID**: no metadata edit, no on-chain change, nothing in this repo to update. To do it: fetch each CID (the metadata directory plus every entry in `state.json` → `mediaPins`) via any IPFS gateway and re-upload it through Pinata's web UI or API. Once Proof's pin exists, this account's pins can be unpinned without breaking anything.
 

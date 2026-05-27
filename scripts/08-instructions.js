@@ -37,6 +37,7 @@ function render(state) {
 | Total supply | ${d.totalSupply} (tokens ${d.tokenIndexBase}..${d.tokenIndexBase + d.totalSupply - 1}, **${d.tokenIndexBase}-indexed**) |
 | Deployer | \`${d.contractCreator}\` |
 | Current baseURI sample | \`${d.tokenUriSample}\` |
+| Current \`baseTokenURI()\` | \`${d.currentBaseTokenURI ?? "(read from Etherscan before sending — needed for revert)"}\` |
 | New baseURI | \`${newBaseURI}\` |
 | Metadata CID (directory pin) | \`${metadataCID}\` |
 | Media pins | ${mediaPinCount} files, each pinned with its own CID (see \`state.json\` → \`mediaPins\` for the full map) |
@@ -85,7 +86,13 @@ await c.${setter ? setter.name : "<fn>"}("${newBaseURI}");
 
 ## Revert plan
 
-If anything is wrong, call the same setter with the **old** baseURI captured above. The change is fully reversible — no state migration, just a string replacement.
+If anything is wrong, call the same setter with the **previous** baseURI captured at the time of generation:
+
+\`\`\`
+${setter ? setter.name : "<setter>"}("${d.currentBaseTokenURI ?? "<previous baseTokenURI — read from Etherscan first>"}")
+\`\`\`
+
+The change is fully reversible — no state migration, just a string replacement.
 
 ## Read-contract URL (for sanity checks before & after)
 

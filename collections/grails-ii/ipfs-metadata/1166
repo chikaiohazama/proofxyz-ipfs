@@ -1,0 +1,20 @@
+{
+  "name": "Breezy Doozy",
+  "description": "This work is a 2022 reimagining of a previously unreleased composite drawing I made in 2012. At the time I was investigating the Deviant Art community as an outsider, somewhat as visual anthropologist. The aesthetics that emerged from that community strike me as influential for many Degen PFP NFT projects - but then without the financial component. The image is animated with a wavy SVG filter, and it responds to your operating system's settings for 'light' or 'dark' mode appearance.",
+  "image": "ipfs://bafybeidbhckciiji5ym6da6huey4viofzooayzt57gxa7l3ewita54et2e",
+  "collection_name": "Breezy Doozy by Harm van den Dorpel",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Harm van den Dorpel"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#15"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

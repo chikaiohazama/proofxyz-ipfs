@@ -1,0 +1,20 @@
+{
+  "name": "GEIST",
+  "description": "\"It is a ghost of an image, a preview, a thumbnail… squeezed through slow digital connections, compressed, reproduced, ripped, remixed, as well as copied and pasted into other channels of distribution.\"—Hito SteyerlMade with noise, code, scrap paper, tea, tape, discarded electronics, graphite and light projection. Inspired by artist friends in the highly networked practice of generative art, as well as Hito Steyerl's seminal defense of the poor image, GEIST mixes generative, traditional, digital and material processes.An exploration and reconciliation with the strange power of the static thumbnail in web3.An homage to all the poor images no less haunting for their humble resolution that became formative cultural influences for those of us who grew up on the Internet.\n\nLastly, a non-literal labyrinth linking past and upcoming long form generative art projects - GEIST gives rise to keys for those willing to explore a non-linear future.",
+  "image": "ipfs://bafybeiety2xranrtnoygadyjgttwkrhbsaeyemoxyvpmuzexyhnprsq5lm",
+  "collection_name": "GEIST by Alida Sun",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Alida Sun"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#22"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

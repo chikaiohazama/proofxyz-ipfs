@@ -1,0 +1,20 @@
+{
+  "name": "Away from Keyboard",
+  "description": "Unlike Xie's typical code-based work, \"Away from Keyboard\" is a physical piece: a hand-cut and pasted collage inspired by her own algorithms. Each piece of paper used is printed with one of her generative patterns. Through this manual creation process, Xie gets to explore and understand her generative systems in a different light.",
+  "image": "ipfs://bafybeicgbwmqexjua6hc5iysvh5sfplikm24j5soth3l4mtwvyrb47ls6e",
+  "collection_name": "Away from Keyboard by Emily Xie",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Emily Xie"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#17"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "The Guardian",
+  "description": "This titan is keeping the Vault safe. What's behind though… ?",
+  "image": "ipfs://bafybeignws7cmjps4s6o22ayqlwaffk5n2h6ixsrejvncuh6l472gycqaq",
+  "collection_name": "The Guardian by William Mapan",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "William Mapan"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#18"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

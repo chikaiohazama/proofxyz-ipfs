@@ -1,0 +1,20 @@
+{
+  "name": "Ball",
+  "description": "Hand-drawn animation with ink on paper.\n\nMy work is typically made by destroying and reworking the same image over and over again for months to create a highly detailed, 1-minute mind-bending animation. But when I am traveling or away from the studio, I will work on flip-books to keep my hands busy and experiment with movement. I don't often publish the results, but when PROOF reached out about providing older work or work in an atypical style for Grails, I thought it would be fun to share one of my favorite flip-books.\n\nBall was hand-drawn on one pad of Post-It Notes while commuting by train and subway, I used a quarter to trace the circle on each page. I wanted to depict three types of movement all at once - a moving object, a moving light source, and a moving viewpoint or \"camera\" - while also exploring the expressive, painterly and distorted qualities made possible by drawing at a very small scale in a moving train car. When the flip-book was complete, I scanned each page to create the endlessly looping digital animation. To me, Ball is a meditation on the illusion of movement itself. An object in motion stays in motion. Always move forward.",
+  "image": "ipfs://bafybeie5bd5dv3c6hxt4j5xmppkjye6f2p2voth5h3wtuu7iha4cjbuwue",
+  "collection_name": "Ball by Jake Fried",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Jake Fried"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#16"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

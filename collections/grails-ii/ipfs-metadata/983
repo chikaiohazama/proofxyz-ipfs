@@ -1,0 +1,20 @@
+{
+  "name": "Crude Figures",
+  "description": "Imperfect restorations of the same picture. Each restoration has limited information and a limited ability to reassemble the pixels correctly.\n\nThis is a re-utilisation of a pixel-sorting algorithm I made a few years ago. The combination of applying it on a relatively simple image and doing it multiple times makes the workings of the algorithm more apparent. The attached video shows how the algorithm works, repeatedly swapping pixels to recreate the original image.",
+  "image": "ipfs://bafybeieobucjpcjy4t7ag37awhkw6ikr5v2xmejm5e4yx22npfbba5lgcq",
+  "collection_name": "Crude Figures by Kjetil Golid",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Kjetil Golid"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#06"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

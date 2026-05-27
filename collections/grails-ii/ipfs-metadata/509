@@ -1,0 +1,20 @@
+{
+  "name": "Latent Floral - A",
+  "description": "Latent Floral A is a multi-dimensional AI Data Painting that transforms a fragment of the world's natural phenomena into a visual poem for Metaverse. Utilizing a raw dataset of 100 million flower images to train a generative adversarial network (GAN), the NFT artwork reveals the latent space in which a machine \"dreams\" of flowers after learning what a flower is – its colors, patterns, and shapes that exist in its synthetic memories. Anadol's pioneering take on painting with data takes the form of a celebration of the latent sensations that floral patterns and colors induce and gives an abstract \"shapelessness\" to pigments. The result is a mesmerizing visualization of an alternative natural world that evokes themes of transformation and innovation at the intersection of art, nature, and technology.",
+  "image": "ipfs://bafybeidczsgr7wzui7bg63shmslnwifevqqhx7yrongjvfaekmlkn4lncm",
+  "collection_name": "Latent Floral - A by Refik Anadol",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Refik Anadol"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#08"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

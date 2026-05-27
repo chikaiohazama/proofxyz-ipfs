@@ -1,0 +1,20 @@
+{
+  "name": "Retinal Plugin",
+  "description": "Neural Pattern formation cloud update // in progress",
+  "image": "ipfs://bafybeicwwyfcuz2szedatx3oq4ffbvavhuexnrskzxv4uevl2hufqu2tf4",
+  "collection_name": "Retinal Plugin by Neurocolor",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Neurocolor"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#23"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

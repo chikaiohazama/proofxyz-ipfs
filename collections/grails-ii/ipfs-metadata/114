@@ -1,0 +1,20 @@
+{
+  "name": "Dragon Preliminary Study",
+  "description": "This is a preliminary sketch and color study for a physical painting that I will be making soon.\n\nGraphite and Digital, 3142 x 4018 Pixels, 2022.",
+  "image": "ipfs://bafybeif4ldywiuy3lrzx2ivqejnorivqmgusvrcldckgvmqinnzskxw3ge",
+  "collection_name": "Dragon Preliminary Study by James Jean",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "James Jean"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#12"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

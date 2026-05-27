@@ -1,0 +1,20 @@
+{
+  "name": "Bookends (Study)",
+  "description": "The Bookends series explores the tension and harmony between ceramics, one of the oldest crafts known to mankind, and the seemingly unlimited variety of algorithmic art.\n\nThis specific output was manually composed by overlaying two hand made ceramic bowls on top of a generative code based artwork (plus a quick and dirty drop shadow). It is my favorite of dozens of manually assembled compositions exploring what an algorithmic edition would look like combining these two very different mediums. While I've been exploring algorithmic art for nearly a decade, my experience in the medium of ceramics is only a year old. Over that year I have found the practice of hand forming and glazing pinch pots/bowls to be a wonderful counterweight to the frantic nature of the crypto/NFT space.",
+  "image": "ipfs://bafybeib2pxgpyumtd3jc46einil44ohhd64z5bfh3tc4lr6zdwlxwhamlu",
+  "collection_name": "Bookends (Study) by Snowfro",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Snowfro"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#14"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

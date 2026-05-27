@@ -1,0 +1,19 @@
+{
+  "name": "Dissociation",
+  "image": "ipfs://bafybeievjlmauht5dzd77w5y5snwh7c2cfkybpdk3is7z3j6n54wb3kmr4",
+  "collection_name": "Dissociation by Drifter Shoots",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Drifter Shoots"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#13"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

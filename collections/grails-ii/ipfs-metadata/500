@@ -1,0 +1,20 @@
+{
+  "name": "Red Skull",
+  "description": "A digital artwork by Mr Doodle as part of a continuation of his Abstract Doodlism series. Which features layers of loose doodles on top of one and other in a way that creates a feeling of colourful graffiti like lines building raw, vibrant images.",
+  "image": "ipfs://bafybeib3zvzh77rxzihl43fad7ytk5for5qclwqv7oexb5humriahe6ivq",
+  "collection_name": "Red Skull by Mr Doodle",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Mr Doodle"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#20"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

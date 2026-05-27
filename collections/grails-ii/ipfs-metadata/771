@@ -1,0 +1,20 @@
+{
+  "name": "Ambivalence",
+  "description": "Oscillating between extremes.\n\n2160 x 3840 px · 24FPS · 144F",
+  "image": "ipfs://bafybeiag75ardp3jz3rab7wgsbwbfwtkmzkn757laomaygl5poywrbqk6q",
+  "collection_name": "Ambivalence by Luis Ponce",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Luis Ponce"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#10"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

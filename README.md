@@ -27,7 +27,7 @@ Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens
 | 1 | **Grails V** (prototype) | [`0x92a50…349b8`](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8) | 785 | ~732 (~93%) | ✅ pinned & verified |
 | 2 | **Grails IV** | [`0x069ee…b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885) | 904 | 734 (~81%) | ✅ pinned & verified |
 | 3 | **Grails III** | [`0x503a3…84A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3) | 1,000 | 1,000 (100%) | to do |
-| 4 | Grails II | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) | 1,178 | 1,178 (100%) | to do (internal slug: `grails-ii`) |
+| 4 | **Grails II** | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) | 1,178 | 1,178 (100%) | ✅ pinned & verified |
 | 5 | **Grails I** ⚠️ special URI shape | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | 1,036 | 1,036 (100%) | ✅ pinned & verified — nested layout |
 | 6 | Diamond Exhibition | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | 5,093 | ~1,170 (~23%) | to do |
 | 7 | Archive of Feelings (Mika Tajima) | [`0x24607…13762`](https://etherscan.io/address/0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762) | 1,152 | 1,152 (100%) | to do |
@@ -409,6 +409,35 @@ setBaseTokenURI("https://metadata.proof.xyz/grails-v/art/")
 It's a one-string state change — fully reversible, no on-chain migration.
 
 **Recommended: re-pin under your own Pinata account.** The pins listed in this repo are hosted on the account that ran the pipeline. For long-term durability under Proof's control, re-pin every CID from your own Pinata account (or any pinning service) before — or shortly after — flipping `baseURI`. Because IPFS is content-addressed, re-pinning the same bytes produces the **exact same CID**: no metadata edit, no on-chain change, nothing in this repo to update. To do it: fetch each CID (the metadata directory plus every entry in `state.json` → `mediaPins`) via any IPFS gateway and re-upload it through Pinata's web UI or API. Once Proof's pin exists, this account's pins can be unpinned without breaking anything.
+
+---
+
+### Grails II — **READY TO SEND**
+
+Pipeline complete: 1178/1178 metadata + 55/55 media verified end-to-end on `ipfs.io`. Full handoff doc: [`collections/grails-ii/INSTRUCTIONS.md`](collections/grails-ii/INSTRUCTIONS.md).
+
+| | |
+|---|---|
+| Contract | [`0xd78afb925a21f87fa0e35abae2aead3f70ced96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) |
+| Function | `setBaseTokenURI(string)` |
+| **Argument to pass** | `ipfs://bafybeibmssdlwuorheuay6apc7vghpzhbj4y2q6knshkgmtb2y57w3lvrm/` &nbsp;_(trailing slash required)_ |
+| Etherscan: read | [readContract](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b#readContract) |
+| Etherscan: write | [writeContract](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b#writeContract) |
+| Caller permission | Standard ERC721A + Ownable; sign from `owner()`. |
+| Token indexing | **0-indexed**, tokens `0..1177` (totalSupply 1178) |
+
+**Pre-flight verification links:**
+- https://ipfs.io/ipfs/bafybeibmssdlwuorheuay6apc7vghpzhbj4y2q6knshkgmtb2y57w3lvrm/0
+- https://dweb.link/ipfs/bafybeibmssdlwuorheuay6apc7vghpzhbj4y2q6knshkgmtb2y57w3lvrm/500
+
+**Revert plan:** `setBaseTokenURI("https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/2/")`
+
+**Findings worth noting:**
+
+- Standard ERC721A + BaseTokenURI override pattern (`baseURI + Strings.toString(tokenId)`) — verified in `Grails2.sol` / `ERC721A.sol` on Sourcify. No nested-pin trickery like Grails I.
+- Extreme media dedup: 1,178 tokens → only **55 unique media files** (~21 editions per piece on average).
+- One file is a large 84 MB animated GIF (`9b2a01cc…gif`, used by 39 tokens). During the parallel run with 2 other pipelines hitting Pinata, this file timed out through all 4 retries and pin-media exited 54/55. After pausing the other pipelines, the same file pinned cleanly on the first attempt running solo — clear evidence of Pinata's per-account throughput ceiling under concurrent uploads.
+- 41 verify round-trips initially failed (35 × HTTP 429 + 6 × HTTP 504 from `ipfs.io`); all succeeded on retry. **Note for future runs: ipfs.io applies rate-limit windows — verify-time errors are largely benign and self-recover with a small backoff.**
 
 ---
 

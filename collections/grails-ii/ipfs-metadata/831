@@ -1,0 +1,20 @@
+{
+  "name": "Store",
+  "description": "From the series \"Life In Japan.\"",
+  "image": "ipfs://bafybeiau3mlgnkcztnsdpr7bg3jre5rl466tmehosuxeyzumvyw2yem3dm",
+  "collection_name": "Store by Grant Riven Yun",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Grant Riven Yun"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#02"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "The Fabric of Trees",
+  "description": "A year ago I was obsessively crafting algorithms to draw trees with a pen plotter. At the core of them is a piece of code that fast computes line intersections, the black magic behind all of my pen plotter works.\n\nThe Fabric of Trees is an output from the same algorithm that later made my genesis ETH piece \"The Oak Tree\", nothing less, except the magic of deactivating line intersections. \"\n\n• 5600x5600 PNG\n\n• made with javascript code\n\n• exists as a plottable file",
+  "image": "ipfs://bafybeifqeiyquejqiqwlk4vwowy3iokrnys5plxng7dpx4xlx2gm3qsdem",
+  "collection_name": "The Fabric of Trees by Zancan",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Zancan"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#25"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

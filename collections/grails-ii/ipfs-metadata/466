@@ -1,0 +1,20 @@
+{
+  "name": "Belly of the Whale: 01",
+  "description": "The entrance to the basement shop from where all good things are birthed. The lord chisels still, so don't leave your bench for long.",
+  "image": "ipfs://bafybeihgin24o6grix26iegujqmfy3uend2t2kafqp4cmkx6pakfe2dm5a",
+  "collection_name": "Belly of the Whale: 01 by Tom Sachs",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Tom Sachs"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#01"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

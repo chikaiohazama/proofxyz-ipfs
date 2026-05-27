@@ -1,0 +1,20 @@
+{
+  "name": "Quantum Noise #25",
+  "description": "I do not do editions for a variety of reasons. This practice continues in this Grails Piece. While each of these may appear the same, they are actually unique generative pieces augmented with noise from the quantum computer ibmq_quinto. At regular scales our world is consistent and predictable, but at the quantum level everything is random and chaotic. Look closely at the details of this piece and you will see that it mimics this phenomenon. Furthermore, the animated numbers, which may be confused with binary, are not actually binary. They are visual representations of qubits in perfect superposition as measured by observing atoms within ibmq_quinto.",
+  "image": "ipfs://bafybeifudzyvn7wpjcg45ogbwkrvhf3uljhbtbgrmke65csduciydrri3e",
+  "collection_name": "Quantum Noise by Pindar Van Arman",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Pindar Van Arman"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#07"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

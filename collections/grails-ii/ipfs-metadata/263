@@ -1,0 +1,20 @@
+{
+  "name": "Fixer-upper",
+  "description": "The depression sits idle, patiently waiting to find more time to breathe. It eats what I eat and thinks what I think, but better. Forever hoping that it leaves me be but terrified it will. Love, friendship and responsibility exist around me…but IT does not know those things.Either I contain it well, or I've made them all liars. I'm sorry.",
+  "image": "ipfs://bafybeictdxlh6xgyq6c4tueuhjqq5tg7vu3vfj5wokmv4mxiopzwexplpa",
+  "collection_name": "Fixer-upper by Process Grey",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Process Grey"
+    },
+    {
+      "trait_type": "Grail",
+      "value": "#03"
+    },
+    {
+      "trait_type": "Season",
+      "value": "2"
+    }
+  ]
+}

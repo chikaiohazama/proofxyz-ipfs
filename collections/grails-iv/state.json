@@ -20,6 +20,34 @@
       "deduped": 34,
       "failed": 0,
       "completedAt": "2026-05-27T15:43:45.715Z"
+    },
+    "04-pin-media": {
+      "totalFiles": 84,
+      "newlyPinned": 84,
+      "errors": 0,
+      "completedAt": "2026-05-27T16:11:04.087Z"
+    },
+    "05-rewrite-metadata": {
+      "rewritten": 728,
+      "unchanged": 0,
+      "issues": 50,
+      "uniqueMediaPins": 84,
+      "completedAt": "2026-05-27T16:11:05.740Z"
+    },
+    "06-pin-metadata": {
+      "cid": "bafybeia2hwe5olpvk6eqguva7hb644bj3ccjbu7dszka5luzwtjzhlo66m",
+      "fileCount": 728,
+      "completedAt": "2026-05-27T16:11:08.479Z"
+    },
+    "07-verify": {
+      "pass": false,
+      "metadataOk": 722,
+      "mediaOk": 84,
+      "completedAt": "2026-05-27T16:14:48.450Z"
+    },
+    "08-instructions": {
+      "path": "/Users/chikai/Github/proofxyz-ipfs/collections/grails-iv/INSTRUCTIONS.md",
+      "completedAt": "2026-05-27T16:14:48.488Z"
     }
   },
   "discovered": {
@@ -396,6 +424,258 @@
       "cid": "bafybeifjv7b5yq4zpxngfgzq2ptcjc5ve32auugian4vdztaneeb3k3mia",
       "size": 2376097,
       "pinnedAt": "2026-05-27T15:54:43.931Z"
+    },
+    "654619397fc5efa0686b120143a40d9bcbeb5c87ed8d6c7159192d971b249c55.jpeg": {
+      "cid": "bafybeieb2l62rbuj26cwlv2izixy5o3heospqbme6zvenw5d72i677ud4y",
+      "size": 2447647,
+      "pinnedAt": "2026-05-27T15:54:58.132Z"
+    },
+    "529db6efffd00678f59907e7a3558b74821d7634104424cbe4c1e9ee1ab56830.mp4": {
+      "cid": "bafybeid32rf6dw2mmwluf34c5abh77fhnekp6kgp4xpl7ssyvwvy4jyt3q",
+      "size": 22589296,
+      "pinnedAt": "2026-05-27T15:55:36.289Z"
+    },
+    "52dc568fd9f4b9f3b6df01d00ffb102ba272b7280b9a5a045f62c59573e9bfe8.mp4": {
+      "cid": "bafybeiaistl7hf7kxevmmn53meyontqzwucnrixlszkx24tgyugwlpwvgy",
+      "size": 22380268,
+      "pinnedAt": "2026-05-27T15:55:41.523Z"
+    },
+    "6b6fbb59fce990fff6c4f36b9e48729fb9eb9491774e515a055985e2eee010d6.jpg": {
+      "cid": "bafybeihanyzmxmgv2gqh3ekxmmzc2w2pzzcbx6p5xxe7qets4guop2gkxu",
+      "size": 4816434,
+      "pinnedAt": "2026-05-27T15:55:55.654Z"
+    },
+    "5fdcdf6fa8f49949a4eacfaf64903e5da96df314e8df9a3f796b3ab7213e8055.mp4": {
+      "cid": "bafybeibvdpkmfvktbagcuvovk3x5wjvggthzo7cgtwmbeoagtcvxx245yy",
+      "size": 28317475,
+      "pinnedAt": "2026-05-27T15:56:20.123Z"
+    },
+    "77bcb270fd6c08e1fb15f352cff6d270986e248a5301a8bc5be8db7fbd63b091.mp4": {
+      "cid": "bafybeibdi7fbkz6fzhkoz34nxl4d2faqbybna6zkskjhnlkke65vwuglgu",
+      "size": 22231481,
+      "pinnedAt": "2026-05-27T15:57:03.498Z"
+    },
+    "84af3b00d01c5bb40eaecfcddf8e3b636c04fb5da028b62edd2b3e81b17fef98.jpeg": {
+      "cid": "bafybeic7hyas4sccynt2z4pv3akdqvhxkhozo2fvz7trmy4a3bvm77lika",
+      "size": 2624309,
+      "pinnedAt": "2026-05-27T15:57:14.059Z"
+    },
+    "7c0f4fdb2ed0a02de7c60545523e2fa2d181ad039cb40dddb65e63baa07e32bb.mp4": {
+      "cid": "bafybeigkdusid2zmf2im5gyvows4wkv2pcqjxqsw3on4uf7aqxl6z5kjfe",
+      "size": 22356633,
+      "pinnedAt": "2026-05-27T15:57:24.277Z"
+    },
+    "7ecc0bc359733105ce5ddcd10e2e8a0b2b02148224bf2f8c9f886bcf995442a9.mp4": {
+      "cid": "bafybeigrf5fiaifm5acgeqptwv4y64o6rarhe75onjqvu6lcfy6rqql4ly",
+      "size": 22329512,
+      "pinnedAt": "2026-05-27T15:57:37.207Z"
+    },
+    "88058a1de7c28818402e07cbd8f6b10ba89b11344b9cea1a27d811fae4e9d568.jpeg": {
+      "cid": "bafybeigkdakcmc7vnrnv66v5aw5kijyhcng66p5ydkyacdesbzjx4olfoq",
+      "size": 2657060,
+      "pinnedAt": "2026-05-27T15:57:48.203Z"
+    },
+    "8629fe6c5b3ee07d887e932db5f8310a3708da79422c0a6580e2a3bc8b87cb4d.mp4": {
+      "cid": "bafybeibkdkg3sqf5gs7yfxuinmtqonatm6jiu7xtsa3hqxr5vkjkkn7gvy",
+      "size": 22425486,
+      "pinnedAt": "2026-05-27T15:58:36.340Z"
+    },
+    "8e9b0ed7f760ca223c114cfce1c8ba3e4dee2e98e86361a92f8ab20db8915f2c.jpg": {
+      "cid": "bafybeig2fwgtl2yrr2jhlt4bv2sb3ae2fyf5lyx4acy6vtj47pd4sigd5y",
+      "size": 5525624,
+      "pinnedAt": "2026-05-27T15:58:59.881Z"
+    },
+    "884accb08045c6a4a8ebc77fa0fe8c5e71bac793f16fc88c5156e51438885fa6.mp4": {
+      "cid": "bafybeigu5jrgsgoj2w7lr2p46k6exvh52nv3wqfdbb4l4fgnqso4zfmaem",
+      "size": 22241368,
+      "pinnedAt": "2026-05-27T15:59:10.686Z"
+    },
+    "9157803e49497924dae188570a1e13067061be2097dea553207ff7aeb484e0af.mp4": {
+      "cid": "bafybeicjfkuldv3cdpvlx3jbcesr3n6fbtjrjz7n4hnoks6rgyl4wblm7e",
+      "size": 22231154,
+      "pinnedAt": "2026-05-27T16:00:28.845Z"
+    },
+    "91cebd880b9f0ffd1300f895e78a474fdd28dffd0ba114bf732be5289623a1c3.jpg": {
+      "cid": "bafybeibyb4xvnid3qivxmxmo32hyezfrhjzshvjgzh7c37sfbhf6f3otse",
+      "size": 21316874,
+      "pinnedAt": "2026-05-27T16:00:36.809Z"
+    },
+    "97832dbc922c5bf97c9cae638aee12796013b4d458413b0b69d326d8cb513cca.jpg": {
+      "cid": "bafybeig45ptmfcav2q4bqywzscifivthm3t4wrribidsdzcy3hwm4j5z2m",
+      "size": 7543037,
+      "pinnedAt": "2026-05-27T16:01:07.964Z"
+    },
+    "9a2e8d558fee828d10a7a9dc09027b92cee8c6456c2a39d8e49be52902db102b.jpeg": {
+      "cid": "bafybeigiev5na53n44mgx4oykjwvpa2wghcqrl2dzyimutipb27gt7hgvm",
+      "size": 1458419,
+      "pinnedAt": "2026-05-27T16:01:15.068Z"
+    },
+    "9289b1444576e151ea7dcc5bc7f78b630e6ee136a90b55221d1d2e13bec45854.mp4": {
+      "cid": "bafybeicea3iedbmqmavez4k2sfpkhf4lhwi6psk334pbkrah7nvzp7mcfe",
+      "size": 22206424,
+      "pinnedAt": "2026-05-27T16:01:55.471Z"
+    },
+    "a685a9b5c81c5e9577b94fba50038c6776c1acb0209db8494d4c211f5cbfd62d.jpeg": {
+      "cid": "bafybeih6gkpxsgvrxuiionpk3dlejivobxlpnzzcnmtnc37c2j5uwh4j2a",
+      "size": 1903936,
+      "pinnedAt": "2026-05-27T16:02:04.426Z"
+    },
+    "6af6b33c589d5a4a8a919a4b5ce68afc6a266add4c21b4fae717a71708282a14.png": {
+      "cid": "bafybeifwfrsxacxi6xsmnkpehwr2xxgafr7sinfrmszlostcbrly7gy5na",
+      "size": 125301726,
+      "pinnedAt": "2026-05-27T16:02:29.042Z"
+    },
+    "86ddc27e7709623d852b26fd05c2320bf911061f704a067720c3d7aa42b74003.png": {
+      "cid": "bafybeifomj4tsz4agolurzoaujyaeru23463bettwje5fqvp7nkcqpfnse",
+      "size": 94848581,
+      "pinnedAt": "2026-05-27T16:03:16.470Z"
+    },
+    "ade08fc10dd1cc0f0da884626d288fbc26c723e181d77c9bfd0050613605d0d3.jpg": {
+      "cid": "bafybeiauzincpzc7gpkz5m4i67nhvnjrw5v5n6a67ee54hxexmiilut62a",
+      "size": 7778144,
+      "pinnedAt": "2026-05-27T16:03:44.667Z"
+    },
+    "aab87ed8a89a5bd3137eec194e1b905bea29f399bbe0cdab3459fc9241cc9938.mp4": {
+      "cid": "bafybeifput5lxyqlk27mdzrvv323a7tfvxyekjmrek62r36bo4fj2cpgby",
+      "size": 22188237,
+      "pinnedAt": "2026-05-27T16:03:54.076Z"
+    },
+    "a2a4c4e69b5c2a64a2ae4c676548ba3a8a00e352d34827a21edfd11b575d0012.jpg": {
+      "cid": "bafybeiehkhjre37yj422f2rghrlgxnpr6p32spnxfbtcc2wideck3h4bei",
+      "size": 53415964,
+      "pinnedAt": "2026-05-27T16:04:32.598Z"
+    },
+    "b1b8d34ca12b5482b6b7d47a1fd48dfbf8c0977a6927e23cde274c6c22b0f5ea.mp4": {
+      "cid": "bafybeihqzyz44ie54p3howtgawjl2vfpvzflfecsdwjareyx5hqnffvoqa",
+      "size": 22331137,
+      "pinnedAt": "2026-05-27T16:05:08.351Z"
+    },
+    "b23d02dc629a6cd5bc425fcd116053872669396b2c80ef88a7c637ac94510be8.mp4": {
+      "cid": "bafybeibsft5c6vdqaq66kftm3fq4cc75qjbl7wepdb5lrytsovagdzxgie",
+      "size": 22379571,
+      "pinnedAt": "2026-05-27T16:05:16.959Z"
+    },
+    "b6bc46d7d76363847b3bc1e3453003b0361b6ccf0657ca83cd218de72ae8c23e.mp4": {
+      "cid": "bafybeihdpcnsyguk6yipn7wgcm44nokhqpcedvbhlmb5p33tcscpneegti",
+      "size": 22432051,
+      "pinnedAt": "2026-05-27T16:05:56.239Z"
+    },
+    "bdf9c5f4d1bec6aac70c4a43b731f12565a0af674b4611b7aa55a4398c48cf9e.jpeg": {
+      "cid": "bafybeicskghpz3akb4oliop25alrow55gz4hahvg22rjxn5vddjzhnwnee",
+      "size": 2822422,
+      "pinnedAt": "2026-05-27T16:06:07.493Z"
+    },
+    "b9228272a7bf6a5b746dcbcee2358c4e24ea6f90c8923e8194542b0561e5f92d.mp4": {
+      "cid": "bafybeigar7red2swp6ir7zyplmclztuihdotoex47cmd6ba7abgurw2hu4",
+      "size": 22313685,
+      "pinnedAt": "2026-05-27T16:06:29.634Z"
+    },
+    "c3f7e43330c958248eb4fc5031a297696d26d95e4e1908e417920d9bed00b647.jpg": {
+      "cid": "bafybeicfz2hpgybni4tgxicilvyssnxr6sg7fdlzrzjilgwtg5kjdb5ziu",
+      "size": 6331774,
+      "pinnedAt": "2026-05-27T16:06:31.398Z"
+    },
+    "cd9ca9b3d7668d0b73781e8eaa768a87910db3d9baf7251b9c9d5be740341c0a.jpeg": {
+      "cid": "bafybeibinsnwcx7y4geml4ncxw5myfwz5xf6knlk7d24d6ghynsx7n6emu",
+      "size": 953951,
+      "pinnedAt": "2026-05-27T16:06:35.829Z"
+    },
+    "d1813f1632ce17801661a061806a6447c7826c7dcc8faad2ca5b53dc19ca2dee.jpg": {
+      "cid": "bafybeig66hv3vrmjrnzhadmxphoyg2hmktgecrstnt4fsl5x2hasfdimoa",
+      "size": 5421904,
+      "pinnedAt": "2026-05-27T16:06:58.923Z"
+    },
+    "ccb9bdec7f5af5601e78217013000ffeee212d838959a6d9ea376d30176d5d5f.mp4": {
+      "cid": "bafybeigu5umpbvdbdeughzph2pfbszgu35phvafiv2qs5upznc4dhk57om",
+      "size": 22391428,
+      "pinnedAt": "2026-05-27T16:07:50.498Z"
+    },
+    "d356e1b1244edc1e3a785bfcde6603d0cdaba7dcf80622b6d9c7c1b2c098ece1.mp4": {
+      "cid": "bafybeicknjorrguthqgk3vvjzpdjtn5wddgpy4n7gvakzc33ox4butqyji",
+      "size": 22346310,
+      "pinnedAt": "2026-05-27T16:08:57.774Z"
+    },
+    "d2cbb8c2906cde68032e1f8e0c8c8977d7e48100b57ac6ae0c46c7c09ce764d5.mp4": {
+      "cid": "bafybeifkkqhndmruzsuyd2wf6dsdnjucgaybsmp4donkomhbtmmhe23gpy",
+      "size": 22249100,
+      "pinnedAt": "2026-05-27T16:09:01.919Z"
+    },
+    "d5b9a97007fdb0a86f1cd42b5732bfcf53558e40a8b5d68a786adab202ea0b2c.jpg": {
+      "cid": "bafybeify5cx4ohbb2fzhdtn5ivgnxd2hwt6egcemxlppqd4wnnzd25dsa4",
+      "size": 5632184,
+      "pinnedAt": "2026-05-27T16:09:21.926Z"
+    },
+    "aaa4df88885e3b9394e41ce1fe401cc014d8b76d001ad270c204e6aae0790cdc.png": {
+      "cid": "bafybeibt2xuppzpmyeo3uksthb6glximm4fxhezm7pp7cvfojwv6fk43b4",
+      "size": 129145289,
+      "pinnedAt": "2026-05-27T16:09:23.310Z"
+    },
+    "ba2a860db4784a806b68d3bd3fc8254d9c1fdf8a5653f3a81af342653a4f17c7.mp4": {
+      "cid": "bafybeiegwxzovhy6j3fjuzaqr267d442e34xqesa5q5xknjt36cs47ucwi",
+      "size": 85599803,
+      "pinnedAt": "2026-05-27T16:10:13.823Z"
+    },
+    "d39b4c6938fe2558e833af8fc74ebc42d763fb948e0378b7cd4a739a12e02b38.mp4": {
+      "cid": "bafybeigl2ekx6qsvrxt7wz5m2etsdf7zoxatiryha52aqt2yjflud6opne",
+      "size": 22313135,
+      "pinnedAt": "2026-05-27T16:10:13.881Z"
+    },
+    "f0278a32eb04589e5dfe6a0772239c3b523cc08be565f30b2ea9d3fac1e710df.png": {
+      "cid": "bafybeibmjje3jzriek452o4jts2xo72wd3qrkyo3yatoceqi2d6445xfeu",
+      "size": 5701441,
+      "pinnedAt": "2026-05-27T16:10:34.430Z"
+    },
+    "db0cef9838da2fc05b9dad079a5de618c02f2efe749d82bb96112f9134eab852.mp4": {
+      "cid": "bafybeidgufztrk63gjgpaqahf2xyjgfs2y3y7takc4s2wh5jg77gfat5bi",
+      "size": 22250464,
+      "pinnedAt": "2026-05-27T16:10:37.372Z"
+    },
+    "dcba5ee9eafc7af5ddbe459c594829d472a4a33d310f1064862c4fb3fba26a87.mp4": {
+      "cid": "bafybeifxfqvekl74b33mi2umvqxu6ry4ix3widoi4siu4h5hpovdopjjxq",
+      "size": 22218555,
+      "pinnedAt": "2026-05-27T16:10:39.107Z"
+    },
+    "f3f1cd60d19c37c3a1cde7ccf336a4e9ff5d8746cd0558734c2274ddd475e25f.jpeg": {
+      "cid": "bafybeifvv4sr5i4nvk2u4w2pwlm53hi3xg3ow3f6p6jmd7tojuhtlumus4",
+      "size": 1744583,
+      "pinnedAt": "2026-05-27T16:10:39.319Z"
+    },
+    "f641bf67175e16423964b7c77f93934c3c376639e6e1a02b40ffa29ffe2b4820.jpeg": {
+      "cid": "bafybeia647rulwcpdh3xtw7os6ryigjcz54oh6kzv5lwliunlesy3h6ype",
+      "size": 2616259,
+      "pinnedAt": "2026-05-27T16:10:45.801Z"
+    },
+    "f712551857ff926386f274e897a30f613090dd936745401524c8e108cdd468dd.jpeg": {
+      "cid": "bafybeifqmwsaamba4yx55tfc7saifuospzl6bmflcunhipvhnxtiis6pxe",
+      "size": 1872524,
+      "pinnedAt": "2026-05-27T16:10:46.422Z"
+    },
+    "f749381b67e82cae41b15dbe20e99dd1e23ef9f93f44bef148550136d165989f.jpeg": {
+      "cid": "bafybeidqvxhmdmbcxyt3j24mnwbxgcuihidh6ohxmhxt2gu6xxvtlicnmu",
+      "size": 2645354,
+      "pinnedAt": "2026-05-27T16:10:47.734Z"
+    },
+    "faf575bd1d975a153a7acbfd15c014647ae322a899f10c5eb506738ed130d53d.png": {
+      "cid": "bafkreih26v232hmxliktu6wl7uk4afdeplrsfkez6egf5nigoohncmgvhu",
+      "size": 8405,
+      "pinnedAt": "2026-05-27T16:10:47.734Z"
+    },
+    "f8d0bf985f9014eb5696d05aaa9648f098bab5c820b551f1e82b4f7d9a371b40.jpg": {
+      "cid": "bafybeigqcyq45tqcn4ztaryhfu6phcibvuyeniwjnlyd7icjtohzi5l7zu",
+      "size": 4854804,
+      "pinnedAt": "2026-05-27T16:10:55.456Z"
+    },
+    "e1c9ca5a5cb8fbac171669a57e80e1021d496af55a900ec5a5d06a11377dfbc8.mp4": {
+      "cid": "bafybeicga5w7oav6irjpg7wwyx76xzduvkezlwg7r2qxxyt62x2h6qmsi4",
+      "size": 22364206,
+      "pinnedAt": "2026-05-27T16:11:04.085Z"
     }
+  },
+  "metadataPin": {
+    "cid": "bafybeia2hwe5olpvk6eqguva7hb644bj3ccjbu7dszka5luzwtjzhlo66m",
+    "id": "278ab7c6-e0da-495b-ac31-4cc49b06674a",
+    "size": 799555,
+    "fileCount": 728,
+    "pinnedAt": "2026-05-27T16:11:08.476Z"
   }
 }

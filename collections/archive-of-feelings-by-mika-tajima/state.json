@@ -1,0 +1,45 @@
+{
+  "slug": "archive-of-feelings-by-mika-tajima",
+  "steps": {
+    "01-discover": {
+      "contract": "0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762",
+      "skipReason": null,
+      "completedAt": "2026-05-27T16:16:25.383Z"
+    },
+    "02-fetch-metadata": {
+      "fetched": 1152,
+      "skippedExisting": 0,
+      "skippedArtblocks": 0,
+      "failed": 0,
+      "totalRequested": 1152,
+      "completedAt": "2026-05-27T16:16:44.441Z"
+    }
+  },
+  "discovered": {
+    "slug": "archive-of-feelings-by-mika-tajima",
+    "contract": "0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762",
+    "chain": "ethereum",
+    "name": "Archive of Feelings by Mika Tajima",
+    "symbol": "AOF",
+    "totalSupply": 1152,
+    "owner": null,
+    "contractCreator": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
+    "tokenIndexBase": 0,
+    "tokenUriSample": "https://metadata.proof.xyz/mika-tajima-archive-of-feelings/0",
+    "currentBaseTokenURI": "https://metadata.proof.xyz/mika-tajima-archive-of-feelings/",
+    "hostDistribution": {
+      "metadata.proof.xyz": 30
+    },
+    "artblocksFraction": 0,
+    "setter": {
+      "name": "setBaseTokenURI",
+      "inputs": [
+        "string"
+      ],
+      "signature": "setBaseTokenURI(string)"
+    },
+    "skipReason": null,
+    "discoveredAt": "2026-05-27T16:16:25.381Z"
+  },
+  "skippedArtblocksIds": []
+}

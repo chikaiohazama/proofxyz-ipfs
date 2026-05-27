@@ -1,0 +1,20 @@
+{
+  "name": "Blaatimen",
+  "description": "\"Blaatimen\" is a Norwegian expression referencing the last hour of the day, when the sun is about to descend below the horizon. On clear days the sky becomes a warm, majestic gradient, playing a symphony with the endless mirror of the sea.\nThis artwork was created by Per Kristian Stoveland and part of Grails IV.",
+  "image": "ipfs://bafybeiehkhjre37yj422f2rghrlgxnpr6p32spnxfbtcc2wideck3h4bei",
+  "collection_name": "Blaatimen by Per Kristian Stoveland",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#15"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Per Kristian Stoveland"
+    }
+  ]
+}

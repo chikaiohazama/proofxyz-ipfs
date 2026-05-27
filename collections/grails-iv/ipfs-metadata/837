@@ -1,0 +1,20 @@
+{
+  "name": "Ethereal Dawn",
+  "description": "This portrait is a celebration of individuality, capturing the quiet strength and radiance of an extraordinary woman in the first light of an African sunrise.\nThe balance between anonymity and what we chose to share with the world. Individuality, identity & anonymity all at once.\nHow even behind a curtain, a veil, a mask – essence can still shine through.",
+  "image": "ipfs://bafybeifomj4tsz4agolurzoaujyaeru23463bettwje5fqvp7nkcqpfnse",
+  "collection_name": "Ethereal Dawn by Inna Modja",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#07"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Inna Modja"
+    }
+  ]
+}

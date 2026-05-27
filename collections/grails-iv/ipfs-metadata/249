@@ -1,0 +1,20 @@
+{
+  "name": "A Woman in the Mist",
+  "description": "A solitary female stands in a vibrant lush landscape, her expectant gaze fixed on the horizon, symbolizing our collective anticipation of the future. The world she surveys is an intriguing mix of clarity and obscurity, with a sky seamlessly merging the ocean's depth and the cloud's drift; is she waking from a dream?\nThe pervasive mist serves as a metaphor for an enigmatic yet undeniable future and the only way is forward.",
+  "image": "ipfs://bafybeiddr5h3maikk2tcax5pirirswmcewpmngfwo24zvylzp4gxsdiuja",
+  "collection_name": "A Woman in the Mist by Ayla El-Moussa",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#18"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Ayla El-Moussa"
+    }
+  ]
+}

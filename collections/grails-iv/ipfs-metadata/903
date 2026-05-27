@@ -1,0 +1,20 @@
+{
+  "name": "Madonna",
+  "description": "Digital Painting, 3938 x 7000 px",
+  "image": "ipfs://bafybeibyb4xvnid3qivxmxmo32hyezfrhjzshvjgzh7c37sfbhf6f3otse",
+  "collection_name": "Madonna by Goldcat",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#17"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Goldcat"
+    }
+  ]
+}

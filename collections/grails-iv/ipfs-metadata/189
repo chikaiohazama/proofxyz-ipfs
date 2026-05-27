@@ -1,0 +1,19 @@
+{
+  "name": "\"Epiphany\"",
+  "image": "ipfs://bafybeigsv3psceogk73i6fh7okxx6zjsbgcyizzglqpdgdk52ztya7etie",
+  "collection_name": "\"Epiphany\" by Jack Butcher",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#03"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Jack Butcher"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Lines of Division (/25)",
+  "description": "A collection of 25 AI generated quadrilateral artworks, each backed by two staked Ethereum locked in a smart contract. Given the accruing yield, the NFT's foundational value is in a state of perpetual growth. The owner has the option to burn the NFT at any moment, reclaiming the attached staked ethereum.",
+  "image": "ipfs://bafybeia647rulwcpdh3xtw7os6ryigjcz54oh6kzv5lwliunlesy3h6ype",
+  "collection_name": "Lines of Division (/25) by BASIIC",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#19"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "BASIIC"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Bold"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "A Perfect Friday Night",
+  "description": "My cat is the only living being that understands me.",
+  "image": "ipfs://bafybeicpioxfmbk4b26z6zvapx23sczks2qbzn4vwgdw2rjq3srfvrn7ti",
+  "collection_name": "A Perfect Friday Night by Dangiuz",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#09"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Dangiuz"
+    }
+  ]
+}

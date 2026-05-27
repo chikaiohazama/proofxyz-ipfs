@@ -4,7 +4,15 @@
     "01-discover": {
       "contract": "0xd78afb925a21f87fa0e35abae2aead3f70ced96b",
       "skipReason": null,
-      "completedAt": "2026-05-27T04:57:27.775Z"
+      "completedAt": "2026-05-27T16:16:36.619Z"
+    },
+    "02-fetch-metadata": {
+      "fetched": 1178,
+      "skippedExisting": 0,
+      "skippedArtblocks": 0,
+      "failed": 0,
+      "totalRequested": 1178,
+      "completedAt": "2026-05-27T16:16:56.234Z"
     }
   },
   "discovered": {
@@ -19,6 +27,10 @@
     "tokenIndexBase": 0,
     "tokenUriSample": "https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/2/0",
     "currentBaseTokenURI": "https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/2/",
+    "hostDistribution": {
+      "live---grails-metadata-5covpqijaa-uc.a.run.app": 30
+    },
+    "artblocksFraction": 0,
     "setter": {
       "name": "setBaseTokenURI",
       "inputs": [
@@ -27,6 +39,7 @@
       "signature": "setBaseTokenURI(string)"
     },
     "skipReason": null,
-    "discoveredAt": "2026-05-27T04:57:27.772Z"
-  }
+    "discoveredAt": "2026-05-27T16:16:36.618Z"
+  },
+  "skippedArtblocksIds": []
 }

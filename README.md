@@ -25,7 +25,7 @@ Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens
 | # | Collection | Contract | Tokens | Proof-hosted (est.) | Status |
 |---|---|---|---:|---:|---|
 | 1 | **Grails V** (prototype) | [`0x92a50…349b8`](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8) | 785 | ~732 (~93%) | ✅ pinned & verified |
-| 2 | Grails IV | [`0x069ee…b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885) | 904 | ~750 (~83%) | to do |
+| 2 | **Grails IV** | [`0x069ee…b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885) | 904 | 734 (~81%) | ✅ pinned & verified |
 | 3 | **Grails III** | [`0x503a3…84A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3) | 1,000 | 1,000 (100%) | to do |
 | 4 | Grails II | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) | 1,178 | 1,178 (100%) | to do |
 | 5 | Grails I | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | 1,036 | 1,036 (100%) | to do |
@@ -282,6 +282,37 @@ setBaseTokenURI("https://metadata.proof.xyz/grails-v/art/")
 It's a one-string state change — fully reversible, no on-chain migration.
 
 **Recommended: re-pin under your own Pinata account.** The pins listed in this repo are hosted on the account that ran the pipeline. For long-term durability under Proof's control, re-pin every CID from your own Pinata account (or any pinning service) before — or shortly after — flipping `baseURI`. Because IPFS is content-addressed, re-pinning the same bytes produces the **exact same CID**: no metadata edit, no on-chain change, nothing in this repo to update. To do it: fetch each CID (the metadata directory plus every entry in `state.json` → `mediaPins`) via any IPFS gateway and re-upload it through Pinata's web UI or API. Once Proof's pin exists, this account's pins can be unpinned without breaking anything.
+
+---
+
+### Grails IV — **READY TO SEND**
+
+Pipeline complete: 728/728 metadata + 84/84 media verified end-to-end on `ipfs.io`. Full handoff doc: [`collections/grails-iv/INSTRUCTIONS.md`](collections/grails-iv/INSTRUCTIONS.md).
+
+| | |
+|---|---|
+| Contract | [`0x069eeda3395242bd0d382e3ec5738704569b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885) |
+| Function | `setBaseTokenURI(string)` |
+| **Argument to pass** | `ipfs://bafybeia2hwe5olpvk6eqguva7hb644bj3ccjbu7dszka5luzwtjzhlo66m/` &nbsp;_(trailing slash required)_ |
+| Etherscan: read | [readContract](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885#readContract) |
+| Etherscan: write | [writeContract](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885#writeContract) |
+| Caller permission | Contract uses **AccessControl** (no public `owner()`). Verify the required role before sending. |
+| Token indexing | **0-indexed**, tokens `0..903` (totalSupply 904) |
+| Mixed routing | **734 Proof-routed** (affected) + **170 Art Blocks-routed** (unaffected — full id list in `collections/grails-iv/state.json` → `skippedArtblocksIds`) |
+
+**Pre-flight verification links:**
+- https://ipfs.io/ipfs/bafybeia2hwe5olpvk6eqguva7hb644bj3ccjbu7dszka5luzwtjzhlo66m/0
+- https://dweb.link/ipfs/bafybeia2hwe5olpvk6eqguva7hb644bj3ccjbu7dszka5luzwtjzhlo66m/0
+
+**Revert plan:** `setBaseTokenURI("https://metadata.proof.xyz/grails-iv/art/")`
+
+**Findings worth noting:**
+
+- Mixed-routing contract — only 734 of 904 tokens read `baseTokenURI`; the 170 Art Blocks ids are dispatched inside `tokenURI(uint256)` and unaffected by the setter (see "How Art Blocks tokens are handled" above for the verified source).
+- Per-token AB filter exercised cleanly for the first time on a real mixed contract — 170/170 correctly skipped, 734/734 fetched and pinned.
+- Heavy edition-sharing: 734 Proof-routed tokens → only **84 unique media files** (~9 editions each on average).
+- Source images use **expiring GCS signed URLs** (`Expires=1787875200` = 2026-08-28) — same time-bomb as Grails V. Migration urgency is high.
+- 7 verification round-trips initially failed with HTTP 504 from `ipfs.io` (transient gateway overload on small JSON files); all succeeded on retry.
 
 ---
 

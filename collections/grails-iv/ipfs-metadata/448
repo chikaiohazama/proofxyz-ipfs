@@ -1,0 +1,29 @@
+{
+  "name": "TWINS IN TIME AND TIDE, A DIPTYCH OF DREAMS DIVIDE, TWO PATHS SIDE BY SIDE.",
+  "description": "Echoes of Identity is a digital art project exploring duality, self-discovery, and perception. The journey begins with an unrevealed placeholder; an enigmatic close-up of a woman's face.\nThe narrative unfolds into three unique variations, each expressing different aspects of identity. The first variation explores self-duality through a twin presence, the second uncovers hidden selves within a split face, and the final one mirrors our ever-changing perceptions. This project challenges collectors to engage with the artwork on an intimate level, unraveling the complexities of human identity, and fostering a deeper understanding of ourselves.",
+  "image": "ipfs://bafybeienggk4jreigtv4bc6wyu2hl5rizvdfmf7b2unwl62hvgyjli2d44",
+  "animation_url": "ipfs://bafybeienggk4jreigtv4bc6wyu2hl5rizvdfmf7b2unwl62hvgyjli2d44",
+  "collection_name": "Echoes of Identity by Shavonne Wong",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#12"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Shavonne Wong"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Twin"
+    },
+    {
+      "trait_type": "Text",
+      "value": "Haiku"
+    }
+  ]
+}

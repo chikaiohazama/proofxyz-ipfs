@@ -1,0 +1,20 @@
+{
+  "name": "LIGHT",
+  "description": "LIGHT by Hans Dehlinger, with its fine lines and structure, has an elegant, \"light\" appearance. There is an impression of light radiating from its center.\n\"I created this piece to be uplifting yet non-intrusive. The work doesn't actively pull the viewer in. Only once you consciously direct your attention to it do you see and feel its calmness, light, and strength.\" – Hans Dehlinger",
+  "image": "ipfs://bafybeibmjje3jzriek452o4jts2xo72wd3qrkyo3yatoceqi2d6445xfeu",
+  "collection_name": "LIGHT by Hans Dehlinger",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#05"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Hans Dehlinger"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Doomscrolling",
+  "description": "Doomscrolling is a five second, 60fps looping animation modeled after the physical feeling of scrolling through a social media feed on a cell phone.\nA digital version of the animation was created using Ben’s unique generative art framework written in Haskell. Each of the 300 resulting frames were meticulously copied in charcoal to paper, then photographed and sequenced to create a seamless looping, hand-drawn animation.",
+  "image": "ipfs://bafybeiegwxzovhy6j3fjuzaqr267d442e34xqesa5q5xknjt36cs47ucwi",
+  "animation_url": "ipfs://bafybeiegwxzovhy6j3fjuzaqr267d442e34xqesa5q5xknjt36cs47ucwi",
+  "collection_name": "Doomscrolling by Ben Kovach",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#04"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Ben Kovach"
+    }
+  ]
+}

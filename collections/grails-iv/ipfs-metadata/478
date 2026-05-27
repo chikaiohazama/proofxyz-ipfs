@@ -1,0 +1,21 @@
+{
+  "name": "Open Console",
+  "description": "24/7 searching bugs and love.",
+  "image": "ipfs://bafkreih26v232hmxliktu6wl7uk4afdeplrsfkez6egf5nigoohncmgvhu",
+  "animation_url": "ipfs://QmRERtw6e2yvrttGABBMNi3NVofyepkRgcFkpWR72vBH6P",
+  "collection_name": "Open Console by Kim Asendorf",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#14"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Kim Asendorf"
+    }
+  ]
+}

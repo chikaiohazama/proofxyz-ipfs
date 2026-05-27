@@ -1,0 +1,45 @@
+{
+  "slug": "grails-iii",
+  "steps": {
+    "01-discover": {
+      "contract": "0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3",
+      "skipReason": null,
+      "completedAt": "2026-05-27T16:16:25.373Z"
+    },
+    "02-fetch-metadata": {
+      "fetched": 1000,
+      "skippedExisting": 0,
+      "skippedArtblocks": 0,
+      "failed": 0,
+      "totalRequested": 1000,
+      "completedAt": "2026-05-27T16:16:39.832Z"
+    }
+  },
+  "discovered": {
+    "slug": "grails-iii",
+    "contract": "0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3",
+    "chain": "ethereum",
+    "name": "Grails III",
+    "symbol": "GRAIL3",
+    "totalSupply": 1000,
+    "owner": "0x70c71b539BDcB5b59Edd42a500Fd95bdeC962650",
+    "contractCreator": "0x1b945Af93d5A27A0041EfEa8FFD84AFbBc478895",
+    "tokenIndexBase": 0,
+    "tokenUriSample": "https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/3/0",
+    "currentBaseTokenURI": "https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/3/",
+    "hostDistribution": {
+      "live---grails-metadata-5covpqijaa-uc.a.run.app": 30
+    },
+    "artblocksFraction": 0,
+    "setter": {
+      "name": "setBaseTokenURI",
+      "inputs": [
+        "string"
+      ],
+      "signature": "setBaseTokenURI(string)"
+    },
+    "skipReason": null,
+    "discoveredAt": "2026-05-27T16:16:25.370Z"
+  },
+  "skippedArtblocksIds": []
+}

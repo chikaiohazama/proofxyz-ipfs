@@ -1,0 +1,20 @@
+{
+  "name": "Time-Lapse",
+  "description": "Studies on multiple moments in time at once: people that are physically present but mentally absent, and vice versa. Collection of 10 works.",
+  "image": "ipfs://bafybeig45ptmfcav2q4bqywzscifivthm3t4wrribidsdzcy3hwm4j5z2m",
+  "collection_name": "Time-Lapse by Roope Rainisto",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#13"
+    },
+    {
+      "trait_type": "Season",
+      "value": "4"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Roope Rainisto"
+    }
+  ]
+}

@@ -36,9 +36,9 @@ function render(state) {
 | Collection | ${d.name} (${d.symbol || "—"}) |
 | Contract | \`${d.contract}\` |
 | Chain | ${state.discovered.chain || "ethereum"} |
-| Total supply | ${d.totalSupply} (tokens ${d.tokenIndexBase}..${d.tokenIndexBase + d.totalSupply - 1}, **${d.tokenIndexBase}-indexed**) |
+| Total supply | ${d.totalSupply} (tokens ${d.tokenIndexBase}..${d.tokenIndexBase + d.totalSupply - 1}, **${d.tokenIndexBase}-indexed**) |${abIds.length === 0 ? "" : `
 | Tokens affected by this change | **${affectedCount ?? "?"}** (the rest are routed inside \`tokenURI(uint256)\` to \`token.artblocks.io\` and are unaffected by \`baseTokenURI\`) |
-| Art Blocks-routed ids (unaffected) | ${abIds.length === 0 ? "none" : `${abIds.length} ids${abIds.length <= 20 ? `: \`[${abIds.join(", ")}]\`` : ` (see \`state.json\` → \`skippedArtblocksIds\`)`}`} |
+| Art Blocks-routed ids (unaffected) | ${abIds.length} ids${abIds.length <= 20 ? `: \`[${abIds.join(", ")}]\`` : ` (see \`state.json\` → \`skippedArtblocksIds\`)`} |`}
 | Deployer | \`${d.contractCreator}\` |
 | Current baseURI sample | \`${d.tokenUriSample}\` |
 | Current \`baseTokenURI()\` | \`${d.currentBaseTokenURI ?? "(read from Etherscan before sending — needed for revert)"}\` |

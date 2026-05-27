@@ -13,16 +13,16 @@ import { name, symbol, totalSupply, owner, tokenURI, baseURI, getContractCreator
 import { getAbi, detectUriSetter } from "../lib/etherscan.js";
 import { getCollectionConfig, recordStep, updateState } from "../lib/state.js";
 
-const ARTBLOCKS_HOSTS = ["artblocks.io", "art-blocks.io", "generator.artblocks.io"];
+const ARTBLOCKS_HOST_SUFFIXES = ["artblocks.io"]; // matches token.artblocks.io, generator.artblocks.io, media-proxy.artblocks.io
 
-function isArtblocks(url) {
-  if (!url) return false;
-  try {
-    const u = new URL(url);
-    return ARTBLOCKS_HOSTS.some((h) => u.hostname.endsWith(h));
-  } catch {
-    return false;
-  }
+function hostOf(url) {
+  if (!url) return null;
+  try { return new URL(url).hostname; } catch { return null; }
+}
+
+export function isArtblocks(url) {
+  const h = hostOf(url);
+  return !!h && ARTBLOCKS_HOST_SUFFIXES.some((s) => h.endsWith(s));
 }
 
 async function detectIndexBase(addr) {
@@ -31,6 +31,18 @@ async function detectIndexBase(addr) {
   const t1 = await tokenURI(addr, 1);
   if (t1) return { base: 1, sample: t1 };
   return { base: null, sample: null };
+}
+
+// Sample evenly across the id range to detect mixed hosting (e.g., some tokens
+// on metadata.proof.xyz, others on token.artblocks.io). Returns a host -> count map.
+async function sampleHostDistribution(contract, base, total, samples = 30) {
+  const ids = [];
+  const N = Math.min(samples, total);
+  for (let i = 0; i < N; i++) ids.push(base + Math.floor((i / Math.max(1, N - 1)) * (total - 1)));
+  const out = await Promise.all(ids.map((id) => tokenURI(contract, id).then((u) => hostOf(u))));
+  const dist = {};
+  for (const h of out) dist[h || "(null)"] = (dist[h || "(null)"] || 0) + 1;
+  return dist;
 }
 
 async function main() {
@@ -64,7 +76,18 @@ async function main() {
       baseURI(contract),
     ]);
 
-  const skipReason = isArtblocks(indexInfo.sample) ? "artblocks" : null;
+  // Per-token mixed-routing detection: sample across the range. We DO NOT skip
+  // the whole contract just because tokenURI(0) is artblocks — many Proof contracts
+  // are mixed and we want to pin the Proof-hosted subset.
+  const hostDistribution = supply
+    ? await sampleHostDistribution(contract, indexInfo.base ?? 0, supply)
+    : {};
+  const sampleSize = Object.values(hostDistribution).reduce((a, b) => a + b, 0);
+  const artblocksSamples = Object.entries(hostDistribution)
+    .filter(([h]) => ARTBLOCKS_HOST_SUFFIXES.some((s) => h.endsWith(s)))
+    .reduce((a, [, n]) => a + n, 0);
+  const allArtblocks = sampleSize > 0 && artblocksSamples === sampleSize;
+  const skipReason = allArtblocks ? "artblocks (all sampled tokens)" : null;
 
   let abi = null;
   let setter = null;
@@ -87,6 +110,8 @@ async function main() {
     tokenIndexBase: indexInfo.base,
     tokenUriSample: indexInfo.sample,
     currentBaseTokenURI: currentBase,
+    hostDistribution,
+    artblocksFraction: sampleSize ? artblocksSamples / sampleSize : 0,
     setter,
     skipReason,
     discoveredAt: new Date().toISOString(),

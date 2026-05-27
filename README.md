@@ -22,21 +22,29 @@ Pinning each media file to IPFS, rewriting the metadata to point at those CIDs, 
 
 Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens are explicitly out (Moonbirds, Oddities, Mythics, PROOF Pass — those are not "art" in this context).
 
-| # | Collection | Contract | Status |
-|---|---|---|---|
-| 1 | **Grails V** (prototype) | [`0x92a50fe6ede411bd26e171b97472e24d245349b8`](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8) | in scope |
-| 2 | Grails III | _verify on-chain (claimed shared with Grails I via mint phases)_ | in scope |
-| 3 | Grails II | [`0xd78afb925a21f87fa0e35abae2aead3f70ced96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) | in scope |
-| 4 | Grails I | [`0xb6329bd2741c4e5e91e26c4e653db643e74b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | in scope |
-| 5 | Diamond Exhibition | [`0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | in scope |
+| # | Collection | Contract | Tokens | Proof-hosted (est.) | Status |
+|---|---|---|---:|---:|---|
+| 1 | **Grails V** (prototype) | [`0x92a50…349b8`](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8) | 785 | ~732 (~93%) | ✅ pinned & verified |
+| 2 | Grails IV | [`0x069ee…b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885) | 904 | ~750 (~83%) | to do |
+| 3 | Grails III | _main on-chain contract TBD — see below_ | ~1000+ | TBD | needs contract address |
+| 4 | Grails II | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) | 1,178 | 1,178 (100%) | to do |
+| 5 | Grails I | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | 1,036 | 1,036 (100%) | to do |
+| 6 | Diamond Exhibition | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | 5,093 | ~1,170 (~23%) | to do |
 
-### Why **Grails IV is skipped**
+### How Art Blocks tokens are handled
 
-Grails IV ([`0x069eeda3395242bd0d382e3ec5738704569b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885)) is an **Art Blocks Flex Engine** integration. Its tokens are rendered dynamically from on-chain scripts via Art Blocks infrastructure — there is no static metadata or media that Proof controls or that we could meaningfully "pin." Pinning a one-shot snapshot would freeze a dynamic artwork at a single render, which is the opposite of what Art Blocks tokens are supposed to do. Skip.
+Several Proof contracts have **mixed per-token routing**: some token ids resolve through `baseTokenURI` to a Proof-hosted JSON (mirrorable), others are routed inside `tokenURI(uint256)` directly to `token.artblocks.io/...` (rendered dynamically by Art Blocks — not pinnable). The two cases visible above:
 
-The same rule applies to any other collection whose `tokenURI(id)` resolves to an `artblocks.io` domain — the discovery step (`01-discover.js`) detects this and marks the collection `skipped: artblocks` automatically.
+- **Grails IV** — ~17% of tokens route to Art Blocks.
+- **Diamond Exhibition** — ~77% of tokens route to Art Blocks.
 
-> **Note on Grails V**: the *contract* for Grails V is itself built on Art Blocks Engine Flex (`GenArt721CoreV3_Engine_Flex_PROOF`), but its *metadata is served by Proof* at `metadata.proof.xyz/grails-v/art/<id>`, returning pre-rendered static PNGs/JPGs/MP4s. 53 of the 785 tokens (the "Spire" sub-series) reference `media-proxy.artblocks.io` images — those are static PNG renders, also pinnable.
+The pipeline does **per-token filtering** at fetch time (`scripts/02-fetch-metadata.js`): if `new URL(tokenURI(id)).hostname.endsWith("artblocks.io")`, the id is skipped and recorded in `state.skippedArtblocksIds`. The rest of the pipeline then only sees the Proof-hosted subset, so `ipfs-metadata/` ends up with files for those ids only (e.g., `100`, `877`, `1580` rather than every id).
+
+When Proof flips `baseTokenURI` to `ipfs://<metadataCID>/`, the contract's own per-id routing keeps Art Blocks tokens unaffected — their URLs are derived inside `tokenURI(uint256)`, not from `baseTokenURI`. Only the Proof-hosted ids resolve through the new IPFS pin.
+
+If a contract is detected as **all** Art Blocks (every sampled `tokenURI` resolves to an `artblocks.io` host) it's flagged `skipReason: "artblocks (all sampled tokens)"` and not processed — but mixed contracts are processed normally.
+
+> **Note on Grails V's `media-proxy.artblocks.io` URLs**: 53 of Grails V's 785 tokens (the "Spire" sub-series) reference `media-proxy.artblocks.io` images. Those are **static** PNG renders that Art Blocks media-proxy serves with no expiry — they are pinnable, and they were pinned in the Grails V run. This is different from the `token.artblocks.io` case above, where the URL is the **metadata** endpoint that triggers dynamic rendering.
 
 ## Architecture — how the pin is structured
 

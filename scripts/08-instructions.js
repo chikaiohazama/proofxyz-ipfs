@@ -12,6 +12,8 @@ function render(state) {
   const mediaPins = state.mediaPins || {};
   const mediaPinCount = Object.keys(mediaPins).length;
   const metadataCID = state.metadataPin?.cid;
+  const abIds = state.skippedArtblocksIds || [];
+  const affectedCount = d.totalSupply != null ? d.totalSupply - abIds.length : null;
   const setter = d.setter;
   const newBaseURI = `ipfs://${metadataCID}/`;
   const setterCall = setter
@@ -35,6 +37,8 @@ function render(state) {
 | Contract | \`${d.contract}\` |
 | Chain | ${state.discovered.chain || "ethereum"} |
 | Total supply | ${d.totalSupply} (tokens ${d.tokenIndexBase}..${d.tokenIndexBase + d.totalSupply - 1}, **${d.tokenIndexBase}-indexed**) |
+| Tokens affected by this change | **${affectedCount ?? "?"}** (the rest are routed inside \`tokenURI(uint256)\` to \`token.artblocks.io\` and are unaffected by \`baseTokenURI\`) |
+| Art Blocks-routed ids (unaffected) | ${abIds.length === 0 ? "none" : `${abIds.length} ids${abIds.length <= 20 ? `: \`[${abIds.join(", ")}]\`` : ` (see \`state.json\` → \`skippedArtblocksIds\`)`}`} |
 | Deployer | \`${d.contractCreator}\` |
 | Current baseURI sample | \`${d.tokenUriSample}\` |
 | Current \`baseTokenURI()\` | \`${d.currentBaseTokenURI ?? "(read from Etherscan before sending — needed for revert)"}\` |

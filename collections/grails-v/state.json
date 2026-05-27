@@ -4,7 +4,7 @@
     "01-discover": {
       "contract": "0x92a50fe6ede411bd26e171b97472e24d245349b8",
       "skipReason": null,
-      "completedAt": "2026-05-27T02:03:07.284Z"
+      "completedAt": "2026-05-27T05:12:31.919Z"
     },
     "02-fetch-metadata": {
       "fetched": 785,
@@ -46,7 +46,7 @@
     },
     "08-instructions": {
       "path": "/Users/chikai/Github/proofxyz-ipfs/collections/grails-v/INSTRUCTIONS.md",
-      "completedAt": "2026-05-27T04:55:31.343Z"
+      "completedAt": "2026-05-27T05:14:45.132Z"
     }
   },
   "discovered": {
@@ -60,6 +60,12 @@
     "contractCreator": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
     "tokenIndexBase": 0,
     "tokenUriSample": "https://metadata.proof.xyz/grails-v/art/0",
+    "currentBaseTokenURI": "https://metadata.proof.xyz/grails-v/art/",
+    "hostDistribution": {
+      "metadata.proof.xyz": 27,
+      "token.artblocks.io": 3
+    },
+    "artblocksFraction": 0.1,
     "setter": {
       "name": "setBaseTokenURI",
       "inputs": [
@@ -68,8 +74,7 @@
       "signature": "setBaseTokenURI(string)"
     },
     "skipReason": null,
-    "discoveredAt": "2026-05-27T02:03:07.282Z",
-    "currentBaseTokenURI": "https://metadata.proof.xyz/grails-v/art/"
+    "discoveredAt": "2026-05-27T05:12:31.917Z"
   },
   "mediaPins": {
     "02bcbe583baae3c67b0fe7adc3a0dc0640137c4d2369e0a18eb89b2a78070802.png": {
@@ -1088,5 +1093,60 @@
     "fileCount": 785,
     "size": 861900,
     "pinnedAt": "2026-05-27T03:55:58.639Z"
-  }
+  },
+  "skippedArtblocksIds": [
+    13,
+    31,
+    55,
+    75,
+    82,
+    103,
+    201,
+    251,
+    253,
+    289,
+    345,
+    365,
+    391,
+    424,
+    435,
+    442,
+    459,
+    469,
+    480,
+    483,
+    491,
+    502,
+    504,
+    509,
+    511,
+    523,
+    532,
+    561,
+    591,
+    594,
+    611,
+    620,
+    626,
+    637,
+    644,
+    658,
+    678,
+    680,
+    689,
+    690,
+    712,
+    716,
+    728,
+    736,
+    740,
+    761,
+    767,
+    768,
+    771,
+    773,
+    775,
+    778,
+    784
+  ]
 }

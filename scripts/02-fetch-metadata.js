@@ -8,7 +8,18 @@ import { existsSync, mkdirSync, writeFileSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { tokenURI } from "../lib/alchemy.js";
 import { fetchWithRetry, Concurrency } from "../lib/fetchWithRetry.js";
-import { collectionDir, loadState, recordStep } from "../lib/state.js";
+import { collectionDir, loadState, recordStep, saveState } from "../lib/state.js";
+
+const ARTBLOCKS_HOST_SUFFIX = "artblocks.io";
+
+function isArtblocksUrl(url) {
+  if (!url) return false;
+  try {
+    return new URL(url).hostname.endsWith(ARTBLOCKS_HOST_SUFFIX);
+  } catch {
+    return false;
+  }
+}
 
 const RPC_CONCURRENCY = 8;
 const HTTP_CONCURRENCY = 12;
@@ -45,27 +56,37 @@ async function main() {
   const httpGate = new Concurrency(HTTP_CONCURRENCY);
   const errors = [];
   let done = 0;
-  let skipped = 0;
+  let skippedExisting = 0;
+  const skippedArtblocksIds = [];
 
   await Promise.all(
     ids.map((id) =>
       (async () => {
         const outPath = join(outDir, String(id));
         if (existsSync(outPath)) {
-          skipped++;
+          skippedExisting++;
           done++;
           return;
         }
         try {
           const uri = await rpcGate.run(() => tokenURI(d.contract, id));
           if (!uri) throw new Error(`tokenURI(${id}) returned null`);
+          // Per-token Art Blocks skip: contract-level routing sends some ids to
+          // token.artblocks.io which renders dynamically — we cannot pin those.
+          // The rest of the pipeline naturally handles a sparse id set.
+          if (isArtblocksUrl(uri)) {
+            skippedArtblocksIds.push(id);
+            done++;
+            if (done % 50 === 0) console.log(`  ${done}/${ids.length} (existing ${skippedExisting}, artblocks-skipped ${skippedArtblocksIds.length})`);
+            return;
+          }
           const res = await httpGate.run(() =>
             fetchWithRetry(uri, { headers: { accept: "application/json" } })
           );
           const buf = Buffer.from(await res.arrayBuffer());
           writeFileSync(outPath, buf);
           done++;
-          if (done % 50 === 0) console.log(`  ${done}/${ids.length} (skipped ${skipped})`);
+          if (done % 50 === 0) console.log(`  ${done}/${ids.length} (existing ${skippedExisting}, artblocks-skipped ${skippedArtblocksIds.length})`);
         } catch (e) {
           errors.push({ id, error: e.message });
         }
@@ -73,7 +94,13 @@ async function main() {
     )
   );
 
-  console.log(`\nFetched ${done - skipped} new, skipped ${skipped} existing, ${errors.length} failed.`);
+  console.log(`\nFetched ${done - skippedExisting - skippedArtblocksIds.length} new, ${skippedExisting} existing, ${skippedArtblocksIds.length} artblocks-skipped, ${errors.length} failed.`);
+
+  // Persist the artblocks-skipped id list so downstream steps and the eventual
+  // INSTRUCTIONS.md can mention exactly which token ids are unaffected by the
+  // baseURI flip (contract logic keeps routing them to token.artblocks.io).
+  state.skippedArtblocksIds = skippedArtblocksIds.sort((a, b) => a - b);
+  saveState(slug, state);
 
   if (errors.length > 0) {
     const errFile = join(collectionDir(slug), "02-fetch-errors.json");
@@ -93,8 +120,9 @@ async function main() {
   }
 
   recordStep(slug, "02-fetch-metadata", {
-    fetched: done - skipped,
-    skipped,
+    fetched: done - skippedExisting - skippedArtblocksIds.length,
+    skippedExisting,
+    skippedArtblocks: skippedArtblocksIds.length,
     failed: errors.length,
     totalRequested: ids.length,
   });

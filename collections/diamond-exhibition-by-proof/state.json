@@ -1,0 +1,32 @@
+{
+  "slug": "diamond-exhibition-by-proof",
+  "steps": {
+    "01-discover": {
+      "contract": "0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e",
+      "skipReason": "artblocks",
+      "completedAt": "2026-05-27T04:57:40.641Z"
+    }
+  },
+  "discovered": {
+    "slug": "diamond-exhibition-by-proof",
+    "contract": "0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e",
+    "chain": "ethereum",
+    "name": "Diamond Exhibition",
+    "symbol": "DIAMOND",
+    "totalSupply": 5093,
+    "owner": null,
+    "contractCreator": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
+    "tokenIndexBase": 0,
+    "tokenUriSample": "https://token.artblocks.io/0x1353fd9d3dc70d1a18149c8fb2adb4fb906de4e8/5000000",
+    "currentBaseTokenURI": "https://metadata.proof.xyz/diamond-exhibition/",
+    "setter": {
+      "name": "setBaseTokenURI",
+      "inputs": [
+        "string"
+      ],
+      "signature": "setBaseTokenURI(string)"
+    },
+    "skipReason": "artblocks",
+    "discoveredAt": "2026-05-27T04:57:40.639Z"
+  }
+}

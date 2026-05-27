@@ -1,0 +1,32 @@
+{
+  "slug": "proof-grails",
+  "steps": {
+    "01-discover": {
+      "contract": "0xb6329bd2741c4e5e91e26c4e653db643e74b2b19",
+      "skipReason": null,
+      "completedAt": "2026-05-27T04:57:39.589Z"
+    }
+  },
+  "discovered": {
+    "slug": "proof-grails",
+    "contract": "0xb6329bd2741c4e5e91e26c4e653db643e74b2b19",
+    "chain": "ethereum",
+    "name": "PROOF Collective Grails",
+    "symbol": "GRAIL",
+    "totalSupply": 1036,
+    "owner": "0x83895F7508926741CD2147C4AAC65C30a851Cc30",
+    "contractCreator": "0x6c8984bAf566Db08675310b122BF0be9Ea269ecA",
+    "tokenIndexBase": 0,
+    "tokenUriSample": "https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/1/0/0",
+    "currentBaseTokenURI": "https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/1",
+    "setter": {
+      "name": "setBaseTokenURI",
+      "inputs": [
+        "string"
+      ],
+      "signature": "setBaseTokenURI(string)"
+    },
+    "skipReason": null,
+    "discoveredAt": "2026-05-27T04:57:39.587Z"
+  }
+}

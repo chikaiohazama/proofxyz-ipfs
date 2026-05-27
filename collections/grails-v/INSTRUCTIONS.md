@@ -8,6 +8,8 @@
 | Contract | `0x92a50fe6ede411bd26e171b97472e24d245349b8` |
 | Chain | ethereum |
 | Total supply | 785 (tokens 0..784, **0-indexed**) |
+| Tokens affected by this change | **732** (the rest are routed inside `tokenURI(uint256)` to `token.artblocks.io` and are unaffected by `baseTokenURI`) |
+| Art Blocks-routed ids (unaffected) | 53 ids (see `state.json` → `skippedArtblocksIds`) |
 | Deployer | `0x32220f07DBcd18149f619F28cD09FD911cc0372D` |
 | Current baseURI sample | `https://metadata.proof.xyz/grails-v/art/0` |
 | Current `baseTokenURI()` | `https://metadata.proof.xyz/grails-v/art/` |
@@ -73,4 +75,4 @@ https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8#readCont
 
 ---
 
-_Generated 2026-05-27T04:55:31.341Z by proofxyz-ipfs pipeline. Verification report (sha256 round-trip vs the pin) is in this collection's directory at `verification-report.json`._
+_Generated 2026-05-27T05:14:45.130Z by proofxyz-ipfs pipeline. Verification report (sha256 round-trip vs the pin) is in this collection's directory at `verification-report.json`._

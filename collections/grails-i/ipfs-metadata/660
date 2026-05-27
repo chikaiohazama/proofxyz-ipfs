@@ -1,0 +1,21 @@
+{
+  "name": "c.u.l.t.",
+  "description": "c.u.l.t.  \nby Claire Silver (https://twitter.com/ClaireSilver12)\n\nInk sketch, digitally manipulated.\nUnyielding. Achromic. Looking right at you.  \n\nEditions minted: 55\n\nundefined",
+  "image": "ipfs://bafybeifzpd5fnbovixjwcahh4gav3gpyjg5e6nxlavlbo65rjduyygc3ju",
+  "external_url": "https://collective.proof.xyz/grails/16",
+  "collection_name": "c.u.l.t. by Claire Silver",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#16"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Claire Silver"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

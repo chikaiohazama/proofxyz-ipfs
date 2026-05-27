@@ -1,0 +1,21 @@
+{
+  "name": "Second Moon",
+  "description": "Second Moon  \nby Nicolas Sassoon (https://twitter.com/Nicolas_Sassoon)\n\nSecond Moon is an animation created in 2022 using a digital moiré patterning technique, consisting in the overlap of two images to generate the illusion of a third image. In my practice, this process is often used to created abstract textural works inspired by atmospheric and natural forces. In Second Moon, the animation oscillates between abstraction and figuration: it can be read as an abstract composition or as a figurative landscape representing the reflection of a celestial object over a liquid surface. At large, Second Moon relates to many histories of abstraction and figuration in painting, optical art, moving image, computer graphics and screen savers. The notion of surface is important in this work, as it constantly plays with the perception of depth and flatness within the space of the screen.  \n\nEditions minted: 17\n\nundefined",
+  "image": "ipfs://bafybeiay7yzyda2r456qf7nqblxvujp4zkkygl3dwawl2b7nc7colec4za",
+  "external_url": "https://collective.proof.xyz/grails/05",
+  "collection_name": "Second Moon by Nicolas Sassoon",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#05"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Nicolas Sassoon"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

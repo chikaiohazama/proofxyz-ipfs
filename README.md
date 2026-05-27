@@ -34,7 +34,132 @@ Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens
 | — | ~~PROOF Curated: Evolving Pixels~~ | [`0x48b17…502b7`](https://etherscan.io/address/0x48b17a2c46007471b3eb72d16268eaecdd1502b7) | 891 | ~360 (~40%) | ⏸️ paused — see note below |
 | 9 | **The Journey** | [`0xd5386…1900b`](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b) | 96 | 96 (100%) | ✅ pinned & verified |
 
-**A note on OpenSea slugs vs on-chain contracts.** OpenSea has fragmented the Grails I + Grails II contracts into per-artist landing pages (e.g. `renewal-by-rachel-ryle`, `geist-by-alida-sun`), and the slugs **`proof-grails`** and **`proof-grails-ii`** on OpenSea point at completely *different* assets (Grails II Mint Pass contract `0x2c3fc1…f9fd`, and a 17-token Polygon edition contract, respectively). The contract addresses in the scope table above are the verified on-chain art contracts (via `name()` + sample `tokenURI()` content). **The repo's internal slugs (`grails-i`, `grails-ii`, …) are local directory names, *not* OpenSea slugs** — don't conflate them.
+**A note on OpenSea slugs vs on-chain contracts.** OpenSea has fragmented Grails I, II, III, *and* IV into per-artist landing pages — there is **no single "Grails I" / "II" / "III" / "IV" OpenSea page**. Grails V is the only season with a unified OpenSea collection (`grails-v`). And the slugs **`proof-grails`** and **`proof-grails-ii`** on OpenSea point at *unrelated* assets (Grails II Mint Pass contract `0x2c3fc1…f9fd`, and a 17-token Polygon edition contract, respectively). The contract addresses in the scope table above are the verified on-chain art contracts (via `name()` + sample `tokenURI()` content). **The repo's internal slugs (`grails-i`, `grails-ii`, …) are local directory names, *not* OpenSea slugs** — don't conflate them.
+
+#### OpenSea collection pages per Grails season
+
+Auto-grouped by OpenSea into one collection-per-Grail (artist). Each one points at a slice of the same on-chain contract; the contract address is what Proof will call `setBaseTokenURI(...)` on, regardless of how OpenSea slices the listing.
+
+<details>
+<summary><b>Grails I</b> — 20 per-artist pages (contract <code>0xb6329bd2741c4e5e91e26c4e653db643e74b2b19</code>)</summary>
+
+| Title | OpenSea |
+|---|---|
+| What do you "B" — Gary Vaynerchuk | https://opensea.io/collection/what-do-you-b-by-gary-vaynerchuk |
+| Renewal — Rachel Ryle | https://opensea.io/collection/renewal-by-rachel-ryle |
+| Second Moon — Nicolas Sassoon | https://opensea.io/collection/second-moon-by-nicolas-sassoon |
+| How to Start a War — Tim Ferriss | https://opensea.io/collection/how-to-start-a-war-by-tim-ferriss |
+| I've got your cat, please follow me — Kiszkiloszki | https://opensea.io/collection/i-ve-got-your-cat-please-follow-me-by-kiszkiloszki |
+| ON THE SHOULDERS OF — Alexis Ohanian | https://opensea.io/collection/on-the-shoulders-of-by-alexis-ohanian |
+| Dream Loaf — Sarah Zucker | https://opensea.io/collection/dream-loaf-by-sarah-zucker |
+| In My Head — Mike Shinoda | https://opensea.io/collection/in-my-head-by-mike-shinoda |
+| Iteration 0 — Grelysian | https://opensea.io/collection/iteration-0-by-grelysian |
+| Ixian No-Ships — IX Shells | https://opensea.io/collection/ixian-no-ships-by-ix-shells |
+| 횡단보도 (Crosswalk) — Dmitri Cherniak | https://opensea.io/collection/hoengdanbodo-by-dmitri-cherniak |
+| MIRROR, MIRROR. — Lucrece | https://opensea.io/collection/mirror-mirror-by-lucrece |
+| euphoria — Marlo | https://opensea.io/collection/euphoria-by-marlo |
+| Wall — Tyler Hobbs | https://opensea.io/collection/wall-by-tyler-hobbs |
+| WAGMI — Hackatao | https://opensea.io/collection/wagmi-by-hackatao |
+| Protoglyph — Larva Labs | https://opensea.io/collection/protoglyph-by-larva-labs |
+| how many times can a heart be broken? — Yosnier | https://opensea.io/collection/how-many-times-can-a-heart-be-broken-by-yosnier |
+| c.u.l.t. — Claire Silver | https://opensea.io/collection/c-u-l-t-by-claire-silver |
+| Catchem — Gremplin | https://opensea.io/collection/catchem-by-gremplin |
+| Choices — What is Real | https://opensea.io/collection/choices-by-what-is-real |
+</details>
+
+<details>
+<summary><b>Grails II</b> — 25 per-artist pages (contract <code>0xd78afb925a21f87fa0e35abae2aead3f70ced96b</code>)</summary>
+
+| Title | OpenSea |
+|---|---|
+| Fixer-upper — Process Grey | https://opensea.io/collection/fixer-upper-by-process-grey |
+| Sparrows do not fear the sun. — Linda Dounia | https://opensea.io/collection/sparrows-do-not-fear-the-sun-by-linda-dounia |
+| Retinal Plugin — Neurocolor | https://opensea.io/collection/retinal-plugin-by-neurocolor |
+| Cognition #0 - Returning Home — Justin Aversano | https://opensea.io/collection/cognition-0-returning-home-by-justin-aversano |
+| Latent Floral - A — Refik Anadol | https://opensea.io/collection/latent-floral-a-by-refik-anadol |
+| Ambivalence — Luis Ponce | https://opensea.io/collection/ambivalence-by-luis-ponce |
+| Eat The Scroll — Nadya Tolokonnikova | https://opensea.io/collection/eat-the-scroll-by-nadya-tolokonnikova |
+| Dragon Preliminary Study — James Jean | https://opensea.io/collection/dragon-preliminary-study-by-james-jean |
+| Quantum Noise — Pindar Van Arman | https://opensea.io/collection/quantum-noise-by-pindar-van-arman |
+| Crude Figures — Kjetil Golid | https://opensea.io/collection/crude-figures-by-kjetil-golid |
+| Get Weird — Coldie | https://opensea.io/collection/get-weird-by-coldie |
+| Dissociation — Drifter Shoots | https://opensea.io/collection/dissociation-by-drifter-shoots |
+| Red Skull — Mr. Doodle | https://opensea.io/collection/red-skull-by-mr-doodle |
+| Bookends (Study) — Snowfro | https://opensea.io/collection/bookends-study-by-snowfro |
+| Belly of the Whale: 01 — Tom Sachs | https://opensea.io/collection/belly-of-the-whale-01-by-tom-sachs |
+| Ball — Jake Fried | https://opensea.io/collection/ball-by-jake-fried |
+| IN THE AIR — Osinachi | https://opensea.io/collection/in-the-air-by-osinachi |
+| Store — Grant Riven Yun | https://opensea.io/collection/store-by-grant-riven-yun |
+| GEIST — Alida Sun | https://opensea.io/collection/geist-by-alida-sun |
+| My Mother the Sun — Cachepoor | https://opensea.io/collection/my-mother-the-sun-by-cachepoor |
+| Breezy Doozy — Harm van den Dorpel | https://opensea.io/collection/breezy-doozy-by-harm-van-den-dorpel |
+| made these for your girl — Alpha Centauri Kid | https://opensea.io/collection/made-these-for-your-girl-by-alpha-centauri-kid |
+| The Guardian — William Mapan | https://opensea.io/collection/the-guardian-by-william-mapan |
+| Away from Keyboard — Emily Xie | https://opensea.io/collection/away-from-keyboard-by-emily-xie |
+| The Fabric of Trees — Zancan | https://opensea.io/collection/the-fabric-of-trees-by-zancan |
+</details>
+
+<details>
+<summary><b>Grails III</b> — 20 per-artist pages (contract <code>0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3</code>)</summary>
+
+| Title | OpenSea |
+|---|---|
+| Mud Slide — Jon Gray | https://opensea.io/collection/mud-slide-by-jon-gray |
+| Man Machine — Killer Acid | https://opensea.io/collection/man-machine-by-killer-acid |
+| Shermie — Seneca | https://opensea.io/collection/shermie-by-seneca |
+| Proof of Origin - Picture of the Planets — Matt Kane | https://opensea.io/collection/proof-of-origin-picture-of-the-planets-by-matt-kan |
+| Shores — Seerlight | https://opensea.io/collection/shores-by-seerlight |
+| Bathybius Haeckelii — Mika Tajima | https://opensea.io/collection/bathybius-haeckelii-by-mika-tajima |
+| Silver Grail — 0xDEAFBEEF | https://opensea.io/collection/grails-by-0xdeafbeef |
+| Reticulum — Harvey Rayner | https://opensea.io/collection/reticulum-by-harvey-rayner |
+| Echoes — Rik Oostenbroek | https://opensea.io/collection/echoes-by-rik-oostenbroek |
+| Dorze Duressa — Yatreda | https://opensea.io/collection/dorze-duressa-by-yatreda |
+| Substance — Iskra Velitchkova | https://opensea.io/collection/substance-by-iskra-velitchkova |
+| Realization — mpkoz | https://opensea.io/collection/realization-by-mpkoz |
+| Tempelfjord — Reuben Wu | https://opensea.io/collection/tempelfjord-by-reuben-wu |
+| Systems — Ryan Koopmans | https://opensea.io/collection/systems-by-ryan-koopmans |
+| there goes that kid — Alpha Centauri Kid | https://opensea.io/collection/there-goes-that-kid-by-alpha-centauri-kid |
+| Into the blue — Maxim Zhestkov | https://opensea.io/collection/into-the-blue-by-maxim-zhestkov |
+| Her — Josie Bellini | https://opensea.io/collection/her-by-josie-bellini |
+| Cigarette and heartbreaks — 0xTjo | https://opensea.io/collection/cigarette-and-heartbreaks-by-0xtjo |
+| unsynthesized — Sofia Crespo | https://opensea.io/collection/unsynthesized-423-by-sofia-crespo |
+| How things fit together — Zach Lieberman | https://opensea.io/collection/how-things-fit-together-by-zach-lieberman |
+</details>
+
+<details>
+<summary><b>Grails IV</b> — 20 per-artist pages (contract <code>0x069eeda3395242bd0d382e3ec5738704569b8885</code>)</summary>
+
+| Title | OpenSea |
+|---|---|
+| Drawing with Code — Yazid | https://opensea.io/collection/drawing-with-code-by-yazid |
+| Lines of Division — basiic | https://opensea.io/collection/lines-of-division-25-by-basiic |
+| Doomscrolling — Ben Kovach | https://opensea.io/collection/doomscrolling-by-ben-kovach |
+| "Epiphany" — Jack Butcher | https://opensea.io/collection/epiphany-by-jack-butcher |
+| A Perfect Friday Night — Dangiuz | https://opensea.io/collection/a-perfect-friday-night-by-dangiuz |
+| A Woman in the Mist — Ayla El Moussa | https://opensea.io/collection/a-woman-in-the-mist-by-ayla-el-moussa |
+| LIGHT — Hans Dehlinger | https://opensea.io/collection/light-by-hans-dehlinger |
+| ATOMS — Casey Reas | https://opensea.io/collection/atoms-by-casey-reas |
+| Madonna — Goldcat | https://opensea.io/collection/madonna-by-goldcat |
+| Open Console — Kim Asendorf | https://opensea.io/collection/open-console-by-kim-asendorf |
+| Goodbye Horses — Michael Kutsche | https://opensea.io/collection/goodbye-horses-by-michael-kutsche |
+| The Grail — Craig Mullins | https://opensea.io/collection/the-grail-by-craig-mullins |
+| Blaatimen — Per Kristian Stoveland | https://opensea.io/collection/blaatimen-by-per-kristian-stoveland |
+| Around Again — diewiththemostlikes | https://opensea.io/collection/around-again-by-diewiththemostlikes |
+| Time-Lapse — Roope Rainisto | https://opensea.io/collection/time-lapse-by-roope-rainisto |
+| Unamused — Operator | https://opensea.io/collection/unamused-by-operator |
+| RELICS — Hideki Tsukamoto | https://opensea.io/collection/relics-by-hideki-tsukamoto |
+| A SPECTRUM OF BEING. — Shavonne Wong | https://opensea.io/collection/echoes-of-identity-by-shavonne-wong |
+| Ethereal Dawn — Inna Modja | https://opensea.io/collection/ethereal-dawn-by-inna-modja |
+| Paying Debts — Other World | https://opensea.io/collection/paying-debts-by-other-world |
+</details>
+
+<details>
+<summary><b>Grails V</b> — single unified page (contract <code>0x92a50fe6ede411bd26e171b97472e24d245349b8</code>)</summary>
+
+OpenSea kept Grails V as a single collection (no auto-grouping by artist):
+
+- https://opensea.io/collection/grails-v
+</details>
 
 ### How Art Blocks tokens are handled
 

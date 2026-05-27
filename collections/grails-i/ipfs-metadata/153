@@ -1,0 +1,21 @@
+{
+  "name": "WAGMI",
+  "description": "WAGMI  \nby Hackatao (https://twitter.com/Hackatao)\n\nBecause we are different.  \n\nEditions minted: 106\n\nundefined",
+  "image": "ipfs://bafybeihq64ji52ze5u3iumh4du6uvukud4fu2xtcr62fivrmpoxrfbjsdi",
+  "external_url": "https://collective.proof.xyz/grails/13",
+  "collection_name": "WAGMI by Hackatao",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#13"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Hackatao"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

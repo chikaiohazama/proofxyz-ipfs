@@ -1,0 +1,21 @@
+{
+  "name": "euphoria",
+  "description": "euphoria  \nby Marlo (https://twitter.com/marloljohnson)\n\na meditation on euphoric states.  \n\nEditions minted: 28\n\nundefined",
+  "image": "ipfs://bafybeihvgmnwk5agcvnttvjfcbvjtxtoildntmx5qr3ldhy6pzdb5plyaq",
+  "external_url": "https://collective.proof.xyz/grails/08",
+  "collection_name": "euphoria by Marlo",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#08"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Marlo"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

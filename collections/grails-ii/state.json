@@ -13,6 +13,13 @@
       "failed": 0,
       "totalRequested": 1178,
       "completedAt": "2026-05-27T16:31:29.050Z"
+    },
+    "03-download-media": {
+      "uniqueUrls": 55,
+      "downloaded": 5,
+      "deduped": 50,
+      "failed": 0,
+      "completedAt": "2026-05-27T16:41:35.073Z"
     }
   },
   "discovered": {

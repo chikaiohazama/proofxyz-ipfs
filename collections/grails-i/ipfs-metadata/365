@@ -1,0 +1,21 @@
+{
+  "name": "In My Head",
+  "description": "In My Head  \nby Mike Shinoda (https://twitter.com/mikeshinoda)\n\nA spontaneous vision, born out of personal and public social cycles.  \n\nEditions minted: 25\n\nundefined",
+  "image": "ipfs://bafybeibr6zqnprg7swhvkx64akdlhhaieic4bmx5vyas2o2yvdztoktq4a",
+  "external_url": "https://collective.proof.xyz/grails/14",
+  "collection_name": "In My Head by Mike Shinoda",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#14"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Mike Shinoda"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

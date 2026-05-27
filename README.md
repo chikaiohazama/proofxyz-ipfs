@@ -47,6 +47,47 @@ When Proof flips `baseTokenURI` to `ipfs://<metadataCID>/`, the contract's own p
 
 If a contract is detected as **all** Art Blocks (every sampled `tokenURI` resolves to an `artblocks.io` host) it's flagged `skipReason: "artblocks (all sampled tokens)"` and not processed — but mixed contracts are processed normally.
 
+#### How the routing is encoded on-chain
+
+Important detail for the engineers signing the tx: these Proof contracts do **not** expose a per-token writable URI override (no `setTokenURI(uint256, string)` function in the ABI). Routing is hardcoded inside `tokenURI(uint256)` and dispatches on the token's project type. There is no per-token mapping to misconfigure and no way for the baseURI flip to "leak" into an Art Blocks token.
+
+Verified by reading the verified contract source on Sourcify:
+
+**Diamond Exhibition** (`DiamondExhibition.sol`):
+
+```solidity
+function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+    TokenInfo memory info = _tokenInfo(tokenId);
+    if (projectType(info.projectId) == ProjectType.Curated) {
+        return string.concat(_baseURI(), Strings.toString(tokenId));   // ← Proof-hosted branch (consults baseURI)
+    }
+    return flex.tokenURI(artblocksTokenID(_artblocksProjectId(info.projectId), info.edition));
+    // ↑ Art Blocks branch — computes the URL via the Flex engine; never reads _baseURI()
+}
+```
+
+**Grails IV** (`ABProjectPoolSellable.sol`, same base also used by Grails V and Evolving Pixels):
+
+```solidity
+function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+    TokenInfo memory info = tokenInfo(tokenId);
+    if (_isLongformProject(info.projectId)) {
+        return flex.tokenURI(artblocksTokenID(_artblocksProjectId(info.projectId), info.edition));
+        // ↑ Art Blocks branch — never touches baseURI
+    }
+    return super.tokenURI(tokenId);   // ← baseURI + tokenId (Proof-hosted branch)
+}
+```
+
+**Concrete implication for the `setBaseTokenURI(...)` tx:**
+
+| Token type | Where its URL comes from | Effect of the baseURI flip |
+|---|---|---|
+| Proof-routed (`Curated` / non-`Longform`) | `_baseURI() + tokenId` | Will return `ipfs://<newCID>/<tokenId>` after the flip — our pin |
+| Art Blocks-routed (`Longform` / non-`Curated`) | `flex.tokenURI(...)` → `token.artblocks.io/...` | **Unchanged** — the function never reads `_baseURI()` for these |
+
+**Post-flip sanity check** (5 minutes, no risk): on the contract's Etherscan Read Contract page, call `tokenURI(<an_art_blocks_id>)` and confirm it still returns `token.artblocks.io/...`; call `tokenURI(<a_proof_id>)` and confirm it now returns `ipfs://<newCID>/<id>`. Each collection's `INSTRUCTIONS.md` lists the AB-routed ids in `state.json` under `skippedArtblocksIds` so you have known ids to test with.
+
 > **Note on Grails V's `media-proxy.artblocks.io` URLs**: 53 of Grails V's 785 tokens (the "Spire" sub-series) reference `media-proxy.artblocks.io` images. Those are **static** PNG renders that Art Blocks media-proxy serves with no expiry — they are pinnable, and they were pinned in the Grails V run. This is different from the `token.artblocks.io` case above, where the URL is the **metadata** endpoint that triggers dynamic rendering.
 
 ## Architecture — how the pin is structured

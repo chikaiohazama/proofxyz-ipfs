@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 43: Elasmosaurus",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreihccti7l7a5hqbe535h6s36wafyf4mtdgpckeei6laokpbpdqqw34",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Carnivore"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Aquatic"
+    }
+  ]
+}

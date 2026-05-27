@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 08: From Father to Son",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreihp4ivpdstv3fm7mfcrngzu772jgh4k6gr2aofqdkolf2gdo5bu2i",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Carnivore"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    }
+  ]
+}

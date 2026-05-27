@@ -1,0 +1,44 @@
+{
+  "collections": [
+    {
+      "slug": "grails-v",
+      "name": "Grails V",
+      "contract": "0x92a50fe6ede411bd26e171b97472e24d245349b8",
+      "chain": "ethereum",
+      "prototype": true
+    },
+    {
+      "slug": "grails-iii",
+      "name": "Grails III",
+      "contract": null,
+      "chain": "ethereum",
+      "note": "Claimed to share Grails I contract via mint phases — verify in step 01."
+    },
+    {
+      "slug": "proof-grails-ii",
+      "name": "Grails II",
+      "contract": "0xd78afb925a21f87fa0e35abae2aead3f70ced96b",
+      "chain": "ethereum"
+    },
+    {
+      "slug": "proof-grails",
+      "name": "Grails I",
+      "contract": "0xb6329bd2741c4e5e91e26c4e653db643e74b2b19",
+      "chain": "ethereum"
+    },
+    {
+      "slug": "diamond-exhibition-by-proof",
+      "name": "Diamond Exhibition",
+      "contract": "0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e",
+      "chain": "ethereum"
+    }
+  ],
+  "skipped": [
+    {
+      "slug": "grails-iv",
+      "name": "Grails IV",
+      "contract": "0x069eeda3395242bd0d382e3ec5738704569b8885",
+      "reason": "Art Blocks Flex — dynamic on-chain rendering, no static metadata to pin."
+    }
+  ]
+}

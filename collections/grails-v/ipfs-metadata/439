@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 15: Oviraptor",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreihv7z6htpoz7hlugkvyx4j77ck5rgz2bncew3ffe4ksdwqpnjrorm",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Omnivore"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    }
+  ]
+}

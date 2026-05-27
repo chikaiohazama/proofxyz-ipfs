@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 29: Corythosaurus",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreialw62dl2eszue2dwnlqi44pfplbbhinarpolu4ashq77oewxneay",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Herbivore"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    }
+  ]
+}

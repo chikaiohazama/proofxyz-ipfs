@@ -1,0 +1,16 @@
+{
+  "name": "Bolt Pattern #10",
+  "description": "Bolt Pattern is a new series of stills from a 2006 video recording session that LoVid produced during a residency at the Institute for Electronic Arts at Alfred University. \n\nThe 2006 video was created using LoVid’s custom engineered and built audio/video analog synthesizer, Sync Armonica, along with Dan Sandin’s Image Processor, which convert electrical current into video and audio signals. Bolt Pattern is representative of LoVid’s practice exploring connections between analog and digital instruments, material and media, craft and video. \n\nIn this series of video stills, LoVid positions NFT token-based art in the continuum of their practice that bridges analog and digital, live video performances and algorithmically generative works, and within the broader history of media art. \n\nThe glowing patterns, colors, and video texture in Bolt Pattern are characteristic of LoVid’s embraced aesthetic that spans across all media and projects and addresses the relationships connecting industrial (e.g., mechanical and electronic) and natural signals (e.g., waves and wind) with textile and tapestry design. ",
+  "image": "ipfs://bafybeia3xfxcfe77g4yppgbwyxmzfppqjya2cqs63ruos5ioemfcx7dq5a",
+  "collection_name": "Bolt Pattern  by LoVid",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "LoVid"
+    },
+    {
+      "trait_type": "Trait",
+      "value": "AMC"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 27: Raptor Attack",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreicqtmclh4foaqtaidff5dgd3vs3zj5hqoeufo2laslv4dyna7ku2m",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Herbivore Carnivore"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    }
+  ]
+}

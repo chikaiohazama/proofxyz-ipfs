@@ -1,0 +1,24 @@
+{
+  "name": "proofxyz-ipfs",
+  "version": "0.1.0",
+  "description": "Mirror Proof Collective art collections to IPFS via Pinata and emit per-contract update instructions.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "discover": "node scripts/01-discover.js",
+    "fetch-metadata": "node scripts/02-fetch-metadata.js",
+    "download-media": "node scripts/03-download-media.js",
+    "pin-media": "node scripts/04-pin-media.js",
+    "rewrite-metadata": "node scripts/05-rewrite-metadata.js",
+    "pin-metadata": "node scripts/06-pin-metadata.js",
+    "verify": "node scripts/07-verify.js",
+    "instructions": "node scripts/08-instructions.js"
+  },
+  "dependencies": {
+    "ethers": "^6.13.4",
+    "pinata": "^2.4.0"
+  }
+}

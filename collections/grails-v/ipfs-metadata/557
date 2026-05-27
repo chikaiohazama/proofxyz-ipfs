@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 38: Classic Red T-Rex",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreicujzk2stv4yrbphxlut4f5dcojeqnf7dp4q6fstc4zmswv4jju4m",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Carnivore"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    }
+  ]
+}

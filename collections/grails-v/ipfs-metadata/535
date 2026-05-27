@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 30: Pulikali Mask",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreidxwyks5h7vaydsjt3ez5dlonpuyavravk2en5sybel4g7jmtyhxa",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Possession"
+    },
+    {
+      "trait_type": "Diet",
+      "value": ""
+    },
+    {
+      "trait_type": "Habitat",
+      "value": ""
+    }
+  ]
+}

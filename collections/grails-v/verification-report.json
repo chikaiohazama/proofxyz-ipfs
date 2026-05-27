@@ -1,0 +1,18 @@
+{
+  "slug": "grails-v",
+  "metadataCID": "bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq",
+  "metadata": {
+    "total": 785,
+    "ok": 785,
+    "mismatches": [],
+    "failures": []
+  },
+  "media": {
+    "total": 202,
+    "ok": 202,
+    "mismatches": [],
+    "failures": []
+  },
+  "verifiedAt": "2026-05-27T04:21:50.459Z",
+  "pass": true
+}

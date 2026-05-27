@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 50: The Real Joey Lawrence",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreidgc5igh2moas7am6beih2recinpidmwprtw2v4h4tjc54l4dbbh4",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Omnivore"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Human"
+    }
+  ]
+}

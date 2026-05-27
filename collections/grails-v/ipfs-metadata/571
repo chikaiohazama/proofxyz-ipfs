@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 47: From Mother to Daughter",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreihdn2nfoowncvxyat4elv5sgocbq6nthflfv3rrs7i7hluqa3oesu",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Herbivore"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    }
+  ]
+}

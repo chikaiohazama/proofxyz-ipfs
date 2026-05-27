@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 02: Pachycephalosaurus Duel",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreicqawnnepqctbjoz3gq4joanbfdkp52v7acyzfkvyensgm24lkpay",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Herbivore"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    }
+  ]
+}

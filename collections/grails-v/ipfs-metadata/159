@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 06: Gigantspinosaurus",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreif75qu7dawibkehpqz43d4s2rbzzr6a4bay2an6w5pkbngpw5gvye",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Herbivore"
+    }
+  ]
+}

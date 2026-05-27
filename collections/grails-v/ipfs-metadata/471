@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 17: Pteranodon",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreihbxbaave6den3khif5a5xje62qgmxmyp7qdfch6zywso5sn3alam",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Aerial"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Carnivore"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    }
+  ]
+}

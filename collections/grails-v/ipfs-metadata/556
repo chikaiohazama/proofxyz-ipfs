@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 37: Baby T Rex",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreibdwpfo5vxqr7un5y65p7tsixswe3rqxqf7lb6abhovceqedrgsum",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Carnivore"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    }
+  ]
+}

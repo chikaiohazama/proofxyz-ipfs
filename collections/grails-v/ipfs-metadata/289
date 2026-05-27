@@ -1,0 +1,87 @@
+{
+  "platform": "PROOF Blocks 2",
+  "tokenID": "6000009",
+  "series": "N/A",
+  "aspect_ratio": 0.75,
+  "payout_address": "0x89dad82099e14b3c8335352e38052fb2a551f8e8",
+  "contract_address": "0x294fed5f1d3d30cfa6fe86a937dc3141eec8bc6d",
+  "name": "Spire (Bokashi Cone) #9",
+  "minted": true,
+  "artist": "DCA",
+  "description": "## *Spire (Bokashi Cone)* explores soft gradations of color.  \n\nIn traditional Japanese woodblock printing, bokashi refers to the technique of applying ink to the print in a manner that produces a subtle transition of tone or color. The resulting look of a bokashi effect can be described as a hazy gradient. The technique was famously used by Hokusai in Red Fuji (c. 1830), as well as by many other artists of that time period. \n\nIn Bokashi Cone, the technique takes center stage. Each cone form is rendered in soft gradations of color that span from light to dark. The effect is very subtle in some instances, and more pronounced in others. Further heightening the bokashi is the transition of hue within each gradient, a process which would be laboriously difficult to reproduce with traditional block-printing techniques. Bokashi Cone's generative color model means that the colors are chosen algorithmically without the artist needing to assemble predefined palettes. Each cone has its very own unique generative color theme and gradient.",
+  "script_type": "p5@1.0.0",
+  "project_id": "6",
+  "collection_uuid": "3fdcabc8-c953-49bf-8b42-e074a9bafde1",
+  "engine_type": "fullyonchain",
+  "image": "ipfs://bafybeie5rmdemv7jy73zcubbcd3r37iheumw2gg5fnmgcvnpozdpoq6wpu",
+  "preview_asset_url": "ipfs://bafybeie5rmdemv7jy73zcubbcd3r37iheumw2gg5fnmgcvnpozdpoq6wpu",
+  "generator_url": "https://generator.artblocks.io/1/0x294fed5f1d3d30cfa6fe86a937dc3141eec8bc6d/6000009",
+  "royaltyInfo": {
+    "artistAddress": "0xd085958fd59d6802f493ba58e63d9ad906d09415",
+    "additionalPayee": "0x0000000000000000000000000000000000000000",
+    "additionalPayeePercentage": 0,
+    "royaltyFeeByID": 5
+  },
+  "collection_name": "Spire (Bokashi Cone) by DCA",
+  "collection_owner": "0xd085958fd59d6802f493ba58e63d9ad906d09415",
+  "website": null,
+  "token_hash": "0xd8563d5d74c331969f1157edbd4334634fda0e871c8d92102de2c1ff203ea7fb",
+  "external_url": "",
+  "primary_asset_url": "ipfs://bafybeie5rmdemv7jy73zcubbcd3r37iheumw2gg5fnmgcvnpozdpoq6wpu",
+  "features": {
+    "bands": "single",
+    "spiral": false,
+    "warped": false,
+    "portion": "whole",
+    "stepped": true,
+    "tonality": "normal",
+    "hue range": "purple",
+    "partitions": false,
+    "projection": "3D"
+  },
+  "traits": [
+    {
+      "trait_type": "Spire (Bokashi Cone)",
+      "value": "All Spire (Bokashi Cone)s"
+    },
+    {
+      "trait_type": "Spire (Bokashi Cone)",
+      "value": "bands: single"
+    },
+    {
+      "trait_type": "Spire (Bokashi Cone)",
+      "value": "spiral: false"
+    },
+    {
+      "trait_type": "Spire (Bokashi Cone)",
+      "value": "warped: false"
+    },
+    {
+      "trait_type": "Spire (Bokashi Cone)",
+      "value": "portion: whole"
+    },
+    {
+      "trait_type": "Spire (Bokashi Cone)",
+      "value": "stepped: true"
+    },
+    {
+      "trait_type": "Spire (Bokashi Cone)",
+      "value": "tonality: normal"
+    },
+    {
+      "trait_type": "Spire (Bokashi Cone)",
+      "value": "hue range: purple"
+    },
+    {
+      "trait_type": "Spire (Bokashi Cone)",
+      "value": "partitions: false"
+    },
+    {
+      "trait_type": "Spire (Bokashi Cone)",
+      "value": "projection: 3D"
+    }
+  ],
+  "is_static": true,
+  "license": "CBE-COMMERCIAL-NO-HATE",
+  "authenticity_signature": "0xa6d3820c1e5fafbc3d38ddde3af342bd1d3b089dee040e98e3cd343a6270d1e865aab25aefdd212fd7081ae6916ee519ccbfce53370d9f2bd76c90eb5a22e4781b"
+}

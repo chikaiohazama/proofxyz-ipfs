@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 48: Spinosaurus Aegyptiacus",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreie47xvv6eofm25fuqgsqab37whkvdetlpbmfkk5jiyfbr32nd4hcu",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Carnivore"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial Aquatic"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    }
+  ]
+}

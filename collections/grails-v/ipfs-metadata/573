@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 49: Cursed Threequel",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreia4jlk3mjmb2sq3yahl2otqsq6mfvj5uztxknqn3jvd2cnepyt6ji",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Carnivore"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial Aquatic"
+    }
+  ]
+}

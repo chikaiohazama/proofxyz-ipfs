@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 04: Ambush",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreib2ukdjjqaqluogr6dg3l3dde37islbnc4dceclo4xh4qzw6yajki",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Herbivore Carnivore"
+    }
+  ]
+}

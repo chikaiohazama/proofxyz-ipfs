@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 13: Hatchling",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreih3wv6tnxg2sz3kdqulg7xugakhx5hfj4d2s3qtsewcnhqgdrocvm",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": "Terrestrial"
+    },
+    {
+      "trait_type": "Diet",
+      "value": "Carnivore"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Dinosaur"
+    }
+  ]
+}

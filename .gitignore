@@ -1,0 +1,15 @@
+# Secrets — never commit
+.env
+
+# Build / deps
+node_modules/
+
+# Large reproducible artifacts (re-derivable from state.json + on-chain reads)
+collections/*/media/
+collections/*/original-metadata/
+
+# OS noise
+.DS_Store
+
+# Transient error logs (rerunning the relevant script regenerates them if still failing)
+collections/*/0?-*-errors.json

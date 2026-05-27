@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 10: This MiniDV Camcorder Belongs to Joey",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreigcjqb3q6ehuluvfkqcpr2xtqm3oko6qomqy3ckictryc6wtg5sxu",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Diet",
+      "value": ""
+    },
+    {
+      "trait_type": "Type",
+      "value": "Possession"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": ""
+    }
+  ]
+}

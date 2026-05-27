@@ -1,0 +1,24 @@
+{
+  "name": "Return to Dino-Rama 20: Grandfather’s Prized Possession",
+  "description": "After gathering experiences in the distant world, one ends up exactly where they started.",
+  "image": "ipfs://bafkreicvwohqtrp7cliasborqg2pkkpa2mi3mcsagk2jkfmjwyv6ogd4n4",
+  "collection_name": "Return to Dino-Rama by Joey L",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Joey L"
+    },
+    {
+      "trait_type": "Diet",
+      "value": ""
+    },
+    {
+      "trait_type": "Type",
+      "value": "Possession"
+    },
+    {
+      "trait_type": "Habitat",
+      "value": ""
+    }
+  ]
+}

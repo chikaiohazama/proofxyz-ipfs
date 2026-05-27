@@ -1,0 +1,11 @@
+{
+  "name": "Self Portrait",
+  "image": "ipfs://bafybeictcq7cyhbk4tmjv44ssmaxhwe3jn5uexotzpwypascvdxw3ldmvi",
+  "collection_name": "Self Portrait by Sarah Meyohas",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Sarah Meyohas"
+    }
+  ]
+}

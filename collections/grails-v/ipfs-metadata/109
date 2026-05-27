@@ -1,0 +1,11 @@
+{
+  "name": "Sin City: The Hard Goodbye",
+  "image": "ipfs://bafybeifhzmf7oxmmtun7z6swcuqytfzs6mzfqfwxj4gvvp3rldv6oktmji",
+  "collection_name": "Sin City: The Hard Goodbye by Frank Miller",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Frank Miller"
+    }
+  ]
+}

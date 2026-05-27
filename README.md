@@ -31,7 +31,7 @@ Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens
 | 5 | Grails I | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | 1,036 | 1,036 (100%) | to do |
 | 6 | Diamond Exhibition | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | 5,093 | ~1,170 (~23%) | to do |
 | 7 | Archive of Feelings (Mika Tajima) | [`0x24607…13762`](https://etherscan.io/address/0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762) | 1,152 | 1,152 (100%) | to do |
-| 8 | PROOF Curated: Evolving Pixels | [`0x48b17…502b7`](https://etherscan.io/address/0x48b17a2c46007471b3eb72d16268eaecdd1502b7) | 891 | ~360 (~40%) | to do |
+| — | ~~PROOF Curated: Evolving Pixels~~ | [`0x48b17…502b7`](https://etherscan.io/address/0x48b17a2c46007471b3eb72d16268eaecdd1502b7) | 891 | ~360 (~40%) | ⏸️ paused — see note below |
 | 9 | **The Journey** | [`0xd5386…1900b`](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b) | 96 | 96 (100%) | ✅ pinned & verified |
 
 ### How Art Blocks tokens are handled
@@ -131,6 +131,14 @@ The on-chain change is a single string replacement and is fully reversible — s
 Because IPFS is content-addressed, **the CIDs do not depend on which account pinned the bytes.** If Proof re-pins the exact same metadata and media from their own Pinata account (or any pinning service), they get the same CIDs — nothing on-chain needs to change. This means Proof can take long-term custody of the pins without any extra migration: re-pin from your account, then this account's pins can be released. See the "Recommended: re-pin under your own Pinata account" note in each `INSTRUCTIONS.md`.
 
 > **Note on Grails V's `media-proxy.artblocks.io` URLs**: 53 of Grails V's 785 tokens (the "Spire" sub-series) reference `media-proxy.artblocks.io` images. Those are **static** PNG renders that Art Blocks media-proxy serves with no expiry — they are pinnable, and they were pinned in the Grails V run. This is different from the `token.artblocks.io` case above, where the URL is the **metadata** endpoint that triggers dynamic rendering.
+
+### Why **PROOF Curated: Evolving Pixels** was paused
+
+The contract is mixed-routing (~40% Proof-hosted at `metadata.proof.xyz/evolving-pixels/curated/<id>`, ~60% Art Blocks). When the pipeline ran step 02, **two specific token ids — 875 and 890 — reproducibly returned HTTP 503 (Service Unavailable)** from Proof's metadata service, not transient (three retries each, plus a fresh attempt after a 30 s wait, all 503). Surrounding ids (850, 870, 885) work fine, and the contract sends both broken ids through the same `/evolving-pixels/curated/` path that works for everything else — so this isn't a missing-route issue. Theory: a backend issue on Proof's metadata service specific to those two ids (database record missing or corrupted, source assets unavailable, etc.).
+
+If we pin now, the two broken ids will resolve to `ipfs://<newCID>/875` and `…/890` → 404 (since we have no JSON to put in the pin), permanently baking the holes into the IPFS mirror. Today they return 503 from `metadata.proof.xyz` — same end-user outcome but at least the source can be fixed in place. Pinning the broken-as-of-today snapshot would lock in those holes even if Proof later restores the metadata.
+
+**Plan:** skipped pending Proof restoring the source for ids 875 and 890. Once their `tokenURI(875)` and `tokenURI(890)` URLs return real JSON, rerun the pipeline (`node scripts/01-discover.js proof-curated-evolving-pixels` etc.) — discovery + 522 of the 524 Proof-routed metadata fetches are already cached in `collections/proof-curated-evolving-pixels/` for forensic reference and to avoid re-doing the work. There is also a separate `/evolving-pixels/placeholder/<id>` path that the contract uses for ids beyond `totalSupply` (returns plain-text `token "X" not minted` — expected, not affected by this issue).
 
 ## Architecture — how the pin is structured
 

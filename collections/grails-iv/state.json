@@ -1,0 +1,401 @@
+{
+  "slug": "grails-iv",
+  "steps": {
+    "01-discover": {
+      "contract": "0x069eeda3395242bd0d382e3ec5738704569b8885",
+      "skipReason": null,
+      "completedAt": "2026-05-27T15:37:18.130Z"
+    },
+    "02-fetch-metadata": {
+      "fetched": 728,
+      "skippedExisting": 0,
+      "skippedArtblocks": 170,
+      "failed": 6,
+      "totalRequested": 904,
+      "completedAt": "2026-05-27T15:37:44.856Z"
+    },
+    "03-download-media": {
+      "uniqueUrls": 118,
+      "downloaded": 84,
+      "deduped": 34,
+      "failed": 0,
+      "completedAt": "2026-05-27T15:43:45.715Z"
+    }
+  },
+  "discovered": {
+    "slug": "grails-iv",
+    "contract": "0x069eeda3395242bd0d382e3ec5738704569b8885",
+    "chain": "ethereum",
+    "name": "Grails IV",
+    "symbol": "GRAILS4",
+    "totalSupply": 904,
+    "owner": null,
+    "contractCreator": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
+    "tokenIndexBase": 0,
+    "tokenUriSample": "https://token.artblocks.io/0x294fed5f1d3d30cfa6fe86a937dc3141eec8bc6d/3000000",
+    "currentBaseTokenURI": "https://metadata.proof.xyz/grails-iv/art/",
+    "hostDistribution": {
+      "token.artblocks.io": 5,
+      "metadata.proof.xyz": 25
+    },
+    "artblocksFraction": 0.16666666666666666,
+    "setter": {
+      "name": "setBaseTokenURI",
+      "inputs": [
+        "string"
+      ],
+      "signature": "setBaseTokenURI(string)"
+    },
+    "skipReason": null,
+    "discoveredAt": "2026-05-27T15:37:18.128Z"
+  },
+  "skippedArtblocksIds": [
+    0,
+    5,
+    9,
+    20,
+    25,
+    29,
+    64,
+    93,
+    101,
+    115,
+    124,
+    139,
+    147,
+    148,
+    158,
+    173,
+    178,
+    184,
+    200,
+    205,
+    207,
+    221,
+    250,
+    262,
+    271,
+    274,
+    286,
+    287,
+    294,
+    296,
+    297,
+    301,
+    302,
+    304,
+    312,
+    315,
+    317,
+    319,
+    332,
+    333,
+    343,
+    350,
+    361,
+    363,
+    370,
+    377,
+    381,
+    382,
+    387,
+    393,
+    396,
+    399,
+    401,
+    406,
+    418,
+    428,
+    433,
+    442,
+    443,
+    446,
+    447,
+    454,
+    459,
+    465,
+    472,
+    473,
+    475,
+    477,
+    496,
+    516,
+    519,
+    523,
+    526,
+    531,
+    536,
+    540,
+    541,
+    544,
+    547,
+    552,
+    558,
+    561,
+    563,
+    572,
+    579,
+    584,
+    596,
+    601,
+    604,
+    605,
+    606,
+    607,
+    608,
+    609,
+    610,
+    611,
+    613,
+    614,
+    618,
+    619,
+    620,
+    627,
+    630,
+    635,
+    639,
+    645,
+    655,
+    658,
+    661,
+    670,
+    671,
+    672,
+    678,
+    685,
+    696,
+    704,
+    706,
+    717,
+    726,
+    731,
+    734,
+    735,
+    745,
+    751,
+    753,
+    754,
+    756,
+    758,
+    759,
+    762,
+    764,
+    765,
+    772,
+    774,
+    776,
+    782,
+    783,
+    788,
+    793,
+    794,
+    797,
+    800,
+    805,
+    807,
+    809,
+    811,
+    814,
+    819,
+    821,
+    832,
+    857,
+    858,
+    860,
+    862,
+    865,
+    866,
+    867,
+    868,
+    872,
+    873,
+    875,
+    880,
+    881,
+    885,
+    886,
+    890,
+    893,
+    894,
+    895,
+    901
+  ],
+  "mediaPins": {
+    "078b02374cf7e1425571a1230322f4ed88801fb16a16f79e7f170485c1ce44e6.jpeg": {
+      "cid": "bafybeihri6xlkoo6bf6hohixfsqshiksqnkgu5yvsfkpeq5b3nrzupsatm",
+      "size": 1656632,
+      "pinnedAt": "2026-05-27T15:44:00.657Z"
+    },
+    "01fd1624b38ec0806dd78875dd09b025cb652b07473e52d77eb11b08c39e0d0b.jpg": {
+      "cid": "bafybeic4ktfwsvalqoj3yajcjybat7hierdttlj3t5csi2pxdko4fl3raa",
+      "size": 6180551,
+      "pinnedAt": "2026-05-27T15:44:32.072Z"
+    },
+    "00faf0eb162686a07555abe162c39cfe7b277101ce0314f30fa807ddc234b21b.mp4": {
+      "cid": "bafybeihuuo2hh55pfyvoxt4qffuunwlxaw3beasoz46ostoh6q7r45xb5e",
+      "size": 22239600,
+      "pinnedAt": "2026-05-27T15:44:49.265Z"
+    },
+    "079c1b288518a2bea0404834b2f31fbe1ca2f26597530730a2c8220d31119ea9.png": {
+      "cid": "bafybeidhxutbhp63kexzqpkhacxpjzgusm2ffrxlup6fxzsrwbhqjk3snu",
+      "size": 15722538,
+      "pinnedAt": "2026-05-27T15:45:28.343Z"
+    },
+    "0d8b6792df5500864157959359c04b8dc692309073a73cb75d64ff5c7aa38f18.jpeg": {
+      "cid": "bafybeiazjz4pe6kvpcos4eocdg7cqeejf7riqdiipbwurtk4fpl2eap7ca",
+      "size": 2672492,
+      "pinnedAt": "2026-05-27T15:45:41.222Z"
+    },
+    "01382844769699f8cc684169d5dd6f0e4bba48f8e60e20015daae59559815a27.mp4": {
+      "cid": "bafybeigffdrasjwkvn2akznri7wkcir3slzgarclqp2e6duegeydk7zcla",
+      "size": 22244284,
+      "pinnedAt": "2026-05-27T15:46:16.023Z"
+    },
+    "0b26bdafa650a2cf9b3a4479ddab33804dd7b2bec144ebf46dd20c0ff12a36ed.jpg": {
+      "cid": "bafybeicpioxfmbk4b26z6zvapx23sczks2qbzn4vwgdw2rjq3srfvrn7ti",
+      "size": 13408567,
+      "pinnedAt": "2026-05-27T15:46:19.361Z"
+    },
+    "07eafba39571a0a00930c640e04e5cbf395e7648af4e7c57d86373adc023d0ce.mp4": {
+      "cid": "bafybeidj7hn5df7ehbs7n7fh3l5kimd7yzfm5yq4agmnfwxwzkzeqzwttm",
+      "size": 22354357,
+      "pinnedAt": "2026-05-27T15:47:20.989Z"
+    },
+    "12056bb05ab95cdae775c2de1c870a690fbc3e796b9abffc00cb3502555d2457.jpg": {
+      "cid": "bafybeieppyzxjpsaa7zhb3dhpe27lgvowrhhbhjwybfupwephqvhn2cp6q",
+      "size": 5294499,
+      "pinnedAt": "2026-05-27T15:47:52.233Z"
+    },
+    "1ad18312c46859c3bff4c5e2a06bb016985ec3b7dd1c2094211030d158b6da3f.jpeg": {
+      "cid": "bafybeieu2pwd5o5tedniwbogm7py3xnaakutxu3gpjwzuul6c7tkghirjm",
+      "size": 2418440,
+      "pinnedAt": "2026-05-27T15:48:08.590Z"
+    },
+    "10d34d5917cedb32f0d97bdbda0644ddb7021d35635a151333f60459634c87c5.mp4": {
+      "cid": "bafybeiewfreedou7j6rvdgduzhklkqcoutnluxbvwkpdmu5gz3azp3oqa4",
+      "size": 22352432,
+      "pinnedAt": "2026-05-27T15:48:25.471Z"
+    },
+    "1d9585097ab32c8f65ae62003b62ba4211ccd1337dcc2d54e43a326fea3c1fd9.jpeg": {
+      "cid": "bafybeigdgyj4oiqem47dyaqytggyp7i6g6jnaxods4wl5fmz43x4qeppgm",
+      "size": 3097178,
+      "pinnedAt": "2026-05-27T15:48:39.116Z"
+    },
+    "0eb5fae6ac8e64a0a9643c80ba25a17e0e70e9e74eede2485b714c56ecc8025b.mp4": {
+      "cid": "bafybeiakiqvhs4lvijadke3q3wlux4nz7bjit7bka4nyetnvkyxargonya",
+      "size": 22404082,
+      "pinnedAt": "2026-05-27T15:48:45.314Z"
+    },
+    "20ff7bacbbd6f43b472e0b6f6b944d4078576fbfde1c96997838b3fff5f33c06.jpeg": {
+      "cid": "bafybeidaizhj34jiwplh3rfbrc3bewr37urhjeq7e4hkooguvbs3sjtzde",
+      "size": 2996440,
+      "pinnedAt": "2026-05-27T15:48:49.661Z"
+    },
+    "100bf66136f7f95cf105c5637e259a31daf735f05e8d3a94fcd5760c8501a344.mp4": {
+      "cid": "bafybeidvo4eq7dnwpazwj2lewp73gvxrjzpdow7fltxanuuhulfjjjhxgy",
+      "size": 22312860,
+      "pinnedAt": "2026-05-27T15:48:57.183Z"
+    },
+    "2681a3ef35e7ad218cc8f2c1f0dcb1e8028a6241ca4d115aa4d6c6879bd14a58.jpeg": {
+      "cid": "bafybeicqzsnsu5l4iwlnxyku2xyp3azyvkrgt432gn6xcjvsivj7zhdkfu",
+      "size": 2854908,
+      "pinnedAt": "2026-05-27T15:48:57.945Z"
+    },
+    "1d361a53c093057b1b24cb75fc06addd59d39d08c9237e97827110af8f6218d0.mp4": {
+      "cid": "bafybeib4dohkix6zmrhhexxys3a6yyd25xg5keserkgsmdtj5crzgxyxqu",
+      "size": 22465582,
+      "pinnedAt": "2026-05-27T15:49:48.996Z"
+    },
+    "26be1e941904482c976f291965810ae00d97a57623d3bc33bed9ea14cf7aea3b.mp4": {
+      "cid": "bafybeihoch5kk2vjnvelai6tjk6y6yohtx3fviwbwqbwl4g2if2uaxghhq",
+      "size": 22325706,
+      "pinnedAt": "2026-05-27T15:50:17.139Z"
+    },
+    "2a36f9f6bfb1e074735696e910af78c57dca0edb09fc6ca6359bdeb283a497af.mp4": {
+      "cid": "bafybeigwtqsdhmpxazsgvc3h5l5swync5gl6bvab2qmdc3rpt36reheey4",
+      "size": 22415867,
+      "pinnedAt": "2026-05-27T15:50:33.511Z"
+    },
+    "280caa8bc356e58c0b00411fd792728dd28768c31f5b9d6e48c49f88b70985ef.mp4": {
+      "cid": "bafybeiekmfka36ez5kmleg6i54volytqdcsu3o7u75z5vqodq5avt4c3my",
+      "size": 22389808,
+      "pinnedAt": "2026-05-27T15:50:49.691Z"
+    },
+    "312b1c1244da0ca9d4a3f7edc7f571903b75fa1d4cfef60a84053e01fd4428e6.jpg": {
+      "cid": "bafybeiddr5h3maikk2tcax5pirirswmcewpmngfwo24zvylzp4gxsdiuja",
+      "size": 12905072,
+      "pinnedAt": "2026-05-27T15:50:54.609Z"
+    },
+    "3ecd133cf496fb26c809c8568d2833f971e1bce6628ab7a96a855c3ac6f3c70c.jpeg": {
+      "cid": "bafybeifnqibqmu5ws3cdfuipod4ty7wgk53fq7klqbv5ndubk33hr3k4se",
+      "size": 2870462,
+      "pinnedAt": "2026-05-27T15:51:11.013Z"
+    },
+    "36e7bf4982e537ef97d8189590172fbd2959eebf535d803db8b16d3476061360.mp4": {
+      "cid": "bafybeicahozthxowdqkry6nw2d3wvbnp7stujrl7dccfgy5hjjspisz3y4",
+      "size": 22328872,
+      "pinnedAt": "2026-05-27T15:51:38.301Z"
+    },
+    "3753beec2a8c1ca59884ab53b795f395ed93b839809eda7ea0b86a75adebe957.mp4": {
+      "cid": "bafybeicwkw5clzwqqdo6na4sjrct7nys6dmrmosn7xt5zwo46qu5syufui",
+      "size": 22276971,
+      "pinnedAt": "2026-05-27T15:52:09.374Z"
+    },
+    "3aba477bfce4fa327ba16d870fe88a997209b20e288511f488f500c02af4b986.mp4": {
+      "cid": "bafybeibbfrhxwsvv4pfexheemxfxlqvmrwxjp4cqyhvxqafvhboj76cy5m",
+      "size": 22246502,
+      "pinnedAt": "2026-05-27T15:52:30.133Z"
+    },
+    "4157d69191b902c3882b419f22c4f6c0614b3deacb0c4aadb3b003605d1af0b0.mp4": {
+      "cid": "bafybeihvtoh74gpxzy3kmnedsnlp33n2o2xmyno6hfpdpc3rhjeszgttgq",
+      "size": 22355538,
+      "pinnedAt": "2026-05-27T15:52:41.064Z"
+    },
+    "4ba0ec1e9ba8cdbc45a2acc31f1071853dc2247077df0dfe9b07028b950f6427.jpg": {
+      "cid": "bafybeidspfj3ywri2cwr3fxoto2x7czghsf2b7emrciexoiekpdc67davy",
+      "size": 4895172,
+      "pinnedAt": "2026-05-27T15:53:03.084Z"
+    },
+    "4633907dfac53b8697164f6c28bd7482cbea94af42ac4dd2831e985f7d79d09a.mp4": {
+      "cid": "bafybeienggk4jreigtv4bc6wyu2hl5rizvdfmf7b2unwl62hvgyjli2d44",
+      "size": 22491044,
+      "pinnedAt": "2026-05-27T15:53:04.057Z"
+    },
+    "465e6f1b4667ef3c2c594772d4b58b63c737f83e59b6350803e98fae5f95809e.mp4": {
+      "cid": "bafybeif4eo7aadon6sbcqn2p2j6bjna4w7ja6vzlpyodhztngueybip62q",
+      "size": 22350278,
+      "pinnedAt": "2026-05-27T15:53:30.381Z"
+    },
+    "48a5208f5ad20bc874175d22380e807f9d6ded34d3dbdb8e4d5878ba653499f7.mp4": {
+      "cid": "bafybeiacu2n6ciquqhzhl4rolmibfrwp53eioljhqxp4qjdh3r4tk2jidm",
+      "size": 22228586,
+      "pinnedAt": "2026-05-27T15:54:07.598Z"
+    },
+    "4bbae1e5ecf58eea4fe4066c46b1a598054b07ed1e0dd9790396a4d74a3f99ff.mp4": {
+      "cid": "bafybeifdyozdbegnhz3yspbfblsppxspuhbfthpjndxa7br34zkuste6da",
+      "size": 22358538,
+      "pinnedAt": "2026-05-27T15:54:23.319Z"
+    },
+    "4ba300a54158db4124dffc4c7411bf034a57ece2b6f5adfc79b6cb13dc6e29e1.mp4": {
+      "cid": "bafybeifhqb7bv62d52xxmt74b3ke4vgtrjlsrfch3kk3336ckqbwwbroli",
+      "size": 22394135,
+      "pinnedAt": "2026-05-27T15:54:27.147Z"
+    },
+    "5c0911826c799f68b9af96ba0a35079a47a0ff1b84f1fcb861d42cbf64528f98.png": {
+      "cid": "bafybeigsv3psceogk73i6fh7okxx6zjsbgcyizzglqpdgdk52ztya7etie",
+      "size": 503583,
+      "pinnedAt": "2026-05-27T15:54:31.022Z"
+    },
+    "5040da98601e2dfb07a81566ce35b32e5d4591b66a22005cb7876cf6bec9b170.mp4": {
+      "cid": "bafybeidrk2xs4zco75foe3rdhcyct7uyjshgmtc4ekxznr6cf37wuwubaa",
+      "size": 22321377,
+      "pinnedAt": "2026-05-27T15:54:41.691Z"
+    },
+    "5d0e335cc5d0c2fd3621844daee812b9146bc1bd846e42f9a8c02075e57d516c.jpeg": {
+      "cid": "bafybeifjv7b5yq4zpxngfgzq2ptcjc5ve32auugian4vdztaneeb3k3mia",
+      "size": 2376097,
+      "pinnedAt": "2026-05-27T15:54:43.931Z"
+    }
+  }
+}

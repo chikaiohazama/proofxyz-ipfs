@@ -1,22 +1,22 @@
 {
-  "slug": "proof-grails-ii",
+  "slug": "grails-ii",
   "steps": {
     "01-discover": {
       "contract": "0xd78afb925a21f87fa0e35abae2aead3f70ced96b",
       "skipReason": null,
-      "completedAt": "2026-05-27T16:16:36.619Z"
+      "completedAt": "2026-05-27T16:31:28.952Z"
     },
     "02-fetch-metadata": {
-      "fetched": 1178,
-      "skippedExisting": 0,
+      "fetched": 0,
+      "skippedExisting": 1178,
       "skippedArtblocks": 0,
       "failed": 0,
       "totalRequested": 1178,
-      "completedAt": "2026-05-27T16:16:56.234Z"
+      "completedAt": "2026-05-27T16:31:29.050Z"
     }
   },
   "discovered": {
-    "slug": "proof-grails-ii",
+    "slug": "grails-ii",
     "contract": "0xd78afb925a21f87fa0e35abae2aead3f70ced96b",
     "chain": "ethereum",
     "name": "PROOF Grails II",
@@ -39,7 +39,7 @@
       "signature": "setBaseTokenURI(string)"
     },
     "skipReason": null,
-    "discoveredAt": "2026-05-27T16:16:36.618Z"
+    "discoveredAt": "2026-05-27T16:31:28.950Z"
   },
   "skippedArtblocksIds": []
 }

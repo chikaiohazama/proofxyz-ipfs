@@ -26,20 +26,20 @@
       "note": "1000 tokens, 100% Proof-hosted at metadata/3/<id>. Multiple artists (0xDEAFBEEF, Rik Oostenbroek, Mika Tajima, Matt Kane, ...)."
     },
     {
-      "slug": "proof-grails-ii",
+      "slug": "grails-ii",
       "name": "Grails II",
       "contract": "0xd78afb925a21f87fa0e35abae2aead3f70ced96b",
       "chain": "ethereum",
       "deployer": "0x1b945Af93d5A27A0041EfEa8FFD84AFbBc478895",
-      "note": "1178 tokens, 100% Proof-hosted at metadata/2/<id>."
+      "note": "1178 tokens, 100% Proof-hosted at metadata/2/<id>. The OpenSea slug 'proof-grails-ii' resolves to an unrelated 17-token Polygon collection; this is the true Grails II art contract."
     },
     {
-      "slug": "proof-grails",
+      "slug": "grails-i",
       "name": "Grails I",
       "contract": "0xb6329bd2741c4e5e91e26c4e653db643e74b2b19",
       "chain": "ethereum",
       "deployer": "0x6c8984bAf566Db08675310b122BF0be9Ea269ecA",
-      "note": "1036 tokens, 100% Proof-hosted at metadata/1/<grailIdx>/<id>."
+      "note": "1036 tokens, 100% Proof-hosted at metadata/1/<grailIdx>/<id>. The OpenSea slug 'proof-grails' resolves to the Grails II Mint Pass contract (0x2c3fc1...f9fd) — confusing OpenSea slug overload. This is the true Grails I art contract."
     },
     {
       "slug": "diamond-exhibition-by-proof",

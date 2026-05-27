@@ -1,0 +1,104 @@
+{
+  "slug": "grails-i",
+  "steps": {
+    "01-discover": {
+      "contract": "0xb6329bd2741c4e5e91e26c4e653db643e74b2b19",
+      "skipReason": null,
+      "completedAt": "2026-05-27T16:31:29.940Z"
+    },
+    "02-fetch-metadata": {
+      "fetched": 0,
+      "skippedExisting": 1036,
+      "skippedArtblocks": 0,
+      "failed": 0,
+      "totalRequested": 1036,
+      "completedAt": "2026-05-27T16:31:30.038Z"
+    },
+    "03-download-media": {
+      "uniqueUrls": 20,
+      "downloaded": 20,
+      "deduped": 0,
+      "failed": 0,
+      "completedAt": "2026-05-27T16:22:14.107Z"
+    }
+  },
+  "discovered": {
+    "slug": "grails-i",
+    "contract": "0xb6329bd2741c4e5e91e26c4e653db643e74b2b19",
+    "chain": "ethereum",
+    "name": "PROOF Collective Grails",
+    "symbol": "GRAIL",
+    "totalSupply": 1036,
+    "owner": "0x83895F7508926741CD2147C4AAC65C30a851Cc30",
+    "contractCreator": "0x6c8984bAf566Db08675310b122BF0be9Ea269ecA",
+    "tokenIndexBase": 0,
+    "tokenUriSample": "https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/1/0/0",
+    "currentBaseTokenURI": "https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/1",
+    "hostDistribution": {
+      "live---grails-metadata-5covpqijaa-uc.a.run.app": 30
+    },
+    "artblocksFraction": 0,
+    "setter": {
+      "name": "setBaseTokenURI",
+      "inputs": [
+        "string"
+      ],
+      "signature": "setBaseTokenURI(string)"
+    },
+    "skipReason": null,
+    "discoveredAt": "2026-05-27T16:31:29.936Z"
+  },
+  "skippedArtblocksIds": [],
+  "mediaPins": {
+    "291932a1f3600265ef19410edbac8b5e12dd9f49132f17e406c18493d97dc011.png": {
+      "cid": "bafybeidhwsnxzp22wgf5cpklz4nek5epuxzcsgdzx2emg5ma477z4ubr5m",
+      "size": 718261,
+      "pinnedAt": "2026-05-27T16:22:16.717Z"
+    },
+    "3b55049f8ff4a92bae2e9a48bf0dc991525cd6286714628d31c909ade9e46b65.png": {
+      "cid": "bafybeicqyt3p3bw6docxbpkg2ktlgn7svhb555xgi5q2v67iqn4ui2ri6q",
+      "size": 5553612,
+      "pinnedAt": "2026-05-27T16:22:34.596Z"
+    },
+    "53919d5d299e651a6989959a779b245e5fbd040ea3400a6fbfef1e6ffda80e8a.png": {
+      "cid": "bafkreictsgov2km6mungtcmvtj3zwjc6l66qidvdiafg7p7pdzx73kaori",
+      "size": 184329,
+      "pinnedAt": "2026-05-27T16:22:37.316Z"
+    },
+    "1c6cefece98289eb0df95bf78e7a4d47259bb8c4a0177f8684040a2a7e433591.gif": {
+      "cid": "bafybeiay7yzyda2r456qf7nqblxvujp4zkkygl3dwawl2b7nc7colec4za",
+      "size": 12093074,
+      "pinnedAt": "2026-05-27T16:22:56.792Z"
+    },
+    "46540700d0c68153cc1efa6df0df8012115a6128df541e33fddc587dd7f2ce62.mp4": {
+      "cid": "bafybeibr6zqnprg7swhvkx64akdlhhaieic4bmx5vyas2o2yvdztoktq4a",
+      "size": 7941759,
+      "pinnedAt": "2026-05-27T16:23:04.420Z"
+    },
+    "5962368f72ca5b8a5710f678f0a35222204f249f17b5f98199f03598c69306a5.jpg": {
+      "cid": "bafybeiaewgrfbmf55zdvx7yzwpjfu7mt56bogrw3bnor3cpyyq4ojepnsi",
+      "size": 7325114,
+      "pinnedAt": "2026-05-27T16:23:08.627Z"
+    },
+    "5a45a4cb40b9384e1bf6f4081a841227993de1c6877b9d965c22292fb784932b.jpg": {
+      "cid": "bafybeihf3c5qkevqpal2rec32ayw4thf5hjjbtxgyyzu7gqby5q35szre4",
+      "size": 10516234,
+      "pinnedAt": "2026-05-27T16:23:42.730Z"
+    },
+    "88d36c0100ebd3ac1ddee0c97bc4195d9bc4016bcc43b30c997362fc236e8066.gif": {
+      "cid": "bafybeicrapt56u3bjgwqczvpiyhgeka57r4qrtle5icwjage43d3ikkag4",
+      "size": 1038293,
+      "pinnedAt": "2026-05-27T16:23:49.419Z"
+    },
+    "778265efa47a572b8b6a82078cf1390976c3efc376b046b577a5dc94cabe51c5.gif": {
+      "cid": "bafybeiatwlaxzprwk2c66e33smf26fu6u3wbab42kugdvgbx5n7ki3j5ki",
+      "size": 15336656,
+      "pinnedAt": "2026-05-27T16:24:21.575Z"
+    },
+    "0db392d1f23ca8a55d3e92d1870472c79d5f785c72f6ee2408c12b4a6cd6aaa7.mp4": {
+      "cid": "bafybeihlnxoyncdprv3mxmodgdjnvmffsq53xvm2fy6rq5urzfk7tu4ije",
+      "size": 33284707,
+      "pinnedAt": "2026-05-27T16:24:49.543Z"
+    }
+  }
+}

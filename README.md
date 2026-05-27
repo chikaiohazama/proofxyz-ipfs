@@ -32,7 +32,7 @@ Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens
 | 6 | Diamond Exhibition | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | 5,093 | ~1,170 (~23%) | to do |
 | 7 | Archive of Feelings (Mika Tajima) | [`0x24607…13762`](https://etherscan.io/address/0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762) | 1,152 | 1,152 (100%) | to do |
 | 8 | PROOF Curated: Evolving Pixels | [`0x48b17…502b7`](https://etherscan.io/address/0x48b17a2c46007471b3eb72d16268eaecdd1502b7) | 891 | ~360 (~40%) | to do |
-| 9 | The Journey | [`0xd5386…1900b`](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b) | 96 | 96 (100%) | to do |
+| 9 | **The Journey** | [`0xd5386…1900b`](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b) | 96 | 96 (100%) | ✅ pinned & verified |
 
 ### How Art Blocks tokens are handled
 
@@ -277,7 +277,36 @@ It's a one-string state change — fully reversible, no on-chain migration.
 
 ---
 
-The same procedure applies to the other four contracts once their pipelines finish; their CIDs and any per-contract caveats land in each collection's `INSTRUCTIONS.md`.
+### The Journey — **READY TO SEND**
+
+Pipeline complete: 96/96 metadata + 96/96 media verified end-to-end on `ipfs.io`. Full handoff doc: [`collections/mb-the-journey/INSTRUCTIONS.md`](collections/mb-the-journey/INSTRUCTIONS.md).
+
+| | |
+|---|---|
+| Contract | [`0xd5386794f57697ab4ecb930b049da70fc771900b`](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b) |
+| Function | `setBaseTokenURI(string)` |
+| **Argument to pass** | `ipfs://bafybeiagwvykjve4kgvxo7zku5kdivt26vmvkuhxgmjl6jbmc2lfznh6zu/` &nbsp;_(trailing slash required)_ |
+| Etherscan: read | [readContract](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b#readContract) |
+| Etherscan: write | [writeContract](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b#writeContract) |
+| Caller permission | Contract uses **AccessControl** (no public `owner()`). Verify the required role before sending. |
+| Token indexing | **0-indexed**, tokens `0..95` (totalSupply 96) |
+
+**Pre-flight verification links:**
+
+- https://ipfs.io/ipfs/bafybeiagwvykjve4kgvxo7zku5kdivt26vmvkuhxgmjl6jbmc2lfznh6zu/0
+- https://dweb.link/ipfs/bafybeiagwvykjve4kgvxo7zku5kdivt26vmvkuhxgmjl6jbmc2lfznh6zu/0
+
+**Revert plan:** `setBaseTokenURI("https://storage.googleapis.com/collection-assets-public/the-journey/json/")`
+
+**Findings worth noting:**
+
+- 100% Proof-routed (no Art Blocks tokens). Setter affects every token.
+- Source host was `storage.googleapis.com/collection-assets-public/...` — public GCS bucket, no expiring signed URLs (unlike Grails V). Lower urgency than time-bombed collections.
+- Every token's `animation_url` was **already** `ipfs://QmPzr8…1TWs` (same CID shared across all 96 tokens — one common animation video). The pipeline correctly preserved that field untouched; only the `image` thumbnails (96 unique PNGs, ~3.5MB each, ~337MB total) were freshly pinned to IPFS.
+
+---
+
+The same procedure applies to the other contracts once their pipelines finish; their CIDs and any per-contract caveats land in each collection's `INSTRUCTIONS.md`. As each one completes, a "READY TO SEND" subsection is added here.
 
 ## Repo layout
 

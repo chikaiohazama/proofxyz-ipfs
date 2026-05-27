@@ -1,0 +1,21 @@
+{
+  "name": "I've got your cat, please follow me.",
+  "description": "I've got your cat, please follow me.  \nby Kiszkiloszki (https://twitter.com/kiszkiloszki)\n\nDigital, collage cut-out animation. (2022)\ngif; 128 colors; 900x900px; 3s; 24fps;  \n\nEditions minted: 30\n\nundefined",
+  "image": "ipfs://bafybeiatwlaxzprwk2c66e33smf26fu6u3wbab42kugdvgbx5n7ki3j5ki",
+  "external_url": "https://collective.proof.xyz/grails/04",
+  "collection_name": "I've got your cat, please follow me. by Kiszkiloszki",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#04"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Kiszkiloszki"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

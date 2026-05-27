@@ -1,0 +1,21 @@
+{
+  "name": "Catchem",
+  "description": "Catchem  \nby Gremplin (https://twitter.com/supergremplin)\n\nCaught in the act!  \n\nEditions minted: 32\n\nundefined",
+  "image": "ipfs://bafybeicsz7z66uq6cawphkmg3mbgtss4sroccq52n3kt2ftazkl62uwwea",
+  "external_url": "https://collective.proof.xyz/grails/20",
+  "collection_name": "Catchem by Gremplin",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#20"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Gremplin"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

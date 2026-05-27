@@ -28,7 +28,7 @@ Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens
 | 2 | **Grails IV** | [`0x069ee…b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885) | 904 | 734 (~81%) | ✅ pinned & verified |
 | 3 | **Grails III** | [`0x503a3…84A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3) | 1,000 | 1,000 (100%) | to do |
 | 4 | Grails II | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) | 1,178 | 1,178 (100%) | to do (internal slug: `grails-ii`) |
-| 5 | Grails I | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | 1,036 | 1,036 (100%) | to do (internal slug: `grails-i`) |
+| 5 | **Grails I** ⚠️ special URI shape | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | 1,036 | 1,036 (100%) | ✅ pinned & verified — nested layout |
 | 6 | Diamond Exhibition | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | 5,093 | ~1,170 (~23%) | to do |
 | 7 | Archive of Feelings (Mika Tajima) | [`0x24607…13762`](https://etherscan.io/address/0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762) | 1,152 | 1,152 (100%) | to do |
 | — | ~~PROOF Curated: Evolving Pixels~~ | [`0x48b17…502b7`](https://etherscan.io/address/0x48b17a2c46007471b3eb72d16268eaecdd1502b7) | 891 | ~360 (~40%) | ⏸️ paused — see note below |
@@ -409,6 +409,37 @@ setBaseTokenURI("https://metadata.proof.xyz/grails-v/art/")
 It's a one-string state change — fully reversible, no on-chain migration.
 
 **Recommended: re-pin under your own Pinata account.** The pins listed in this repo are hosted on the account that ran the pipeline. For long-term durability under Proof's control, re-pin every CID from your own Pinata account (or any pinning service) before — or shortly after — flipping `baseURI`. Because IPFS is content-addressed, re-pinning the same bytes produces the **exact same CID**: no metadata edit, no on-chain change, nothing in this repo to update. To do it: fetch each CID (the metadata directory plus every entry in `state.json` → `mediaPins`) via any IPFS gateway and re-upload it through Pinata's web UI or API. Once Proof's pin exists, this account's pins can be unpinned without breaking anything.
+
+---
+
+### Grails I — **READY TO SEND** ⚠️ different URI shape from every other contract
+
+⚠️ Read [`collections/grails-i/INSTRUCTIONS.md`](collections/grails-i/INSTRUCTIONS.md) **carefully** before sending. Grails I's contract constructs `tokenURI` as `baseTokenURI + "/" + grailId + "/" + tokenId` — different from every other Proof contract in this repo, which all use `baseURI + tokenId`. The IPFS pin is a **nested directory** (`<grailId>/<tokenId>`), and the argument to `setBaseTokenURI(...)` **must NOT end with a slash**.
+
+| | |
+|---|---|
+| Contract | [`0xb6329bd2741c4e5e91e26c4e653db643e74b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) |
+| Function | `setBaseTokenURI(string)` |
+| **Argument to pass** | `ipfs://bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m` &nbsp;**_(no trailing slash — the contract supplies it)_** |
+| Etherscan: read | [readContract](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19#readContract) |
+| Etherscan: write | [writeContract](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19#writeContract) |
+| Caller permission | `Ownable` — sign from `owner()` |
+| Token indexing | **0-indexed**, tokens `0..1035` (totalSupply 1036), **nested across 20 grailIds (0..19)** |
+
+After the change: `tokenURI(0)` returns `ipfs://<CID>/0/0` (Gary Vaynerchuk — *What do you "B"*), `tokenURI(500)` returns `ipfs://<CID>/15/500` (Claire Silver — *c.u.l.t.*), etc.
+
+**Pre-flight verification links** (nested paths):
+- https://ipfs.io/ipfs/bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m/0/0 (token 0)
+- https://ipfs.io/ipfs/bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m/14/100 (token 100, Ixian No-Ships)
+- https://ipfs.io/ipfs/bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m/15/500 (token 500, c.u.l.t.)
+
+**Revert plan:** `setBaseTokenURI("https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/1")` (no trailing slash).
+
+**Findings worth noting:**
+- Unique URI shape — required pinning a **nested directory** (`<grailId>/<tokenId>`) instead of flat. Same end-to-end content (rewritten JSON with `ipfs://` image fields), different on-chain wrapper.
+- Extreme media dedup: 1036 tokens → only **20 unique media files** (one per grail/artist). Pin step was very fast.
+- 20 grails maps 1:1 to the 20 per-artist OpenSea collection pages listed earlier in this README.
+- 6 verification round-trips initially failed with HTTP 504 from `ipfs.io` on the first verify pass; all succeeded on retry.
 
 ---
 

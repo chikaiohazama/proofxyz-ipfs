@@ -38,6 +38,16 @@
       "cid": "bafybeibq6meyaipz76cdm556qxf5zumllxboilad7ydd6oqf2erulbhrba",
       "fileCount": 1036,
       "completedAt": "2026-05-27T16:41:26.493Z"
+    },
+    "07-verify": {
+      "pass": false,
+      "metadataOk": 1030,
+      "mediaOk": 20,
+      "completedAt": "2026-05-27T16:44:57.495Z"
+    },
+    "08-instructions": {
+      "path": "/Users/chikai/Github/proofxyz-ipfs/collections/grails-i/INSTRUCTIONS.md",
+      "completedAt": "2026-05-27T16:45:54.818Z"
     }
   },
   "discovered": {
@@ -170,10 +180,11 @@
     }
   },
   "metadataPin": {
-    "cid": "bafybeibq6meyaipz76cdm556qxf5zumllxboilad7ydd6oqf2erulbhrba",
-    "id": "337839aa-a325-4693-b80a-437dbd90a173",
-    "size": 900936,
+    "cid": "bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m",
+    "id": "f6076b9f-40ee-4cbb-a2af-f941dedf8a25",
+    "size": 901965,
     "fileCount": 1036,
-    "pinnedAt": "2026-05-27T16:41:26.491Z"
-  }
+    "pinnedAt": "2026-05-27T16:49:11.951Z"
+  },
+  "metadataPinNested": true
 }

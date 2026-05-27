@@ -1,0 +1,21 @@
+{
+  "name": "What do you “B”",
+  "description": "What do you “B”  \nby Gary Vaynerchuk (https://twitter.com/garyvee)\n\nArt is in the eye of the beholder, I am dying to know what you see in this piece that I worked so hard on.  \n\nEditions minted: 112\n\nundefined",
+  "image": "ipfs://bafybeihf3c5qkevqpal2rec32ayw4thf5hjjbtxgyyzu7gqby5q35szre4",
+  "external_url": "https://collective.proof.xyz/grails/01",
+  "collection_name": "What do you “B” by Gary Vaynerchuk",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#01"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Gary Vaynerchuk"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

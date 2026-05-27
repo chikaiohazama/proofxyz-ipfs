@@ -1,0 +1,21 @@
+{
+  "name": "Dream Loaf",
+  "description": "Dream Loaf  \nby Sarah Zucker (https://twitter.com/thesarahshow)\n\nDreaming my queen through the machine in my Hollywood studio.\n\nOriginal VideoDream by Sarah Zucker / @thesarahshow. Created in studio in 2021 by feeding an original digital photo collage through VQGAN + Clip using the phrase “Siamese Cat on top of the Capitol Records building with sunset | iridescence | unreal engine”\n\nOpen Edition released as part of Grails for Proof Collective.  \n\nEditions minted: 23\n\nundefined",
+  "image": "ipfs://bafybeig5bzy544ihwoxvrppkz7tjwzejk42dwzmoyh24zc3ycmigqpdzhe",
+  "external_url": "https://collective.proof.xyz/grails/12",
+  "collection_name": "Dream Loaf by Sarah Zucker",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#12"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Sarah Zucker"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

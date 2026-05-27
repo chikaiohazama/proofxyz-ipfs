@@ -1,0 +1,21 @@
+{
+  "name": "Choices",
+  "description": "Choices  \nby What Is Real? (https://twitter.com/whatisrealart)\n\nKnowns and unknowns\n\nCapturing the moment of the feeling we have when choosing. Thinking about knowns and unknowns. From all the artworks you've chosen one, you've made the choice. Inspired by the Grails concept.  \n\nEditions minted: 24\n\nundefined",
+  "image": "ipfs://bafybeif27ex2rqrxskye5mp3dceoowackmkpjmwqskbsadz2kiz6e2veiu",
+  "external_url": "https://collective.proof.xyz/grails/07",
+  "collection_name": "Choices by What Is Real?",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#07"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "What Is Real?"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

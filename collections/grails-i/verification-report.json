@@ -1,0 +1,19 @@
+{
+  "slug": "grails-i",
+  "metadataCID": "bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m",
+  "metadata": {
+    "total": 1036,
+    "ok": 1036,
+    "mismatches": [],
+    "failures": []
+  },
+  "media": {
+    "total": 20,
+    "ok": 20,
+    "mismatches": [],
+    "failures": []
+  },
+  "verifiedAt": "2026-05-27T16:52:04.920Z",
+  "pass": true,
+  "structure": "nested-grailId-tokenId"
+}

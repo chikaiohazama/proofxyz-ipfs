@@ -1,0 +1,21 @@
+{
+  "name": "MIRROR, MIRROR.",
+  "description": "MIRROR, MIRROR.  \nby Lucréce (https://twitter.com/DesLucrece)\n\nDes Lucréce, Self-portrait, digital, 2018  \n\nEditions minted: 70\n\nundefined",
+  "image": "ipfs://bafybeidkijgu4qf2dqyot66ya26dxsveffs72dvpii7fj3wvfxyloeqywm",
+  "external_url": "https://collective.proof.xyz/grails/02",
+  "collection_name": "MIRROR, MIRROR. by Lucréce",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#02"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Lucréce"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

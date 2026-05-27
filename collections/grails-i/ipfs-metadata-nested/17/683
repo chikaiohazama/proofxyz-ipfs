@@ -1,0 +1,21 @@
+{
+  "name": "횡단보도",
+  "description": "횡단보도  \nby Dmitri Cherniak (https://twitter.com/dmitricherniak)\n\nAn intersection in the 강남 style - it's nice to see some art applied to the real world.  \n\nEditions minted: 30\n\nundefined",
+  "image": "ipfs://bafybeihenpqgwmscli3mxpzr2p7kv7tqia6u6ac2idcdcuiqdcmp2xlye4",
+  "external_url": "https://collective.proof.xyz/grails/18",
+  "collection_name": "횡단보도 by Dmitri Cherniak",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#18"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Dmitri Cherniak"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

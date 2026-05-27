@@ -1,0 +1,21 @@
+{
+  "name": "Protoglyph",
+  "description": "Protoglyph  \nby Larva Labs (https://twitter.com/larvalabs)\n\nThis Protoglyph is the output from an early algorithm exploration for the Autoglyphs, but operates at much higher resolution and detail. These initial explorations were done before we realized just how limiting executing everything on-chain was going to be. Once we incorporated those limitations the resolution and output format changed somewhat, but you can still see some of the original DNA present from this early prototype.  \n\nEditions minted: 77\n\nundefined",
+  "image": "ipfs://bafkreictsgov2km6mungtcmvtj3zwjc6l66qidvdiafg7p7pdzx73kaori",
+  "external_url": "https://collective.proof.xyz/grails/11",
+  "collection_name": "Protoglyph by Larva Labs",
+  "attributes": [
+    {
+      "trait_type": "Grail",
+      "value": "#11"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Larva Labs"
+    },
+    {
+      "trait_type": "Season",
+      "value": "1"
+    }
+  ]
+}

@@ -88,6 +88,48 @@ function tokenURI(uint256 tokenId) public view virtual override returns (string 
 
 **Post-flip sanity check** (5 minutes, no risk): on the contract's Etherscan Read Contract page, call `tokenURI(<an_art_blocks_id>)` and confirm it still returns `token.artblocks.io/...`; call `tokenURI(<a_proof_id>)` and confirm it now returns `ipfs://<newCID>/<id>`. Each collection's `INSTRUCTIONS.md` lists the AB-routed ids in `state.json` under `skippedArtblocksIds` so you have known ids to test with.
 
+## Why this migration is correct
+
+The pin structure is designed to exactly mimic what the contracts already do, so the only thing that changes on-chain is one string. Five chained facts make it work end-to-end:
+
+**1. The contracts' math.** For Proof-routed tokens, the Solidity is literally:
+
+```solidity
+return string.concat(_baseURI(), Strings.toString(tokenId));   // Diamond Exhibition
+// or, via super.tokenURI() in the OZ ERC721A base:
+return string(abi.encodePacked(baseURI, _toString(tokenId)));   // Grails IV / V / Evolving Pixels
+```
+
+So `tokenURI(id)` is precisely `baseTokenURI + decimal(id)`. No extension, no separator, no surprises.
+
+**2. Our files are named to match the math.** `scripts/05-rewrite-metadata.js` writes each rewritten JSON to `ipfs-metadata/<id>` — token id as a bare string, no `.json` suffix. The directory is then pinned as a single Pinata directory upload (`scripts/06-pin-metadata.js`). After the flip:
+
+```
+baseTokenURI()  =  "ipfs://<metadataCID>/"
+tokenURI(id)    =  baseTokenURI() + Strings.toString(id)
+                =  "ipfs://<metadataCID>/" + "473"
+                =  "ipfs://<metadataCID>/473"   ← resolves to ipfs-metadata/473 in the pin
+```
+
+The trailing slash on the baseURI is load-bearing. The pre-flight checklist in each collection's `INSTRUCTIONS.md` includes it explicitly.
+
+**3. Media is also content-addressed.** Each unique media file was pinned individually with `pinata.upload.public.file()` (one CID per file). `scripts/05-rewrite-metadata.js` then replaces `image`, `animation_url`, `primary_asset_url`, and `preview_asset_url` inside every metadata JSON with `ipfs://<that-file's-CID>` (no path suffix — each CID is a single file). So once a wallet or marketplace fetches the metadata JSON via IPFS, the image/animation it references is also on IPFS. No URL touches `metadata.proof.xyz` or `storage.googleapis.com` after the flip.
+
+**4. Sparse id sets work for mixed contracts.** For Diamond Exhibition, Grails IV, and Evolving Pixels, only the Proof-routed ids land in `ipfs-metadata/`. The Art Blocks-routed ids — say `5000000`, `6000000`, etc. — are absent from the directory. **This is intentional and safe:** the contract logic for those ids never calls `_baseURI()`, so it never tries to look up `ipfs://<CID>/5000000` (which would 404). Cross-reference the source snippets above — the Art Blocks branch returns `flex.tokenURI(...)` unconditionally.
+
+**5. End-to-end verified before the tx.** `scripts/07-verify.js` re-fetches every pinned file through the public `ipfs.io` gateway and sha256-compares against the local copy. So we know, before handing over the CID, that:
+- the directory CID resolves
+- each child file at `ipfs://<CID>/<id>` is byte-identical to what we intended
+- each `image` CID inside a metadata JSON resolves to a file of the right hash and size
+
+For Grails V the verifier ran 785 metadata round-trips + 202 media round-trips and passed all 987 — see `collections/grails-v/verification-report.json`.
+
+### Reversibility and portability
+
+The on-chain change is a single string replacement and is fully reversible — see each collection's "Revert plan" section, which contains the verbatim previous `baseTokenURI()` string to pass back to the same setter.
+
+Because IPFS is content-addressed, **the CIDs do not depend on which account pinned the bytes.** If Proof re-pins the exact same metadata and media from their own Pinata account (or any pinning service), they get the same CIDs — nothing on-chain needs to change. This means Proof can take long-term custody of the pins without any extra migration: re-pin from your account, then this account's pins can be released. See the "Recommended: re-pin under your own Pinata account" note in each `INSTRUCTIONS.md`.
+
 > **Note on Grails V's `media-proxy.artblocks.io` URLs**: 53 of Grails V's 785 tokens (the "Spire" sub-series) reference `media-proxy.artblocks.io` images. Those are **static** PNG renders that Art Blocks media-proxy serves with no expiry — they are pinnable, and they were pinned in the Grails V run. This is different from the `token.artblocks.io` case above, where the URL is the **metadata** endpoint that triggers dynamic rendering.
 
 ## Architecture — how the pin is structured

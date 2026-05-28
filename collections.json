@@ -48,7 +48,7 @@
       "chain": "ethereum",
       "deployer": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
       "note": "5093 tokens; mixed routing ~23% Proof-hosted (~1170), ~77% Art Blocks (~3920)."
-    },
+    }
   ],
   "skipped": [
     {

@@ -138,7 +138,7 @@ function tokenURI(uint256 tokenId) public view virtual override returns (string 
 
 Concretely for Diamond Exhibition: **only ~1,407 of 5,093 tokens** are affected by the baseURI flip. The other 3,686 ids stay on Art Blocks regardless. The contract has **no `setTokenURI(uint256, string)`** function in its ABI, so the per-token routing is hardcoded in contract logic — there is no per-token writable mapping to misconfigure.
 
-**Post-flip empirical check** (5 min, no risk): on Etherscan readContract, call `tokenURI(<an_AB_id>)` and confirm it still returns `token.artblocks.io/...`; call `tokenURI(<a_proof_id>)` and confirm it now returns `ipfs://<newCID>/<id>`. Each collection's `INSTRUCTIONS.md` lists known ArtBlocks-routed ids in `state.json` → `skippedArtblocksIds` for testing.
+**Post-flip empirical check** (5 min, no risk): on Etherscan readContract, call `tokenURI(<an_ArtBlocks_id>)` and confirm it still returns `token.artblocks.io/...`; call `tokenURI(<a_proof_id>)` and confirm it now returns `ipfs://<newCID>/<id>`. Each collection's `INSTRUCTIONS.md` lists known ArtBlocks-routed ids in `state.json` → `skippedArtblocksIds` for testing.
 
 ### Why Grails I is structurally different
 

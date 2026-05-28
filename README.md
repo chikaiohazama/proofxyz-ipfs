@@ -29,7 +29,7 @@ Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens
 | 3 | **Grails III** | [`0x503a3…84A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3) | 1,000 | 1,000 (100%) | ✅ pinned & verified |
 | 4 | **Grails II** | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) | 1,178 | 1,178 (100%) | ✅ pinned & verified |
 | 5 | **Grails I** ⚠️ special URI shape | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | 1,036 | 1,036 (100%) | ✅ pinned & verified — nested layout |
-| 6 | Diamond Exhibition | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | 5,093 | ~1,170 (~23%) | to do |
+| 6 | **Diamond Exhibition** | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | 5,093 | 1,407 (~28%) | ✅ pinned & verified |
 | 7 | Archive of Feelings (Mika Tajima) | [`0x24607…13762`](https://etherscan.io/address/0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762) | 1,152 | 1,152 (100%) | to do |
 | — | ~~PROOF Curated: Evolving Pixels~~ | [`0x48b17…502b7`](https://etherscan.io/address/0x48b17a2c46007471b3eb72d16268eaecdd1502b7) | 891 | ~360 (~40%) | ⏸️ paused — see note below |
 | 9 | **The Journey** | [`0xd5386…1900b`](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b) | 96 | 96 (100%) | ✅ pinned & verified |
@@ -409,6 +409,40 @@ setBaseTokenURI("https://metadata.proof.xyz/grails-v/art/")
 It's a one-string state change — fully reversible, no on-chain migration.
 
 **Recommended: re-pin under your own Pinata account.** The pins listed in this repo are hosted on the account that ran the pipeline. For long-term durability under Proof's control, re-pin every CID from your own Pinata account (or any pinning service) before — or shortly after — flipping `baseURI`. Because IPFS is content-addressed, re-pinning the same bytes produces the **exact same CID**: no metadata edit, no on-chain change, nothing in this repo to update. To do it: fetch each CID (the metadata directory plus every entry in `state.json` → `mediaPins`) via any IPFS gateway and re-upload it through Pinata's web UI or API. Once Proof's pin exists, this account's pins can be unpinned without breaking anything.
+
+---
+
+### Diamond Exhibition — **READY TO SEND**
+
+Pipeline complete: 1407/1407 metadata + 520/520 media verified end-to-end. Full handoff doc: [`collections/diamond-exhibition-by-proof/INSTRUCTIONS.md`](collections/diamond-exhibition-by-proof/INSTRUCTIONS.md).
+
+| | |
+|---|---|
+| Contract | [`0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) |
+| Function | `setBaseTokenURI(string)` |
+| **Argument to pass** | `ipfs://bafybeihutjrictszafrxcqbgj2rfmdmlhmsgbcubhlcl4x2mx4m7zpot6i/` &nbsp;_(trailing slash required)_ |
+| Etherscan: read | [readContract](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e#readContract) |
+| Etherscan: write | [writeContract](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e#writeContract) |
+| Caller permission | Standard ERC721A + Ownable; sign from `owner()`. |
+| Token indexing | **0-indexed**, tokens `0..5092` (totalSupply 5093) |
+| Mixed routing | **1,407 Proof-routed** (affected) + **3,686 Art Blocks-routed** (unaffected — full id list in `collections/diamond-exhibition-by-proof/state.json` → `skippedArtblocksIds`) |
+
+**Pre-flight verification links:**
+- https://ipfs.io/ipfs/bafybeihutjrictszafrxcqbgj2rfmdmlhmsgbcubhlcl4x2mx4m7zpot6i/100 (Proof-routed)
+- https://ipfs.io/ipfs/bafybeihutjrictszafrxcqbgj2rfmdmlhmsgbcubhlcl4x2mx4m7zpot6i/11 (404 expected — AB-routed; contract keeps returning Art Blocks URL after flip)
+
+**Post-flip sanity check:** on [Etherscan readContract](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e#readContract), call `tokenURI(100)` → should return `ipfs://<newCID>/100`; call `tokenURI(11)` → should still return `https://token.artblocks.io/...` (unchanged, Art Blocks-routed).
+
+**Revert plan:** `setBaseTokenURI("https://metadata.proof.xyz/diamond-exhibition/")`
+
+**Findings worth noting:**
+
+- The biggest mixed-routing contract: **only 1,407 of 5,093 tokens** are affected by the baseURI flip. The other 3,686 are dispatched inside `tokenURI(uint256)` to Art Blocks and remain on `token.artblocks.io` (unchanged behavior).
+- Per-token AB filter exercised at its largest scale here. 3,686 AB-routed ids correctly skipped during step 02 fetch.
+- 1,407 tokens → **520 unique media files** (significant edition dedup; many curated drops share images across editions).
+- Source images are signed GCS URLs with the same far-future expiry as Grails V (`Expires=1787875200` ≈ 2026-08-28). Months of headroom — no time-bomb urgency.
+- Used the **HEAD-MD5 manifest trick** developed for Grails III to skip 1,217 redundant downloads (URLs that resolved to already-on-disk content), saving ~30 min of bandwidth; only 190 truly-new files needed downloading.
+- 2 verify round-trips initially failed (`HTTP 502` + `terminated`); both passed on retry.
 
 ---
 

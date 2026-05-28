@@ -1,0 +1,24 @@
+{
+  "name": "DES CHOSES™ #26",
+  "description": "DES CHOSES™ is a flash fiction experiment which explores love and loss in a relationship between human and machine. In a series of postcards divided in 11 chapters, we learn about two entities, intertwined then estranged. The story also unfolds in the abstract landscapes and environments in each postcard, giving us hints about where the lovers might have been when they wrote to each other.\n\nDES CHOSES™ was produced using a procedural approach of 5 stages. First, the worlds (central shapes) were mapped out and outlined using a vector drawing tool. Second, the textures were produced through generative AI, using prompts. Third, the story was written by the artist and a generative AI model trained to impersonate one of the characters. Fourth, the typographic composition was developped, printed on recovered paper waste, and scanned for a gritty and nostalgic feel to match the theme of the story. Finally, all elements were used to create the final compositions.",
+  "image": "ipfs://bafybeier5aowu3v5f4jvvc56a55eceoc3vpyhibiin3zlql23sgzmy5dau",
+  "collection_name": "DES CHOSES™ by Linda Dounia",
+  "attributes": [
+    {
+      "trait_type": "Act",
+      "value": "Fin"
+    },
+    {
+      "trait_type": "Text",
+      "value": "Chapter 8"
+    },
+    {
+      "trait_type": "Texture",
+      "value": "Cream"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Coral"
+    }
+  ]
+}

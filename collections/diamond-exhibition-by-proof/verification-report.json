@@ -1,0 +1,18 @@
+{
+  "slug": "diamond-exhibition-by-proof",
+  "metadataCID": "bafybeihutjrictszafrxcqbgj2rfmdmlhmsgbcubhlcl4x2mx4m7zpot6i",
+  "metadata": {
+    "total": 1407,
+    "ok": 1407,
+    "mismatches": [],
+    "failures": []
+  },
+  "media": {
+    "total": 520,
+    "ok": 520,
+    "mismatches": [],
+    "failures": []
+  },
+  "verifiedAt": "2026-05-28T01:27:26.317Z",
+  "pass": true
+}

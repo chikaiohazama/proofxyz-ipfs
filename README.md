@@ -28,6 +28,17 @@ Each collection's full handoff doc (pre-flight checklist, sample call shell + et
 - [Grails I](collections/grails-i/INSTRUCTIONS.md) ⚠️
 - [Diamond Exhibition](collections/diamond-exhibition-by-proof/INSTRUCTIONS.md)
 
+### Per-collection stats
+
+| Collection | Total tokens | Affected by flip (Proof-routed) | Unchanged (AB-routed) | Unique media pinned | Notable |
+|---|---:|---:|---:|---:|---|
+| Grails V | 785 | 732 | 53 | 202 | 53 AB-routed tokens are the "Spire" sub-series — their on-chain `tokenURI` points to `token.artblocks.io` so they're unaffected by the flip; we also pinned their `media-proxy.artblocks.io` static-PNG renders (used by 53 metadata files we did process) for completeness. Source GCS URLs expire **2026-08-28**. |
+| Grails IV | 904 | 734 | 170 | 84 | First real test of the per-token AB filter on a mixed contract — 170/170 correctly skipped. Heavy edition dedup (~9 editions per piece). 7 transient HTTP 504s on small JSON files during verify, all cleared on retry. Same time-bomb expiry as Grails V. |
+| Grails III | 1,000 | 1,000 | 0 | 424 (8 are 100–285 MB MP4s) | 20 artists (0xDEAFBEEF, Rik Oostenbroek, Mika Tajima, Matt Kane, …). Recovery from the 30-min signed-URL trap via HEAD-MD5 trick saved hours of bandwidth. Mixed source hosts inside metadata: GCS signed + Arweave + pre-existing `ipfs://` for Matt Kane's 100-token *Picture of the Planets* drop. |
+| Grails II | 1,178 | 1,178 | 0 | **55** (extreme dedup, ~21 editions/piece) | First time we saw explicit `ipfs.io` HTTP 429s during verify — 35× 429 + 6× 504, all cleared on retry. The 84 MB animated GIF used by 39 tokens was the only file that needed a solo retry pass (couldn't pin during parallel run). |
+| **Grails I** ⚠️ | 1,036 | 1,036 | 0 | **20** (most extreme dedup of all) | Unique URI construction: `tokenURI = baseURI + "/" + grailId + "/" + tokenId`. IPFS pin is **nested** as `<grailId>/<tokenId>`. The 20 grailIds (0..19) map 1:1 to the 20 per-artist OpenSea collection pages listed below. Argument **must NOT end with a slash**. |
+| Diamond Exhibition | 5,093 | 1,407 | **3,686** | 520 | The largest mixed-routing contract — only ~28% of tokens are affected by the flip; 3,686 remain on Art Blocks unchanged. Heavy edition dedup. The HEAD-MD5 trick avoided ~30 min of redundant downloads (1,217 URLs resolved without re-fetching their bytes). Same time-bomb expiry as Grails V. |
+
 ### Revert plan (per collection)
 
 If anything goes wrong post-send, call the same setter with the verbatim previous baseURI:

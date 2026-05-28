@@ -49,28 +49,22 @@
       "deployer": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
       "note": "5093 tokens; mixed routing ~23% Proof-hosted (~1170), ~77% Art Blocks (~3920)."
     },
-    {
-      "slug": "archive-of-feelings-by-mika-tajima",
-      "name": "Archive of Feelings by Mika Tajima",
-      "contract": "0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762",
-      "chain": "ethereum",
-      "deployer": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
-      "note": "1152 tokens, 100% Proof-hosted."
-    },
-    {
-      "slug": "mb-the-journey",
-      "name": "The Journey",
-      "contract": "0xd5386794f57697ab4ecb930b049da70fc771900b",
-      "chain": "ethereum",
-      "deployer": "0x32220f07DBcd18149f619F28cD09FD911cc0372D",
-      "note": "96 tokens, 100% hosted at storage.googleapis.com (Proof-controlled)."
-    }
   ],
   "skipped": [
     {
+      "name": "Archive of Feelings by Mika Tajima",
+      "contract": "0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762",
+      "reason": "Removed from scope by user. Pipeline progress reached step 04 (15/1152 media pinned) before being descoped; partial state preserved on disk (collections/archive-of-feelings-by-mika-tajima/) for forensic reference. To resume in the future: rerun the pipeline starting from step 04 — it is idempotent."
+    },
+    {
+      "name": "The Journey",
+      "contract": "0xd5386794f57697ab4ecb930b049da70fc771900b",
+      "reason": "Removed from scope by user. The pipeline previously ran end-to-end and shipped: 96 metadata + 96 media pinned at metadataCID bafybeiagwvykjve4kgvxo7zku5kdivt26vmvkuhxgmjl6jbmc2lfznh6zu. Those pins still exist on Pinata and the per-collection INSTRUCTIONS.md was authored, but the migration is no longer recommended/active. Pins can be unpinned without affecting any other collection."
+    },
+    {
       "name": "PROOF Curated: Evolving Pixels",
       "contract": "0x48b17a2c46007471b3eb72d16268eaecdd1502b7",
-      "reason": "Source metadata is broken on Proof's server for at least 2 token ids (875 and 890) — both consistently return HTTP 503 from https://metadata.proof.xyz/evolving-pixels/curated/<id>, not transient. Theory: backend issue specific to these ids on Proof's metadata service. The contract is mixed-routing (~60% Art Blocks, ~40% Proof) — of the 524 Proof-routed tokens we attempted, 522 fetched cleanly and 2 reproducibly 503. Pinning now would lock in 2 permanent holes (those ids would return ipfs://<newCID>/875 → 404). Skipped pending Proof fixing the upstream source for those 2 tokens; this is reversible — rerun `node scripts/01-discover.js proof-curated-evolving-pixels` etc. once the source is healthy. Discovery + 522 metadata fetches are already cached in collections/proof-curated-evolving-pixels/ for forensic reference."
+      "reason": "Removed from scope by user. (Originally paused: source metadata at https://metadata.proof.xyz/evolving-pixels/curated/875 and /890 consistently returned HTTP 503 — non-transient backend issue on Proof's side for those two specific ids, while surrounding ids worked. Pipeline got 522/524 metadata fetches; partial state cached at collections/proof-curated-evolving-pixels/.)"
     },
     { "name": "COCKPUNCH by Tim Ferriss", "contract": "0xC178994cB9b66307Cd62dB8b411759Dd36D9C2EE", "reason": "PFP shape (5555 supply); explicit user skip." },
     { "name": "Run Ed (Moonbirds Miami)", "contract": "0x1165840AE3f426Bf09a9575e1696badEB4be5198", "reason": "Moonbirds-adjacent merch/event; out of art scope." },

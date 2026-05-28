@@ -6,7 +6,7 @@ Mirror Proof Collective art-drop metadata and media to IPFS so each collection's
 
 If you're here to flip a collection's baseURI to the IPFS pin we've prepared, you do **three things**:
 
-1. **Review.** Open the collection's `collections/<slug>/INSTRUCTIONS.md`. It contains the contract, function, exact argument string, and the Etherscan links. Today only `grails-v` is ready — [`collections/grails-v/INSTRUCTIONS.md`](collections/grails-v/INSTRUCTIONS.md).
+1. **Review.** Open the collection's `collections/<slug>/INSTRUCTIONS.md`. It contains the contract, function, exact argument string, and the Etherscan links. Six collections are ready: [Grails V](collections/grails-v/INSTRUCTIONS.md), [Grails IV](collections/grails-iv/INSTRUCTIONS.md), [Grails III](collections/grails-iii/INSTRUCTIONS.md), [Grails II](collections/grails-ii/INSTRUCTIONS.md), [Grails I](collections/grails-i/INSTRUCTIONS.md) ⚠️ *different URI shape*, [Diamond Exhibition](collections/diamond-exhibition-by-proof/INSTRUCTIONS.md).
 2. **Dry-run verify.** Click 2–3 of the gateway URLs in the pre-flight checklist (`gateway.pinata.cloud`, `ipfs.io`, `dweb.link`) and confirm the JSON loads and its `image` ipfs CID resolves to the right media. Optional but recommended: run `node scripts/07-verify.js <slug>` yourself — it sha256-compares every pinned file against the local copy and writes a pass/fail report.
 3. **Send the tx.** Connect the admin/owner wallet to the Etherscan "Write Contract" page linked in the instructions, paste the `ipfs://...` argument, send. The change is one string and fully reversible by calling the same setter with the old value.
 
@@ -30,9 +30,8 @@ Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens
 | 4 | **Grails II** | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) | 1,178 | 1,178 (100%) | ✅ pinned & verified |
 | 5 | **Grails I** ⚠️ special URI shape | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | 1,036 | 1,036 (100%) | ✅ pinned & verified — nested layout |
 | 6 | **Diamond Exhibition** | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | 5,093 | 1,407 (~28%) | ✅ pinned & verified |
-| 7 | Archive of Feelings (Mika Tajima) | [`0x24607…13762`](https://etherscan.io/address/0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762) | 1,152 | 1,152 (100%) | to do |
-| — | ~~PROOF Curated: Evolving Pixels~~ | [`0x48b17…502b7`](https://etherscan.io/address/0x48b17a2c46007471b3eb72d16268eaecdd1502b7) | 891 | ~360 (~40%) | ⏸️ paused — see note below |
-| 9 | **The Journey** | [`0xd5386…1900b`](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b) | 96 | 96 (100%) | ✅ pinned & verified |
+
+**Removed from scope by user (after initial inclusion):** Archive of Feelings (Mika Tajima), The Journey, and PROOF Curated: Evolving Pixels. See `collections.json` → `skipped` for the per-contract note. The Journey's pin still exists on Pinata under CID `bafybeiagwvykjve4kgvxo7zku5kdivt26vmvkuhxgmjl6jbmc2lfznh6zu` (no longer recommended for migration); the other two never completed pinning.
 
 **A note on OpenSea slugs vs on-chain contracts.** OpenSea has fragmented Grails I, II, III, *and* IV into per-artist landing pages — there is **no single "Grails I" / "II" / "III" / "IV" OpenSea page**. Grails V is the only season with a unified OpenSea collection (`grails-v`). And the slugs **`proof-grails`** and **`proof-grails-ii`** on OpenSea point at *unrelated* assets (Grails II Mint Pass contract `0x2c3fc1…f9fd`, and a 17-token Polygon edition contract, respectively). The contract addresses in the scope table above are the verified on-chain art contracts (via `name()` + sample `tokenURI()` content). **The repo's internal slugs (`grails-i`, `grails-ii`, …) are local directory names, *not* OpenSea slugs** — don't conflate them.
 
@@ -258,14 +257,6 @@ The on-chain change is a single string replacement and is fully reversible — s
 Because IPFS is content-addressed, **the CIDs do not depend on which account pinned the bytes.** If Proof re-pins the exact same metadata and media from their own Pinata account (or any pinning service), they get the same CIDs — nothing on-chain needs to change. This means Proof can take long-term custody of the pins without any extra migration: re-pin from your account, then this account's pins can be released. See the "Recommended: re-pin under your own Pinata account" note in each `INSTRUCTIONS.md`.
 
 > **Note on Grails V's `media-proxy.artblocks.io` URLs**: 53 of Grails V's 785 tokens (the "Spire" sub-series) reference `media-proxy.artblocks.io` images. Those are **static** PNG renders that Art Blocks media-proxy serves with no expiry — they are pinnable, and they were pinned in the Grails V run. This is different from the `token.artblocks.io` case above, where the URL is the **metadata** endpoint that triggers dynamic rendering.
-
-### Why **PROOF Curated: Evolving Pixels** was paused
-
-The contract is mixed-routing (~40% Proof-hosted at `metadata.proof.xyz/evolving-pixels/curated/<id>`, ~60% Art Blocks). When the pipeline ran step 02, **two specific token ids — 875 and 890 — reproducibly returned HTTP 503 (Service Unavailable)** from Proof's metadata service, not transient (three retries each, plus a fresh attempt after a 30 s wait, all 503). Surrounding ids (850, 870, 885) work fine, and the contract sends both broken ids through the same `/evolving-pixels/curated/` path that works for everything else — so this isn't a missing-route issue. Theory: a backend issue on Proof's metadata service specific to those two ids (database record missing or corrupted, source assets unavailable, etc.).
-
-If we pin now, the two broken ids will resolve to `ipfs://<newCID>/875` and `…/890` → 404 (since we have no JSON to put in the pin), permanently baking the holes into the IPFS mirror. Today they return 503 from `metadata.proof.xyz` — same end-user outcome but at least the source can be fixed in place. Pinning the broken-as-of-today snapshot would lock in those holes even if Proof later restores the metadata.
-
-**Plan:** skipped pending Proof restoring the source for ids 875 and 890. Once their `tokenURI(875)` and `tokenURI(890)` URLs return real JSON, rerun the pipeline (`node scripts/01-discover.js proof-curated-evolving-pixels` etc.) — discovery + 522 of the 524 Proof-routed metadata fetches are already cached in `collections/proof-curated-evolving-pixels/` for forensic reference and to avoid re-doing the work. There is also a separate `/evolving-pixels/placeholder/<id>` path that the contract uses for ids beyond `totalSupply` (returns plain-text `token "X" not minted` — expected, not affected by this issue).
 
 ## Architecture — how the pin is structured
 
@@ -568,35 +559,6 @@ Pipeline complete: 728/728 metadata + 84/84 media verified end-to-end on `ipfs.i
 - Heavy edition-sharing: 734 Proof-routed tokens → only **84 unique media files** (~9 editions each on average).
 - Source images use **expiring GCS signed URLs** (`Expires=1787875200` = 2026-08-28) — same time-bomb as Grails V. Migration urgency is high.
 - 7 verification round-trips initially failed with HTTP 504 from `ipfs.io` (transient gateway overload on small JSON files); all succeeded on retry.
-
----
-
-### The Journey — **READY TO SEND**
-
-Pipeline complete: 96/96 metadata + 96/96 media verified end-to-end on `ipfs.io`. Full handoff doc: [`collections/mb-the-journey/INSTRUCTIONS.md`](collections/mb-the-journey/INSTRUCTIONS.md).
-
-| | |
-|---|---|
-| Contract | [`0xd5386794f57697ab4ecb930b049da70fc771900b`](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b) |
-| Function | `setBaseTokenURI(string)` |
-| **Argument to pass** | `ipfs://bafybeiagwvykjve4kgvxo7zku5kdivt26vmvkuhxgmjl6jbmc2lfznh6zu/` &nbsp;_(trailing slash required)_ |
-| Etherscan: read | [readContract](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b#readContract) |
-| Etherscan: write | [writeContract](https://etherscan.io/address/0xd5386794f57697ab4ecb930b049da70fc771900b#writeContract) |
-| Caller permission | Contract uses **AccessControl** (no public `owner()`). Verify the required role before sending. |
-| Token indexing | **0-indexed**, tokens `0..95` (totalSupply 96) |
-
-**Pre-flight verification links:**
-
-- https://ipfs.io/ipfs/bafybeiagwvykjve4kgvxo7zku5kdivt26vmvkuhxgmjl6jbmc2lfznh6zu/0
-- https://dweb.link/ipfs/bafybeiagwvykjve4kgvxo7zku5kdivt26vmvkuhxgmjl6jbmc2lfznh6zu/0
-
-**Revert plan:** `setBaseTokenURI("https://storage.googleapis.com/collection-assets-public/the-journey/json/")`
-
-**Findings worth noting:**
-
-- 100% Proof-routed (no Art Blocks tokens). Setter affects every token.
-- Source host was `storage.googleapis.com/collection-assets-public/...` — public GCS bucket, no expiring signed URLs (unlike Grails V). Lower urgency than time-bombed collections.
-- Every token's `animation_url` was **already** `ipfs://QmPzr8…1TWs` (same CID shared across all 96 tokens — one common animation video). The pipeline correctly preserved that field untouched; only the `image` thumbnails (96 unique PNGs, ~3.5MB each, ~337MB total) were freshly pinned to IPFS.
 
 ---
 

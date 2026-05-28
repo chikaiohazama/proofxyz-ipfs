@@ -1,46 +1,313 @@
-# proofxyz-ipfs
+# Proof Collective IPFS Migration (Art)
 
-Mirror Proof Collective art-drop metadata and media to IPFS so each collection's `tokenURI` no longer depends on Proof's centralized hosts (`metadata.proof.xyz`, `media.proof.xyz`, time-limited Google Cloud signed URLs). The pipeline produces, per collection, an `INSTRUCTIONS.md` file telling Proof engineers exactly which on-chain function to call to flip the `baseURI` to IPFS.
+**TL;DR.** Mirrored Proof Collective's six in-scope art-drop contracts — **Grails V, IV, III, II, I, and Diamond Exhibition** — to IPFS via Pinata. Every token's metadata JSON and the media it references now have content-addressed `ipfs://` references. Each contract is one `setBaseTokenURI(...)` call away from being fully mirrored. Source images expire **2026-08-28** (signed GCS URLs), so Grails IV/V especially are time-bombed.
 
-## TL;DR for Proof engineers
+---
 
-If you're here to flip a collection's baseURI to the IPFS pin we've prepared, you do **three things**:
+## Quick reference — exact values to send
 
-1. **Review.** Open the collection's `collections/<slug>/INSTRUCTIONS.md`. It contains the contract, function, exact argument string, and the Etherscan links. Six collections are ready: [Grails V](collections/grails-v/INSTRUCTIONS.md), [Grails IV](collections/grails-iv/INSTRUCTIONS.md), [Grails III](collections/grails-iii/INSTRUCTIONS.md), [Grails II](collections/grails-ii/INSTRUCTIONS.md), [Grails I](collections/grails-i/INSTRUCTIONS.md) ⚠️ *different URI shape*, [Diamond Exhibition](collections/diamond-exhibition-by-proof/INSTRUCTIONS.md).
-2. **Dry-run verify.** Click 2–3 of the gateway URLs in the pre-flight checklist (`gateway.pinata.cloud`, `ipfs.io`, `dweb.link`) and confirm the JSON loads and its `image` ipfs CID resolves to the right media. Optional but recommended: run `node scripts/07-verify.js <slug>` yourself — it sha256-compares every pinned file against the local copy and writes a pass/fail report.
-3. **Send the tx.** Connect the admin/owner wallet to the Etherscan "Write Contract" page linked in the instructions, paste the `ipfs://...` argument, send. The change is one string and fully reversible by calling the same setter with the old value.
+All six contracts use the same setter: **`setBaseTokenURI(string)`**, called from the wallet that holds owner/admin permission on each contract.
 
-You do **not** need to run any of the data pipeline (steps 01–06) yourself — that's already been done and the resulting CIDs are committed in `collections/<slug>/state.json`. The scripts are documented in case you want to reproduce or audit.
+| Collection | Contract (Etherscan Write) | Argument to pass | Caller |
+|---|---|---|---|
+| **Grails V** | [`0x92a50…349b8`](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8#writeContract) | `ipfs://bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/` | AccessControl admin role |
+| **Grails IV** | [`0x069ee…b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885#writeContract) | `ipfs://bafybeia2hwe5olpvk6eqguva7hb644bj3ccjbu7dszka5luzwtjzhlo66m/` | AccessControl admin role |
+| **Grails III** | [`0x503a3…84A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3#writeContract) | `ipfs://bafybeibywzutnorhrucp5lbhnd54kke5eclta7k5cgl34mhkyh45gl747q/` | `Ownable.owner()` |
+| **Grails II** | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b#writeContract) | `ipfs://bafybeibmssdlwuorheuay6apc7vghpzhbj4y2q6knshkgmtb2y57w3lvrm/` | `Ownable.owner()` |
+| **Grails I** ⚠️ | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19#writeContract) | `ipfs://bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m` &nbsp;**_(NO trailing slash)_** | `Ownable.owner()` |
+| **Diamond Exhibition** | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e#writeContract) | `ipfs://bafybeihutjrictszafrxcqbgj2rfmdmlhmsgbcubhlcl4x2mx4m7zpot6i/` | `Ownable.owner()` |
+
+> ⚠️ **Grails I is structurally different from the others.** Its on-chain `tokenURI` is `baseTokenURI + "/" + grailId + "/" + tokenId`, so the IPFS pin is a **nested** `<grailId>/<tokenId>` directory and the argument **must not end with a slash**. Read [`collections/grails-i/INSTRUCTIONS.md`](collections/grails-i/INSTRUCTIONS.md) before sending.
+
+Each collection's full handoff doc (pre-flight checklist, sample call shell + ethers.js, revert string, gateway verification links, findings):
+
+- [Grails V](collections/grails-v/INSTRUCTIONS.md)
+- [Grails IV](collections/grails-iv/INSTRUCTIONS.md)
+- [Grails III](collections/grails-iii/INSTRUCTIONS.md)
+- [Grails II](collections/grails-ii/INSTRUCTIONS.md)
+- [Grails I](collections/grails-i/INSTRUCTIONS.md) ⚠️
+- [Diamond Exhibition](collections/diamond-exhibition-by-proof/INSTRUCTIONS.md)
+
+### Revert plan (per collection)
+
+If anything goes wrong post-send, call the same setter with the verbatim previous baseURI:
+
+| Collection | Previous baseURI (revert value) |
+|---|---|
+| Grails V | `https://metadata.proof.xyz/grails-v/art/` |
+| Grails IV | `https://metadata.proof.xyz/grails-iv/art/` |
+| Grails III | `https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/3/` |
+| Grails II | `https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/2/` |
+| Grails I | `https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/1` _(no trailing slash)_ |
+| Diamond Exhibition | `https://metadata.proof.xyz/diamond-exhibition/` |
+
+It's a one-string state change — fully reversible, no on-chain migration.
+
+---
 
 ## Why this exists
 
-Proof's metadata server returns JSON whose `image` fields point at signed Google Cloud Storage URLs. The signatures on every URL in Grails V share the same `Expires` value — **all 732 image URLs expire on 2026-08-28**. Once that happens, the NFTs lose their art (the on-chain `tokenURI` returns a URL that 403s).
+Proof's metadata service hands out JSON whose `image` URLs are **signed Google Cloud Storage URLs with expiry timestamps**. The signatures on every URL in Grails IV and V share the same `Expires` value: **2026-08-28 UTC**. After that date, the URLs 403 and the NFTs visually go dark — even though the metadata server is otherwise healthy. Grails I/II/III metadata is served from a Cloud Run host (`live---grails-metadata-…run.app`) that's similarly centralized and similarly vulnerable to disappearing one day.
 
-Pinning each media file to IPFS, rewriting the metadata to point at those CIDs, and pinning the rewritten metadata as a directory eliminates the dependency on Proof's hosts.
+Pinning each media file to IPFS, rewriting metadata to point at those CIDs, then pinning the rewritten metadata as a directory removes both dependencies. The contract's existing `tokenURI` math keeps working unchanged after the flip — we just point `baseTokenURI` at the IPFS root.
 
-## Collections in scope
+---
 
-Art drops deployed (or controlled) by Proof. PFPs, passes, and membership tokens are explicitly out (Moonbirds, Oddities, Mythics, PROOF Pass — those are not "art" in this context).
+## What we did
 
-| # | Collection | Contract | Tokens | Proof-hosted (est.) | Status |
-|---|---|---|---:|---:|---|
-| 1 | **Grails V** (prototype) | [`0x92a50…349b8`](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8) | 785 | ~732 (~93%) | ✅ pinned & verified |
-| 2 | **Grails IV** | [`0x069ee…b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885) | 904 | 734 (~81%) | ✅ pinned & verified |
-| 3 | **Grails III** | [`0x503a3…84A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3) | 1,000 | 1,000 (100%) | ✅ pinned & verified |
-| 4 | **Grails II** | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) | 1,178 | 1,178 (100%) | ✅ pinned & verified |
-| 5 | **Grails I** ⚠️ special URI shape | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) | 1,036 | 1,036 (100%) | ✅ pinned & verified — nested layout |
-| 6 | **Diamond Exhibition** | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) | 5,093 | 1,407 (~28%) | ✅ pinned & verified |
+Per collection, the pipeline runs eight steps:
 
-**Removed from scope by user (after initial inclusion):** Archive of Feelings (Mika Tajima), The Journey, and PROOF Curated: Evolving Pixels. See `collections.json` → `skipped` for the per-contract note. The Journey's pin still exists on Pinata under CID `bafybeiagwvykjve4kgvxo7zku5kdivt26vmvkuhxgmjl6jbmc2lfznh6zu` (no longer recommended for migration); the other two never completed pinning.
+```
+01-discover         resolve slug → contract; inspect tokenURI/setter/AccessControl; sample
+                    host distribution across token ids (per-token mixed-routing detection)
+02-fetch-metadata   pull every token's current metadata JSON from its on-chain tokenURI
+                    (per-token; Art Blocks-routed ids are skipped automatically)
+03-download-media   download each unique http(s) media URL referenced by any metadata field
+                    (image, animation_url, primary_asset_url, preview_asset_url)
+04-pin-media        upload each media file to Pinata via the single-file endpoint
+                    → one root CID per file (NOT a directory pin)
+05-rewrite-metadata produce a new metadata JSON per token with every media URL replaced
+                    by `ipfs://<that-file's-CID>`. Existing `ipfs://` and `arweave://`
+                    fields are preserved.
+06-pin-metadata     upload the rewritten metadata directory to Pinata as one batch
+                    → one root CID for the directory; this CID becomes the new baseURI
+07-verify           round-trip every pinned file through `ipfs.io` and sha256-compare
+                    against the local copy
+08-instructions     emit collections/<slug>/INSTRUCTIONS.md
+```
 
-**A note on OpenSea slugs vs on-chain contracts.** OpenSea has fragmented Grails I, II, III, *and* IV into per-artist landing pages — there is **no single "Grails I" / "II" / "III" / "IV" OpenSea page**. Grails V is the only season with a unified OpenSea collection (`grails-v`). And the slugs **`proof-grails`** and **`proof-grails-ii`** on OpenSea point at *unrelated* assets (Grails II Mint Pass contract `0x2c3fc1…f9fd`, and a 17-token Polygon edition contract, respectively). The contract addresses in the scope table above are the verified on-chain art contracts (via `name()` + sample `tokenURI()` content). **The repo's internal slugs (`grails-i`, `grails-ii`, …) are local directory names, *not* OpenSea slugs** — don't conflate them.
+### Architecture: per-file media pins + one directory pin for metadata
 
-#### OpenSea collection pages per Grails season
+Two distinct pin types per collection:
 
-Auto-grouped by OpenSea into one collection-per-Grail (artist). Each one points at a slice of the same on-chain contract; the contract address is what Proof will call `setBaseTokenURI(...)` on, regardless of how OpenSea slices the listing.
+- **Media (one CID per file)** — every unique media file is pinned with Pinata's single-file endpoint. Each gets its own root CID like `bafkrei…` or `bafybei…`. Files are named locally by `sha256(content)` so duplicate content (Grails I has 1,036 tokens but only 20 unique media files; Grails II has 1,178 → 55) collapses on disk and again at the IPFS layer.
+- **Metadata (one directory pin)** — after media CIDs are known, each token's metadata JSON is rewritten with `image: ipfs://<that-file's-CID>` (no path suffix; each CID is a single file). The whole `ipfs-metadata/` directory is pinned in one upload. The directory's root CID is what `setBaseTokenURI(...)` consumes — files inside are named by tokenId with no extension, so the contract's existing `baseURI + Strings.toString(tokenId)` formula works as a drop-in.
+
+### Why this is correct (the chain of reasoning)
+
+The pin structure mimics what the contracts already do, so only one on-chain string changes. Five chained facts:
+
+1. **The contract math is literal.** For Grails II/III/IV/V and Diamond Exhibition's Proof-routed tokens, the Solidity is `string(abi.encodePacked(baseURI, _toString(tokenId)))` — that's `baseURI` concatenated with the decimal token id. No extension, no separator. (Grails I prepends `/grailId/` — special, see below.)
+2. **The pinned files are named to match.** `scripts/05-rewrite-metadata.js` writes `ipfs-metadata/<id>` — extension-less file named after the token id. After the flip, `tokenURI(473)` = `"ipfs://<metadataCID>/" + "473"` = `ipfs://<metadataCID>/473` → resolves to that file in the pin.
+3. **Media inside the metadata is also content-addressed.** Each `image` (and `animation_url`, etc.) was rewritten to `ipfs://<that-file's-CID>` so once a wallet fetches the metadata JSON via IPFS, the image it references is also on IPFS. No URL touches `metadata.proof.xyz` or `storage.googleapis.com` after the flip.
+4. **Sparse id sets are safe for mixed contracts.** For Diamond Exhibition and Grails IV, only the Proof-routed ids end up in `ipfs-metadata/`. The Art Blocks ids — say `5000000` — are absent. This is intentional and safe: the contract's `tokenURI(uint256)` never calls `_baseURI()` for those ids (it dispatches inside the function to `flex.tokenURI(...)` which returns the Art Blocks URL), so it never looks up `ipfs://<CID>/5000000`. See the source snippets below.
+5. **End-to-end verified before handoff.** `scripts/07-verify.js` re-fetches every pinned file through `ipfs.io` and sha256-compares against the local copy. Every committed CID has passed this round-trip before being recommended.
+
+### How Art Blocks tokens are handled (Diamond Exhibition + Grails IV)
+
+Several Proof contracts have **mixed per-token routing**: some token ids resolve through `baseTokenURI` to a Proof-hosted JSON (mirrorable), others are routed inside `tokenURI(uint256)` directly to `token.artblocks.io/...` (rendered dynamically by Art Blocks — not pinnable). The pipeline detects this per-token and only fetches Proof-routed ids.
+
+Verified by reading the contract source on Sourcify:
+
+**Diamond Exhibition** (`DiamondExhibition.sol`):
+
+```solidity
+function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+    TokenInfo memory info = _tokenInfo(tokenId);
+    if (projectType(info.projectId) == ProjectType.Curated) {
+        return string.concat(_baseURI(), Strings.toString(tokenId));   // ← Proof branch (uses baseURI)
+    }
+    return flex.tokenURI(artblocksTokenID(_artblocksProjectId(info.projectId), info.edition));
+    // ↑ Art Blocks branch — computes URL via the Flex engine; never reads _baseURI()
+}
+```
+
+**Grails IV** (`ABProjectPoolSellable.sol`, same base used by Grails V + Evolving Pixels):
+
+```solidity
+function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+    TokenInfo memory info = tokenInfo(tokenId);
+    if (_isLongformProject(info.projectId)) {
+        return flex.tokenURI(artblocksTokenID(_artblocksProjectId(info.projectId), info.edition));
+        // ↑ Art Blocks branch — never touches baseURI
+    }
+    return super.tokenURI(tokenId);   // ← baseURI + tokenId (Proof branch)
+}
+```
+
+Concretely for Diamond Exhibition: **only ~1,407 of 5,093 tokens** are affected by the baseURI flip. The other 3,686 ids stay on Art Blocks regardless. The contract has **no `setTokenURI(uint256, string)`** function in its ABI, so the per-token routing is hardcoded in contract logic — there is no per-token writable mapping to misconfigure.
+
+**Post-flip empirical check** (5 min, no risk): on Etherscan readContract, call `tokenURI(<an_AB_id>)` and confirm it still returns `token.artblocks.io/...`; call `tokenURI(<a_proof_id>)` and confirm it now returns `ipfs://<newCID>/<id>`. Each collection's `INSTRUCTIONS.md` lists known AB-routed ids in `state.json` → `skippedArtblocksIds` for testing.
+
+### Why Grails I is structurally different
+
+Reading `Grails.sol` source on Sourcify:
+
+```solidity
+function tokenURI(uint256 tokenId) public view override returns (string memory) {
+    uint256 grailId = uint256(tokenGrails[tokenId]);
+    return string(abi.encodePacked(
+        baseTokenURI, "/", grailId.toString(), "/", tokenId.toString()
+    ));
+}
+```
+
+The contract inserts `"/" + grailId + "/" + tokenId` *after* `baseTokenURI`, where `grailId = tokenGrails[tokenId]` is per-token storage. So:
+
+- Today: `tokenURI(0)` = `https://live---grails-metadata-…run.app/metadata/1` + `/0/0` = `…/metadata/1/0/0`
+- After the flip: `tokenURI(0)` = `ipfs://<CID>` + `/0/0` = `ipfs://<CID>/0/0`
+
+To make those new paths resolve, the IPFS pin for Grails I is a **nested directory**:
+
+```
+<CID>/
+├── 0/                # grailId 0 (Gary Vaynerchuk — "What do you 'B'")
+│   ├── 0, 1, 800, …  # 112 tokens in this grail
+├── 1/                # grailId 1
+├── 2/
+├── …
+└── 19/               # 20 grails total
+```
+
+There are **20 grails (0..19)** across **1,036 tokens**, matching the 20 per-artist OpenSea collection pages listed below. The exact `grailId` per token was derived by reading the current on-chain `tokenURI(id)` for every id and parsing the URL path.
+
+The `setBaseTokenURI` argument for Grails I therefore has **no trailing slash** — the contract supplies the `"/"` itself. Sending a value with a trailing slash would produce `ipfs://CID//grailId/tokenId` (double slash) which some gateways may fail to resolve.
+
+---
+
+## Issues encountered and how we dealt with them
+
+The pipeline did not run cleanly on the first try for several collections. The interesting failure modes and fixes:
+
+### 1. Per-token Art Blocks routing (initial scope error)
+
+**Symptom.** Early version of `01-discover.js` skipped a contract entirely if `tokenURI(0)` resolved to an `artblocks.io` host. That meant Grails IV (~83% Proof-routed) and Diamond Exhibition (~28% Proof-routed) were being skipped wholesale.
+
+**Fix.** Replaced contract-wide skipping with a 30-sample `hostDistribution` in discovery, and added per-token filtering in `02-fetch-metadata.js` so individual ids that route to Art Blocks are recorded in `state.skippedArtblocksIds` and never fetched. The rest of the pipeline naturally produces a sparse-id pin for those collections. Verified safety from the Solidity source above: the Art Blocks branch never reads `_baseURI()`, so missing-from-pin AB ids never 404 against the new CID.
+
+### 2. Pinata SDK deadlocks on large MP4s
+
+**Symptom.** Grails III contains eight 100–285 MB MP4s. Running `pin-media` at concurrency 4, all four workers stalled at zero CPU for 30+ minutes with 47 idle sockets — Pinata's internal chunked-upload was getting stuck without aborting. No timeout to fall back on.
+
+**Fix.** Wrapped each `uploadFile` call in `04-pin-media.js` in a `Promise.race` with a **15-minute per-attempt deadline**; pairs with the existing exponential-backoff retry. Dropped concurrency from 4 → 1–2 for runs heavy with large files. Added per-file size + elapsed-time logging so deadlocks are detectable at a glance. After this, the same Grails III pin completed cleanly (largest file took ~9 min at ~750 KB/s effective throughput, well under the 15 min cap).
+
+### 3. The 30-minute signed-URL expiry trap (Grails III)
+
+**Symptom.** Grails III's metadata source uses **30-minute-lived** GCS signed URLs (`X-Goog-Expires=1799`). Step 02 fetches all 1,000 metadata JSONs in 30 seconds, but step 03 (download every image) takes hours when interrupted/restarted. By the time step 03 reached the later URLs, the early-fetched signatures had expired. The first run ended with only 221/1,000 tokens having a working manifest entry; the rest pointed at URLs that 403'd before download.
+
+**Fix.** Built a **HEAD-MD5 fast path** for the recovery: re-fetch metadata to get fresh signed URLs, then issue HEAD requests to GCS (no body download), read the `x-goog-hash` header for the object's MD5, and look up an already-on-disk file with that MD5. This resolved 1,217 / 1,407 unmapped Diamond Exhibition URLs in ~10 seconds with zero downloaded bytes. Same trick saved hours on the Grails III recovery; remaining ~50 truly-new files were downloaded conventionally. (Worth integrating into `03-download-media.js` as an optimisation for any re-run flow.)
+
+### 4. Grails I's non-standard `tokenURI` shape
+
+**Symptom.** Step 08 generated an `INSTRUCTIONS.md` for Grails I with a trailing-slash baseURI like the others. But Grails I's `tokenURI` is `baseTokenURI + "/" + grailId + "/" + tokenId`, so the standard flat pin would not resolve — paths like `ipfs://CID/0/0` need the directory to actually have `0/0` as a nested file, not a flat file named `0`.
+
+**Fix.** Read on-chain `tokenURI(id)` for every token, parsed the grailId from the URL path, restructured the rewritten metadata into a **nested `<grailId>/<tokenId>` directory**, re-pinned, re-verified recursively. Hand-wrote a Grails-I-specific `INSTRUCTIONS.md` warning prominently about the no-trailing-slash requirement.
+
+### 5. Transient `ipfs.io` errors during verify
+
+**Symptom.** `07-verify.js` hits `ipfs.io` for every pinned file. Verify against ~1,000+ files at a time triggers transient HTTP 429 (rate limit), 502 (bad gateway), and 504 (timeout) responses; for very large files the 90-second per-fetch timeout occasionally aborts. We saw counts ranging from 2 to 41 transient failures per collection.
+
+**Fix.** Built a retry-with-longer-timeout pass that re-fetches each failed CID with up to 10 minutes per request. Across all six collections, every retry pass cleared every failure to PASS. (Future improvement: bake retry into `07-verify.js` itself.)
+
+### 6. The 84MB animated GIF (Grails II)
+
+**Symptom.** A single shared 84 MB animated GIF (used as the image for 39 different Grails II tokens) failed all 4 retry attempts in `pin-media` while two other pipelines were concurrently competing for Pinata throughput.
+
+**Fix.** Paused the other pipelines; re-ran `04-pin-media.js grails-ii` solo (it's idempotent — skipped the 54 already-pinned files); the same GIF pinned on the first attempt with Pinata's per-account throughput fully available. Confirmed a real throughput ceiling: running >2 pipelines pinning large files concurrently from one Pinata account consistently triggers chunked-upload failures.
+
+### 7. `ipfs.io` cache serving wrong content for a tiny CID
+
+**Symptom.** Grails III's verify reported one media mismatch on a 1,126-byte Arweave HTML wrapper: local content sha256 matched the filename, but `ipfs.io` for that CID returned 1,397 different bytes with a different sha. Three different sizes turned up across three fetches of the same arweave URL — that endpoint is dynamic.
+
+**Diagnosis.** Cross-checked: `gateway.pinata.cloud` returned **the correct 1,126-byte content matching local file**. `ipfs.io` was serving a stale/wrong cache entry for that specific CID. Since CIDs are content-addressed, the pin itself is correct; the gateway is broken for this one CID. Recorded in `verification-report.json` → `notes` field.
+
+### 8. OpenSea slug ≠ on-chain contract
+
+**Symptom.** A user spot-check revealed that OpenSea's slug `proof-grails` resolves to a **Grails II Mint Pass** contract (`0x2c3fc1…f9fd`), not the actual Grails I art contract; and `proof-grails-ii` on OpenSea resolves to a **17-token Polygon edition**, not the Ethereum art contract. I'd named the repo's internal slugs after those OpenSea slugs, creating false signal that the contracts we were processing were mint passes.
+
+**Fix.** Renamed the repo's internal slugs to `grails-i` and `grails-ii` (local directory names, not OpenSea slugs), and added a callout in this README that the on-chain contract addresses (verified via `name()` + sample `tokenURI()` content) are authoritative, not OpenSea's slugs. Also discovered that OpenSea has fragmented Grails I, II, III, *and* IV into per-artist landing pages (e.g. `what-do-you-b-by-gary-vaynerchuk`, `belly-of-the-whale-01-by-tom-sachs`); Grails V is the only season with a single unified OpenSea page (`grails-v`). Full per-artist page list is below for cross-reference.
+
+### 9. Evolving Pixels' broken source ids (descoped)
+
+**Symptom.** Step 02 for Evolving Pixels reproducibly hit HTTP 503 for token ids 875 and 890 — every retry, every fresh attempt after a 30-second wait. Surrounding ids on the same `/evolving-pixels/curated/` path worked fine. Theory: a Proof-side backend issue specific to those two ids.
+
+**Decision.** Pinning then would have permanently baked two `ipfs://<CID>/875` → 404 holes into the mirror; the upstream is fixable in place. Collection was paused, then later **descoped** entirely by user direction. Partial state preserved in `collections/proof-curated-evolving-pixels/` for forensic reference.
+
+### 10. Pinata gateway / dedicated-gateway URLs leaked into committed state
+
+**Symptom.** The Pinata SDK's upload responses include a `gatewayUrl` that references the account's dedicated gateway subdomain. This was being saved into per-collection `state.json` files and would have published an account identifier in the public repo.
+
+**Fix.** Stripped `gatewayUrl` from `lib/pinata.js` return values; manually sanitised the existing `state.json` files. Configurable via `PINATA_GATEWAY` env var if anyone wants to reproduce against a different account.
+
+---
+
+## Architecture details
+
+### Repo layout
+
+```
+proofxyz-ipfs/
+├── .env                              # ALCHEMY_API_KEY, OPENSEA_API_KEY, PINATA_JWT, PINATA_GATEWAY
+├── .env.example                      # template with empty values
+├── collections.json                  # in-scope + skipped lists with per-contract notes
+├── lib/
+│   ├── env.js                        # env loader (Node 20 process.loadEnvFile)
+│   ├── alchemy.js                    # JSON-RPC + NFT-API helpers
+│   ├── opensea.js                    # collection slug lookup
+│   ├── etherscan.js                  # ABI fetch (Sourcify fallback)
+│   ├── sourcify.js                   # keyless ABI lookup
+│   ├── pinata.js                     # uploadFile (single-CID) + uploadDir (directory pin)
+│   ├── fetchWithRetry.js             # exp-backoff fetch + bounded-concurrency gate
+│   ├── gateways.js                   # public IPFS gateway list
+│   └── state.js                      # per-collection state.json read/write
+├── scripts/
+│   ├── 01-discover.js                # → state.discovered
+│   ├── 02-fetch-metadata.js          # → original-metadata/<id>
+│   ├── 03-download-media.js          # → media/<sha256>.<ext> + media-manifest.json
+│   ├── 04-pin-media.js               # → state.mediaPins (one CID per file)
+│   ├── 05-rewrite-metadata.js        # → ipfs-metadata/<id>
+│   ├── 06-pin-metadata.js            # → state.metadataPin (directory CID)
+│   ├── 07-verify.js                  # → verification-report.json
+│   └── 08-instructions.js            # → INSTRUCTIONS.md
+└── collections/<slug>/
+    ├── state.json                    # per-collection state machine
+    ├── original-metadata/{0,1,…}     # raw JSON from current tokenURI (gitignored)
+    ├── media/<sha256>.<ext>          # downloaded media, content-addressed (gitignored)
+    ├── media-manifest.json           # tokenId → field → local filename
+    ├── ipfs-metadata/                # rewritten JSON, named by tokenId
+    │                                 # (Grails I uses nested grailId/tokenId/)
+    ├── verification-report.json
+    └── INSTRUCTIONS.md
+```
+
+### Reproducing or auditing a run
+
+```bash
+cd proofxyz-ipfs
+npm install
+cp .env.example .env   # fill in the four keys
+
+# Run any single step, or all 8 in sequence:
+npm run discover         -- grails-v
+npm run fetch-metadata   -- grails-v
+npm run download-media   -- grails-v
+npm run pin-media        -- grails-v
+npm run rewrite-metadata -- grails-v
+npm run pin-metadata     -- grails-v
+npm run verify           -- grails-v
+npm run instructions     -- grails-v
+```
+
+Each script is idempotent — re-running picks up wherever state.json left off.
+
+### Required `.env` keys
+
+| Key | What for | Where to get it |
+|---|---|---|
+| `ALCHEMY_API_KEY` | `eth_call` for ERC-721 reads + Alchemy NFT v3 for deployer | [dashboard.alchemy.com](https://dashboard.alchemy.com) |
+| `OPENSEA_API_KEY` | slug → contract resolution | [docs.opensea.io](https://docs.opensea.io/reference/api-keys) |
+| `PINATA_JWT` | upload auth (scoped: `pinFileToIPFS` + `pinJSONToIPFS`) | [app.pinata.cloud](https://app.pinata.cloud) → API Keys |
+| `PINATA_GATEWAY` | dedicated gateway subdomain (no scheme, no path) — e.g. `your-gateway.mypinata.cloud`. Use `gateway.pinata.cloud` if you don't have a dedicated one. | [app.pinata.cloud](https://app.pinata.cloud) → Gateways |
+| `ETHERSCAN_API_KEY` *(optional)* | direct Etherscan ABI lookup; falls back to keyless Sourcify if absent | [etherscan.io/myapikey](https://etherscan.io/myapikey) |
+
+---
+
+## OpenSea page map (auto-grouping per season)
+
+OpenSea fragments Grails I–IV into per-artist landing pages; Grails V is the only season with a single unified page. The contract addresses above are the authoritative on-chain references for the migration tx — these OpenSea links are for cross-reference only.
 
 <details>
-<summary><b>Grails I</b> — 20 per-artist pages (contract <code>0xb6329bd2741c4e5e91e26c4e653db643e74b2b19</code>)</summary>
+<summary><b>Grails I</b> — 20 per-artist pages</summary>
 
 | Title | OpenSea |
 |---|---|
@@ -67,7 +334,7 @@ Auto-grouped by OpenSea into one collection-per-Grail (artist). Each one points 
 </details>
 
 <details>
-<summary><b>Grails II</b> — 25 per-artist pages (contract <code>0xd78afb925a21f87fa0e35abae2aead3f70ced96b</code>)</summary>
+<summary><b>Grails II</b> — 25 per-artist pages</summary>
 
 | Title | OpenSea |
 |---|---|
@@ -99,7 +366,7 @@ Auto-grouped by OpenSea into one collection-per-Grail (artist). Each one points 
 </details>
 
 <details>
-<summary><b>Grails III</b> — 20 per-artist pages (contract <code>0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3</code>)</summary>
+<summary><b>Grails III</b> — 20 per-artist pages</summary>
 
 | Title | OpenSea |
 |---|---|
@@ -126,7 +393,7 @@ Auto-grouped by OpenSea into one collection-per-Grail (artist). Each one points 
 </details>
 
 <details>
-<summary><b>Grails IV</b> — 20 per-artist pages (contract <code>0x069eeda3395242bd0d382e3ec5738704569b8885</code>)</summary>
+<summary><b>Grails IV</b> — 20 per-artist pages</summary>
 
 | Title | OpenSea |
 |---|---|
@@ -153,448 +420,33 @@ Auto-grouped by OpenSea into one collection-per-Grail (artist). Each one points 
 </details>
 
 <details>
-<summary><b>Grails V</b> — single unified page (contract <code>0x92a50fe6ede411bd26e171b97472e24d245349b8</code>)</summary>
+<summary><b>Grails V</b> — single unified page</summary>
 
-OpenSea kept Grails V as a single collection (no auto-grouping by artist):
+OpenSea kept Grails V as a single collection:
 
 - https://opensea.io/collection/grails-v
 </details>
 
-### How Art Blocks tokens are handled
-
-Several Proof contracts have **mixed per-token routing**: some token ids resolve through `baseTokenURI` to a Proof-hosted JSON (mirrorable), others are routed inside `tokenURI(uint256)` directly to `token.artblocks.io/...` (rendered dynamically by Art Blocks — not pinnable). The two cases visible above:
-
-- **Grails IV** — ~17% of tokens route to Art Blocks.
-- **Diamond Exhibition** — ~77% of tokens route to Art Blocks.
-
-The pipeline does **per-token filtering** at fetch time (`scripts/02-fetch-metadata.js`): if `new URL(tokenURI(id)).hostname.endsWith("artblocks.io")`, the id is skipped and recorded in `state.skippedArtblocksIds`. The rest of the pipeline then only sees the Proof-hosted subset, so `ipfs-metadata/` ends up with files for those ids only (e.g., `100`, `877`, `1580` rather than every id).
-
-When Proof flips `baseTokenURI` to `ipfs://<metadataCID>/`, the contract's own per-id routing keeps Art Blocks tokens unaffected — their URLs are derived inside `tokenURI(uint256)`, not from `baseTokenURI`. Only the Proof-hosted ids resolve through the new IPFS pin.
-
-If a contract is detected as **all** Art Blocks (every sampled `tokenURI` resolves to an `artblocks.io` host) it's flagged `skipReason: "artblocks (all sampled tokens)"` and not processed — but mixed contracts are processed normally.
-
-#### How the routing is encoded on-chain
-
-Important detail for the engineers signing the tx: these Proof contracts do **not** expose a per-token writable URI override (no `setTokenURI(uint256, string)` function in the ABI). Routing is hardcoded inside `tokenURI(uint256)` and dispatches on the token's project type. There is no per-token mapping to misconfigure and no way for the baseURI flip to "leak" into an Art Blocks token.
-
-Verified by reading the verified contract source on Sourcify:
-
-**Diamond Exhibition** (`DiamondExhibition.sol`):
-
-```solidity
-function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
-    TokenInfo memory info = _tokenInfo(tokenId);
-    if (projectType(info.projectId) == ProjectType.Curated) {
-        return string.concat(_baseURI(), Strings.toString(tokenId));   // ← Proof-hosted branch (consults baseURI)
-    }
-    return flex.tokenURI(artblocksTokenID(_artblocksProjectId(info.projectId), info.edition));
-    // ↑ Art Blocks branch — computes the URL via the Flex engine; never reads _baseURI()
-}
-```
-
-**Grails IV** (`ABProjectPoolSellable.sol`, same base also used by Grails V and Evolving Pixels):
-
-```solidity
-function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
-    TokenInfo memory info = tokenInfo(tokenId);
-    if (_isLongformProject(info.projectId)) {
-        return flex.tokenURI(artblocksTokenID(_artblocksProjectId(info.projectId), info.edition));
-        // ↑ Art Blocks branch — never touches baseURI
-    }
-    return super.tokenURI(tokenId);   // ← baseURI + tokenId (Proof-hosted branch)
-}
-```
-
-**Concrete implication for the `setBaseTokenURI(...)` tx:**
-
-| Token type | Where its URL comes from | Effect of the baseURI flip |
-|---|---|---|
-| Proof-routed (`Curated` / non-`Longform`) | `_baseURI() + tokenId` | Will return `ipfs://<newCID>/<tokenId>` after the flip — our pin |
-| Art Blocks-routed (`Longform` / non-`Curated`) | `flex.tokenURI(...)` → `token.artblocks.io/...` | **Unchanged** — the function never reads `_baseURI()` for these |
-
-**Post-flip sanity check** (5 minutes, no risk): on the contract's Etherscan Read Contract page, call `tokenURI(<an_art_blocks_id>)` and confirm it still returns `token.artblocks.io/...`; call `tokenURI(<a_proof_id>)` and confirm it now returns `ipfs://<newCID>/<id>`. Each collection's `INSTRUCTIONS.md` lists the AB-routed ids in `state.json` under `skippedArtblocksIds` so you have known ids to test with.
-
-## Why this migration is correct
-
-The pin structure is designed to exactly mimic what the contracts already do, so the only thing that changes on-chain is one string. Five chained facts make it work end-to-end:
-
-**1. The contracts' math.** For Proof-routed tokens, the Solidity is literally:
-
-```solidity
-return string.concat(_baseURI(), Strings.toString(tokenId));   // Diamond Exhibition
-// or, via super.tokenURI() in the OZ ERC721A base:
-return string(abi.encodePacked(baseURI, _toString(tokenId)));   // Grails IV / V / Evolving Pixels
-```
-
-So `tokenURI(id)` is precisely `baseTokenURI + decimal(id)`. No extension, no separator, no surprises.
-
-**2. Our files are named to match the math.** `scripts/05-rewrite-metadata.js` writes each rewritten JSON to `ipfs-metadata/<id>` — token id as a bare string, no `.json` suffix. The directory is then pinned as a single Pinata directory upload (`scripts/06-pin-metadata.js`). After the flip:
-
-```
-baseTokenURI()  =  "ipfs://<metadataCID>/"
-tokenURI(id)    =  baseTokenURI() + Strings.toString(id)
-                =  "ipfs://<metadataCID>/" + "473"
-                =  "ipfs://<metadataCID>/473"   ← resolves to ipfs-metadata/473 in the pin
-```
-
-The trailing slash on the baseURI is load-bearing. The pre-flight checklist in each collection's `INSTRUCTIONS.md` includes it explicitly.
-
-**3. Media is also content-addressed.** Each unique media file was pinned individually with `pinata.upload.public.file()` (one CID per file). `scripts/05-rewrite-metadata.js` then replaces `image`, `animation_url`, `primary_asset_url`, and `preview_asset_url` inside every metadata JSON with `ipfs://<that-file's-CID>` (no path suffix — each CID is a single file). So once a wallet or marketplace fetches the metadata JSON via IPFS, the image/animation it references is also on IPFS. No URL touches `metadata.proof.xyz` or `storage.googleapis.com` after the flip.
-
-**4. Sparse id sets work for mixed contracts.** For Diamond Exhibition, Grails IV, and Evolving Pixels, only the Proof-routed ids land in `ipfs-metadata/`. The Art Blocks-routed ids — say `5000000`, `6000000`, etc. — are absent from the directory. **This is intentional and safe:** the contract logic for those ids never calls `_baseURI()`, so it never tries to look up `ipfs://<CID>/5000000` (which would 404). Cross-reference the source snippets above — the Art Blocks branch returns `flex.tokenURI(...)` unconditionally.
-
-**5. End-to-end verified before the tx.** `scripts/07-verify.js` re-fetches every pinned file through the public `ipfs.io` gateway and sha256-compares against the local copy. So we know, before handing over the CID, that:
-- the directory CID resolves
-- each child file at `ipfs://<CID>/<id>` is byte-identical to what we intended
-- each `image` CID inside a metadata JSON resolves to a file of the right hash and size
-
-For Grails V the verifier ran 785 metadata round-trips + 202 media round-trips and passed all 987 — see `collections/grails-v/verification-report.json`.
-
-### Reversibility and portability
-
-The on-chain change is a single string replacement and is fully reversible — see each collection's "Revert plan" section, which contains the verbatim previous `baseTokenURI()` string to pass back to the same setter.
-
-Because IPFS is content-addressed, **the CIDs do not depend on which account pinned the bytes.** If Proof re-pins the exact same metadata and media from their own Pinata account (or any pinning service), they get the same CIDs — nothing on-chain needs to change. This means Proof can take long-term custody of the pins without any extra migration: re-pin from your account, then this account's pins can be released. See the "Recommended: re-pin under your own Pinata account" note in each `INSTRUCTIONS.md`.
-
-> **Note on Grails V's `media-proxy.artblocks.io` URLs**: 53 of Grails V's 785 tokens (the "Spire" sub-series) reference `media-proxy.artblocks.io` images. Those are **static** PNG renders that Art Blocks media-proxy serves with no expiry — they are pinnable, and they were pinned in the Grails V run. This is different from the `token.artblocks.io` case above, where the URL is the **metadata** endpoint that triggers dynamic rendering.
-
-## Architecture — how the pin is structured
-
-### Media files: **one CID per file**
-
-Every unique media file (image, video, preview asset, etc.) is pinned **individually** via Pinata's single-file endpoint, getting its own root CID.
-
-```
-media/0f8502c09387…7ae8.png   →  ipfs://bafybeihjh6xj2vhrtemr6uygmmbacvim6tblf27quudqsl57kim7lr77ke
-media/55b38f09c5ff…cd91.mp4   →  ipfs://bafkreicvwohqtrp7cliasborqg2pkkpa2mi3mcsagk2jkfmjwyv6ogd4n4
-…
-```
-
-Files are named by `sha256(content).<ext>` so duplicate content (Grails V has heavy edition-sharing — 785 tokens map to only 202 unique files) dedupes automatically on disk and again at the IPFS layer. The full filename → CID map lives in `collections/<slug>/state.json` under `mediaPins`.
-
-### Metadata files: **single directory pin**
-
-After all media CIDs are known, each token's metadata JSON is rewritten so:
-- `image`, `animation_url`, `primary_asset_url`, `preview_asset_url` → `ipfs://<that-file's-CID>` (no path suffix; each CID is a single file)
-- everything else (`name`, `description`, `attributes`, `collection_name`, …) is preserved unchanged
-
-The rewritten JSON files are named by **token id with no extension** (e.g. `0`, `1`, `2`, …, `784`) so the existing on-chain `tokenURI` formula `baseURI + Strings.toString(tokenId)` works as a drop-in replacement. The whole `ipfs-metadata/` directory is pinned as one upload, producing a single **`metadataCID`** that becomes the new `baseURI`.
-
-## Pipeline
-
-```
-scripts/01-discover.js      → resolves slug, contract, setter, supply, token-index base
-scripts/02-fetch-metadata   → pulls every token's current metadata JSON
-scripts/03-download-media   → downloads each unique media URL; hashes by sha256
-scripts/04-pin-media        → pins each media file individually → per-file CIDs
-scripts/05-rewrite-metadata → produces ipfs-metadata/ pointing at per-file CIDs
-scripts/06-pin-metadata     → pins ipfs-metadata/ as one directory → metadataCID
-scripts/07-verify           → sha256 round-trip from public gateways for every file
-scripts/08-instructions     → emits collections/<slug>/INSTRUCTIONS.md
-```
-
-Each step is idempotent (skips work that's already recorded in `state.json`) so a crash anywhere in the pipeline is recoverable.
-
-## Setup
-
-```bash
-cd proofxyz-ipfs
-npm install
-cp .env.example .env   # then fill in the keys below
-```
-
-### Required `.env` keys
-
-Create `proofxyz-ipfs/.env` (gitignored) with these four keys. The pipeline will throw at startup if any of them is missing.
-
-| Key | What for | Where to get it |
-|---|---|---|
-| `ALCHEMY_API_KEY` | JSON-RPC `eth_call` for `name`/`symbol`/`totalSupply`/`tokenURI` and Alchemy NFT v3 for the contract deployer. | [dashboard.alchemy.com](https://dashboard.alchemy.com) → create an Ethereum Mainnet app → "API Key". |
-| `OPENSEA_API_KEY` | Resolve a collection slug (e.g. `grails-v`) → primary contract address. | [docs.opensea.io](https://docs.opensea.io/reference/api-keys) → request an API key. |
-| `PINATA_JWT` | Authenticates every Pinata upload (per-file media pins + the metadata directory pin). | [app.pinata.cloud](https://app.pinata.cloud) → API Keys → "New Key" → scoped: `pinFileToIPFS`, `pinJSONToIPFS` (the SDK uses `upload.public.file`/`fileArray` which map to those). Copy the JWT (not the API Key/Secret pair). |
-| `PINATA_GATEWAY` | Dedicated gateway subdomain (no protocol, no path) — used to format `gatewayUrl` fields in `state.json` and the upload SDK config. Example: `your-gateway.mypinata.cloud`. | [app.pinata.cloud](https://app.pinata.cloud) → Gateways. If you don't have a dedicated gateway, use `gateway.pinata.cloud` (public, rate-limited). |
-
-### Optional `.env` keys
-
-| Key | What for | Default if missing |
-|---|---|---|
-| `ETHERSCAN_API_KEY` | Lets `lib/etherscan.js` fetch contract ABIs from Etherscan v2. | Falls back to **Sourcify** (keyless) — works for any verified contract. The pipeline does not require this key today. |
-
-### Example `.env` (gitignored — never commit this)
-
-```
-ALCHEMY_API_KEY=...
-OPENSEA_API_KEY=...
-PINATA_JWT=eyJhbGciOi...
-PINATA_GATEWAY=your-gateway.mypinata.cloud
-# ETHERSCAN_API_KEY=...   # optional
-```
-
-## Run end-to-end for a collection
-
-```bash
-npm run discover         -- grails-v
-npm run fetch-metadata   -- grails-v
-npm run download-media   -- grails-v
-npm run pin-media        -- grails-v      # 1 CID per file (slowest step)
-npm run rewrite-metadata -- grails-v
-npm run pin-metadata     -- grails-v      # 1 directory CID
-npm run verify           -- grails-v
-npm run instructions     -- grails-v      # writes INSTRUCTIONS.md
-```
-
-Output: `collections/grails-v/INSTRUCTIONS.md` plus a full `verification-report.json`.
-
-## Handoff to Proof — the on-chain call
-
-For each collection, the generated `INSTRUCTIONS.md` contains the concrete CIDs. The shape of the call is the same in every case: a single state-changing function that takes a string.
-
-### Grails V — **READY TO SEND**
-
-Pipeline complete: 785/785 metadata + 202/202 media verified end-to-end on `ipfs.io`. Full handoff doc: [`collections/grails-v/INSTRUCTIONS.md`](collections/grails-v/INSTRUCTIONS.md).
-
-| | |
-|---|---|
-| Contract | [`0x92a50fe6ede411bd26e171b97472e24d245349b8`](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8) |
-| Function | `setBaseTokenURI(string)` |
-| **Argument to pass** | `ipfs://bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/` &nbsp;_(trailing slash required)_ |
-| Etherscan: read | [readContract](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8#readContract) |
-| Etherscan: write | [writeContract](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8#writeContract) |
-| Caller permission | Contract uses **AccessControl** (no public `owner()`). Verify the required role (typically `DEFAULT_ADMIN_ROLE` or a steering role) before sending. |
-| Token indexing | **0-indexed**, tokens `0..784` (totalSupply 785) |
-
-After the call, `tokenURI(0)` will return `ipfs://bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/0`, resolving via any IPFS gateway to the rewritten metadata, whose `image` is the per-file CID for that token's pinned media.
-
-**Sample shell call (cast):**
-
-```bash
-cast send 0x92a50fe6ede411bd26e171b97472e24d245349b8 \
-  "setBaseTokenURI(string)" \
-  "ipfs://bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/" \
-  --rpc-url $ETH_RPC --private-key $PROOF_PRIVATE_KEY
-```
-
-**Sample call via Etherscan Write Contract** (connect a wallet that holds the right AccessControl role):
-
-1. Open [writeContract](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8#writeContract).
-2. Click **Connect to Web3** (top of the page) with the authorized wallet.
-3. Expand `setBaseTokenURI`.
-4. Paste `ipfs://bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/` (trailing slash) into the `_baseTokenURI (string)` field.
-5. Click **Write**, sign the tx, wait for confirmation.
-
-**Pre-flight (must do before sending):**
-
-1. Re-confirm the current `baseTokenURI()` value on [Etherscan readContract](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8#readContract) — at the time the pin was generated it was `https://metadata.proof.xyz/grails-v/art/` (already recorded for the revert plan below). Worth re-checking in case it's changed.
-2. Spot-check the new pin via 2–3 gateways and confirm the JSON loads and the `image` IPFS CID inside it also resolves:
-   - https://gateway.pinata.cloud/ipfs/bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/0
-   - https://ipfs.io/ipfs/bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/0
-   - https://dweb.link/ipfs/bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/0
-3. After the tx lands, trigger an OpenSea metadata refresh for one token first to confirm marketplaces pick it up. Then trigger a collection-wide refresh.
-
-**Revert plan:** call the setter with the **previous** value captured at pin time:
-
-```
-setBaseTokenURI("https://metadata.proof.xyz/grails-v/art/")
-```
-
-It's a one-string state change — fully reversible, no on-chain migration.
-
-**Recommended: re-pin under your own Pinata account.** The pins listed in this repo are hosted on the account that ran the pipeline. For long-term durability under Proof's control, re-pin every CID from your own Pinata account (or any pinning service) before — or shortly after — flipping `baseURI`. Because IPFS is content-addressed, re-pinning the same bytes produces the **exact same CID**: no metadata edit, no on-chain change, nothing in this repo to update. To do it: fetch each CID (the metadata directory plus every entry in `state.json` → `mediaPins`) via any IPFS gateway and re-upload it through Pinata's web UI or API. Once Proof's pin exists, this account's pins can be unpinned without breaking anything.
-
 ---
 
-### Diamond Exhibition — **READY TO SEND**
+## Custody and re-pinning
 
-Pipeline complete: 1407/1407 metadata + 520/520 media verified end-to-end. Full handoff doc: [`collections/diamond-exhibition-by-proof/INSTRUCTIONS.md`](collections/diamond-exhibition-by-proof/INSTRUCTIONS.md).
+The pins listed here are hosted on the Pinata account that ran the pipeline. For long-term durability under Proof's control, re-pin every CID from your own account (or any pinning service) before — or shortly after — flipping `baseURI`. Because IPFS is content-addressed, **re-pinning the same bytes produces the exact same CID** — no metadata edit, no on-chain change. Once Proof's pin exists, this account's pins can be unpinned without breaking anything.
 
-| | |
-|---|---|
-| Contract | [`0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e) |
-| Function | `setBaseTokenURI(string)` |
-| **Argument to pass** | `ipfs://bafybeihutjrictszafrxcqbgj2rfmdmlhmsgbcubhlcl4x2mx4m7zpot6i/` &nbsp;_(trailing slash required)_ |
-| Etherscan: read | [readContract](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e#readContract) |
-| Etherscan: write | [writeContract](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e#writeContract) |
-| Caller permission | Standard ERC721A + Ownable; sign from `owner()`. |
-| Token indexing | **0-indexed**, tokens `0..5092` (totalSupply 5093) |
-| Mixed routing | **1,407 Proof-routed** (affected) + **3,686 Art Blocks-routed** (unaffected — full id list in `collections/diamond-exhibition-by-proof/state.json` → `skippedArtblocksIds`) |
-
-**Pre-flight verification links:**
-- https://ipfs.io/ipfs/bafybeihutjrictszafrxcqbgj2rfmdmlhmsgbcubhlcl4x2mx4m7zpot6i/100 (Proof-routed)
-- https://ipfs.io/ipfs/bafybeihutjrictszafrxcqbgj2rfmdmlhmsgbcubhlcl4x2mx4m7zpot6i/11 (404 expected — AB-routed; contract keeps returning Art Blocks URL after flip)
-
-**Post-flip sanity check:** on [Etherscan readContract](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e#readContract), call `tokenURI(100)` → should return `ipfs://<newCID>/100`; call `tokenURI(11)` → should still return `https://token.artblocks.io/...` (unchanged, Art Blocks-routed).
-
-**Revert plan:** `setBaseTokenURI("https://metadata.proof.xyz/diamond-exhibition/")`
-
-**Findings worth noting:**
-
-- The biggest mixed-routing contract: **only 1,407 of 5,093 tokens** are affected by the baseURI flip. The other 3,686 are dispatched inside `tokenURI(uint256)` to Art Blocks and remain on `token.artblocks.io` (unchanged behavior).
-- Per-token AB filter exercised at its largest scale here. 3,686 AB-routed ids correctly skipped during step 02 fetch.
-- 1,407 tokens → **520 unique media files** (significant edition dedup; many curated drops share images across editions).
-- Source images are signed GCS URLs with the same far-future expiry as Grails V (`Expires=1787875200` ≈ 2026-08-28). Months of headroom — no time-bomb urgency.
-- Used the **HEAD-MD5 manifest trick** developed for Grails III to skip 1,217 redundant downloads (URLs that resolved to already-on-disk content), saving ~30 min of bandwidth; only 190 truly-new files needed downloading.
-- 2 verify round-trips initially failed (`HTTP 502` + `terminated`); both passed on retry.
+To do it: fetch each CID (the metadata directory plus every entry in `state.json` → `mediaPins`) via any IPFS gateway and re-upload through Pinata's web UI or API.
 
 ---
-
-### Grails III — **READY TO SEND**
-
-Pipeline complete: 1000/1000 metadata + 424/424 media verified end-to-end. Full handoff doc: [`collections/grails-iii/INSTRUCTIONS.md`](collections/grails-iii/INSTRUCTIONS.md).
-
-| | |
-|---|---|
-| Contract | [`0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3) |
-| Function | `setBaseTokenURI(string)` |
-| **Argument to pass** | `ipfs://bafybeibywzutnorhrucp5lbhnd54kke5eclta7k5cgl34mhkyh45gl747q/` &nbsp;_(trailing slash required)_ |
-| Etherscan: read | [readContract](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3#readContract) |
-| Etherscan: write | [writeContract](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3#writeContract) |
-| Caller permission | Standard ERC721A + Ownable; sign from `owner()`. |
-| Token indexing | **0-indexed**, tokens `0..999` (totalSupply 1000) |
-
-**Pre-flight verification links:**
-- https://ipfs.io/ipfs/bafybeibywzutnorhrucp5lbhnd54kke5eclta7k5cgl34mhkyh45gl747q/0
-- https://dweb.link/ipfs/bafybeibywzutnorhrucp5lbhnd54kke5eclta7k5cgl34mhkyh45gl747q/500
-
-**Revert plan:** `setBaseTokenURI("https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/3/")`
-
-**Findings worth noting:**
-
-- 1,000 tokens across **20 artists** (0xDEAFBEEF, Rik Oostenbroek, Mika Tajima, Matt Kane, …); the contract uses a single `metadata/3/<id>` baseURI (no nested grailId path like Grails I).
-- Mixed source hosts inside the metadata:
-  - **GCS signed URLs** (most images) — expire 30 min after issue. Pipeline race-condition hazard.
-  - **Arweave** (60 fields across the "there goes that kid" series — Alpha Centauri Kid) — permanent storage; the 1.1 KB animation URL is an HTML wrapper rather than the image itself.
-  - **Pre-existing `ipfs://`** URLs (100 fields, all on Matt Kane's *Picture of the Planets*) — these were already content-addressed before the migration; the rewrite step correctly leaves them untouched.
-- **Recovery from expired-signature trap:** the first run of step 03 left only 221/1000 tokens with a working image entry because the 30-minute GCS signatures expired during the download window. Recovery: re-fetched fresh metadata, used HEAD-only `x-goog-hash` MD5 lookups to map fresh signed URLs to the **423 sha256-named files already on disk** (no re-downloading bytes for content we already have), downloaded only the 42 new GCS objects + 2 Arweave URLs that had no local match, and re-built the manifest. **The HEAD-MD5-map trick is the right way to handle expiring-signed-URL re-runs** — saved hours of bandwidth.
-- Heavy media dedup: 1,000 tokens → **424 unique media files** (8 of those are 100–285 MB MP4s; the rest are small images).
-- 1 verify mismatch ended up being an `ipfs.io` gateway cache bug: it returns 1397 bytes for a CID whose content is genuinely 1126 bytes (verified directly via `gateway.pinata.cloud` and by re-fetching from Pinata). The pin itself is correct; the report's `notes` field documents the gateway issue.
-- **Per-upload timeout added** (`scripts/04-pin-media.js`): pin-media now wraps each upload in a 15-min `Promise.race` deadline because the Pinata SDK was hard-hanging on some large MP4s without aborting; previously this had to be killed manually.
-
----
-
-### Grails II — **READY TO SEND**
-
-Pipeline complete: 1178/1178 metadata + 55/55 media verified end-to-end on `ipfs.io`. Full handoff doc: [`collections/grails-ii/INSTRUCTIONS.md`](collections/grails-ii/INSTRUCTIONS.md).
-
-| | |
-|---|---|
-| Contract | [`0xd78afb925a21f87fa0e35abae2aead3f70ced96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b) |
-| Function | `setBaseTokenURI(string)` |
-| **Argument to pass** | `ipfs://bafybeibmssdlwuorheuay6apc7vghpzhbj4y2q6knshkgmtb2y57w3lvrm/` &nbsp;_(trailing slash required)_ |
-| Etherscan: read | [readContract](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b#readContract) |
-| Etherscan: write | [writeContract](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b#writeContract) |
-| Caller permission | Standard ERC721A + Ownable; sign from `owner()`. |
-| Token indexing | **0-indexed**, tokens `0..1177` (totalSupply 1178) |
-
-**Pre-flight verification links:**
-- https://ipfs.io/ipfs/bafybeibmssdlwuorheuay6apc7vghpzhbj4y2q6knshkgmtb2y57w3lvrm/0
-- https://dweb.link/ipfs/bafybeibmssdlwuorheuay6apc7vghpzhbj4y2q6knshkgmtb2y57w3lvrm/500
-
-**Revert plan:** `setBaseTokenURI("https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/2/")`
-
-**Findings worth noting:**
-
-- Standard ERC721A + BaseTokenURI override pattern (`baseURI + Strings.toString(tokenId)`) — verified in `Grails2.sol` / `ERC721A.sol` on Sourcify. No nested-pin trickery like Grails I.
-- Extreme media dedup: 1,178 tokens → only **55 unique media files** (~21 editions per piece on average).
-- One file is a large 84 MB animated GIF (`9b2a01cc…gif`, used by 39 tokens). During the parallel run with 2 other pipelines hitting Pinata, this file timed out through all 4 retries and pin-media exited 54/55. After pausing the other pipelines, the same file pinned cleanly on the first attempt running solo — clear evidence of Pinata's per-account throughput ceiling under concurrent uploads.
-- 41 verify round-trips initially failed (35 × HTTP 429 + 6 × HTTP 504 from `ipfs.io`); all succeeded on retry. **Note for future runs: ipfs.io applies rate-limit windows — verify-time errors are largely benign and self-recover with a small backoff.**
-
----
-
-### Grails I — **READY TO SEND** ⚠️ different URI shape from every other contract
-
-⚠️ Read [`collections/grails-i/INSTRUCTIONS.md`](collections/grails-i/INSTRUCTIONS.md) **carefully** before sending. Grails I's contract constructs `tokenURI` as `baseTokenURI + "/" + grailId + "/" + tokenId` — different from every other Proof contract in this repo, which all use `baseURI + tokenId`. The IPFS pin is a **nested directory** (`<grailId>/<tokenId>`), and the argument to `setBaseTokenURI(...)` **must NOT end with a slash**.
-
-| | |
-|---|---|
-| Contract | [`0xb6329bd2741c4e5e91e26c4e653db643e74b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19) |
-| Function | `setBaseTokenURI(string)` |
-| **Argument to pass** | `ipfs://bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m` &nbsp;**_(no trailing slash — the contract supplies it)_** |
-| Etherscan: read | [readContract](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19#readContract) |
-| Etherscan: write | [writeContract](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19#writeContract) |
-| Caller permission | `Ownable` — sign from `owner()` |
-| Token indexing | **0-indexed**, tokens `0..1035` (totalSupply 1036), **nested across 20 grailIds (0..19)** |
-
-After the change: `tokenURI(0)` returns `ipfs://<CID>/0/0` (Gary Vaynerchuk — *What do you "B"*), `tokenURI(500)` returns `ipfs://<CID>/15/500` (Claire Silver — *c.u.l.t.*), etc.
-
-**Pre-flight verification links** (nested paths):
-- https://ipfs.io/ipfs/bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m/0/0 (token 0)
-- https://ipfs.io/ipfs/bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m/14/100 (token 100, Ixian No-Ships)
-- https://ipfs.io/ipfs/bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m/15/500 (token 500, c.u.l.t.)
-
-**Revert plan:** `setBaseTokenURI("https://live---grails-metadata-5covpqijaa-uc.a.run.app/metadata/1")` (no trailing slash).
-
-**Findings worth noting:**
-- Unique URI shape — required pinning a **nested directory** (`<grailId>/<tokenId>`) instead of flat. Same end-to-end content (rewritten JSON with `ipfs://` image fields), different on-chain wrapper.
-- Extreme media dedup: 1036 tokens → only **20 unique media files** (one per grail/artist). Pin step was very fast.
-- 20 grails maps 1:1 to the 20 per-artist OpenSea collection pages listed earlier in this README.
-- 6 verification round-trips initially failed with HTTP 504 from `ipfs.io` on the first verify pass; all succeeded on retry.
-
----
-
-### Grails IV — **READY TO SEND**
-
-Pipeline complete: 728/728 metadata + 84/84 media verified end-to-end on `ipfs.io`. Full handoff doc: [`collections/grails-iv/INSTRUCTIONS.md`](collections/grails-iv/INSTRUCTIONS.md).
-
-| | |
-|---|---|
-| Contract | [`0x069eeda3395242bd0d382e3ec5738704569b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885) |
-| Function | `setBaseTokenURI(string)` |
-| **Argument to pass** | `ipfs://bafybeia2hwe5olpvk6eqguva7hb644bj3ccjbu7dszka5luzwtjzhlo66m/` &nbsp;_(trailing slash required)_ |
-| Etherscan: read | [readContract](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885#readContract) |
-| Etherscan: write | [writeContract](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885#writeContract) |
-| Caller permission | Contract uses **AccessControl** (no public `owner()`). Verify the required role before sending. |
-| Token indexing | **0-indexed**, tokens `0..903` (totalSupply 904) |
-| Mixed routing | **734 Proof-routed** (affected) + **170 Art Blocks-routed** (unaffected — full id list in `collections/grails-iv/state.json` → `skippedArtblocksIds`) |
-
-**Pre-flight verification links:**
-- https://ipfs.io/ipfs/bafybeia2hwe5olpvk6eqguva7hb644bj3ccjbu7dszka5luzwtjzhlo66m/0
-- https://dweb.link/ipfs/bafybeia2hwe5olpvk6eqguva7hb644bj3ccjbu7dszka5luzwtjzhlo66m/0
-
-**Revert plan:** `setBaseTokenURI("https://metadata.proof.xyz/grails-iv/art/")`
-
-**Findings worth noting:**
-
-- Mixed-routing contract — only 734 of 904 tokens read `baseTokenURI`; the 170 Art Blocks ids are dispatched inside `tokenURI(uint256)` and unaffected by the setter (see "How Art Blocks tokens are handled" above for the verified source).
-- Per-token AB filter exercised cleanly for the first time on a real mixed contract — 170/170 correctly skipped, 734/734 fetched and pinned.
-- Heavy edition-sharing: 734 Proof-routed tokens → only **84 unique media files** (~9 editions each on average).
-- Source images use **expiring GCS signed URLs** (`Expires=1787875200` = 2026-08-28) — same time-bomb as Grails V. Migration urgency is high.
-- 7 verification round-trips initially failed with HTTP 504 from `ipfs.io` (transient gateway overload on small JSON files); all succeeded on retry.
-
----
-
-The same procedure applies to the other contracts once their pipelines finish; their CIDs and any per-contract caveats land in each collection's `INSTRUCTIONS.md`. As each one completes, a "READY TO SEND" subsection is added here.
-
-## Repo layout
-
-```
-proofxyz-ipfs/
-├── .env                              # ALCHEMY_API_KEY, OPENSEA_API_KEY, PINATA_JWT
-├── collections.json                  # in-scope + skipped list, seed contract addresses
-├── lib/                              # env, opensea, alchemy, etherscan(+sourcify), pinata, state, fetchWithRetry, gateways
-├── scripts/                          # 01..08 pipeline steps
-└── collections/<slug>/
-    ├── state.json                    # per-collection state: discovered facts, mediaPins, metadataPin, step log
-    ├── original-metadata/{0,1,…}     # raw JSON from current tokenURI
-    ├── media/<sha256>.<ext>          # downloaded media, content-addressed
-    ├── media-manifest.json           # tokenId → { field: localFilename }
-    ├── ipfs-metadata/{0,1,…}         # rewritten JSON with ipfs:// links, named by tokenId
-    ├── verification-report.json      # sha256 round-trip results from gateways
-    └── INSTRUCTIONS.md               # handoff file for Proof engineers
-```
 
 ## Glossary
 
 | Term | Means |
 |---|---|
-| **`baseURI`** | The contract-level string the contract prepends to `Strings.toString(tokenId)` to form `tokenURI(id)`. Setting it to `ipfs://<metadataCID>/` is how we point the contract at the pinned metadata directory. |
-| **`tokenURI(id)`** | What marketplaces actually read. For Grails V it's `baseURI + tokenId` (no extension). After the flip it returns `ipfs://<metadataCID>/<id>`. |
-| **CID** | Content Identifier — an IPFS hash of the file's bytes. Two files with the same contents always produce the same CID. |
-| `bafybei…` CID | CIDv1 wrapping a UnixFS DAG (used by Pinata for larger or chunked files). Resolves the same way as `bafkrei…`. |
-| `bafkrei…` CID | CIDv1 wrapping a single raw block (used for small files that fit in one block). Same resolution semantics. |
-| **Per-file pin** | Each media file is pinned individually via Pinata's single-file endpoint and gets its own root CID. The metadata's `image` field is `ipfs://<that-file's-CID>` — no path suffix. |
-| **Directory pin** | The rewritten metadata folder is pinned once as a UnixFS directory and gets one CID. Files inside resolve at `ipfs://<dirCID>/<filename>`. This is what `baseURI` points at. |
-| **Pinata** | The pinning service we use. Account-bound, with a dedicated gateway (`your-gateway.mypinata.cloud`, auth-walled in this account) and a public gateway (`gateway.pinata.cloud`, rate-limited but anyone can use). |
-| **Sourcify** | Public, keyless source-and-ABI registry for verified contracts. We use it for ABI lookups when no Etherscan API key is configured. |
-| **AccessControl vs Ownable** | Two OpenZeppelin ownership patterns. `Ownable` exposes `owner()` and accepts calls from that address. `AccessControl` uses role hashes (e.g. `DEFAULT_ADMIN_ROLE`) and there is no public `owner()` — you check `hasRole(role, account)`. Grails V uses `AccessControl`, so the Etherscan write call must come from an address with the right admin/steering role, not just any "owner". |
-| **Art Blocks Flex Engine** | An Art Blocks contract pattern that renders tokens dynamically from on-chain scripts via Art Blocks infrastructure. A static IPFS pin would freeze the dynamic output, so we skip any collection whose `tokenURI` resolves to an `artblocks.io` host. Grails IV is the one in scope that hits this rule. |
-
+| **`baseURI`** | Contract-level string the contract prepends to `Strings.toString(tokenId)` to form `tokenURI(id)`. |
+| **`tokenURI(id)`** | What marketplaces read. For Grails II/III/IV/V + Diamond Exhibition's Proof-routed tokens it's `baseURI + tokenId`. For Grails I it's `baseURI + "/" + grailId + "/" + tokenId`. |
+| **CID** | IPFS Content Identifier — hash of the file's bytes. Two files with identical contents always produce the same CID. |
+| **`bafybei…`** | CIDv1 wrapping a UnixFS DAG (used by Pinata for chunked or larger files). |
+| **`bafkrei…`** | CIDv1 wrapping a single raw block (used for small files that fit in one block). |
+| **Per-file pin** | Pinata's single-file endpoint; the returned CID resolves to *that file* directly. Metadata's `image` field is `ipfs://<that-CID>` with no path. |
+| **Directory pin** | Pinata's directory upload; the returned CID is the directory root. Files inside resolve at `ipfs://<dirCID>/<filename>`. The metadata pin is one of these per collection. |
+| **AccessControl vs Ownable** | Two OpenZeppelin permission patterns. `Ownable` exposes `owner()`; `AccessControl` uses role hashes (no public `owner()` — check `hasRole(role, account)`). Grails IV/V use AccessControl; Grails I/II/III + Diamond Exhibition use Ownable. |
+| **Art Blocks Flex Engine** | Art Blocks contract pattern where tokens are rendered dynamically from on-chain scripts. Diamond Exhibition and Grails IV are mixed-routing contracts whose Art Blocks-routed tokens are dispatched inside `tokenURI(uint256)` to `flex.tokenURI(...)`, bypassing `baseURI` entirely. Those tokens are unaffected by the migration. |

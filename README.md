@@ -30,10 +30,10 @@ Each collection's full handoff doc (pre-flight checklist, sample call shell + et
 
 ### Per-collection stats
 
-| Collection | Total tokens | Affected by flip (Proof-routed) | Unchanged (AB-routed) | Unique media pinned | Notable |
+| Collection | Total tokens | Affected by flip (Proof-routed) | Unchanged (ArtBlocks-routed) | Unique media pinned | Notable |
 |---|---:|---:|---:|---:|---|
-| Grails V | 785 | 732 | 53 | 202 | 53 AB-routed tokens are the "Spire" sub-series — their on-chain `tokenURI` points to `token.artblocks.io` so they're unaffected by the flip; we also pinned their `media-proxy.artblocks.io` static-PNG renders (used by 53 metadata files we did process) for completeness. Source GCS URLs expire **2026-08-28**. |
-| Grails IV | 904 | 734 | 170 | 84 | First real test of the per-token AB filter on a mixed contract — 170/170 correctly skipped. Heavy edition dedup (~9 editions per piece). 7 transient HTTP 504s on small JSON files during verify, all cleared on retry. Same time-bomb expiry as Grails V. |
+| Grails V | 785 | 732 | 53 | 202 | 53 ArtBlocks-routed tokens are the "Spire" sub-series — their on-chain `tokenURI` points to `token.artblocks.io` so they're unaffected by the flip; we also pinned their `media-proxy.artblocks.io` static-PNG renders (used by 53 metadata files we did process) for completeness. Source GCS URLs expire **2026-08-28**. |
+| Grails IV | 904 | 734 | 170 | 84 | First real test of the per-token ArtBlocks filter on a mixed contract — 170/170 correctly skipped. Heavy edition dedup (~9 editions per piece). 7 transient HTTP 504s on small JSON files during verify, all cleared on retry. Same time-bomb expiry as Grails V. |
 | Grails III | 1,000 | 1,000 | 0 | 424 (8 are 100–285 MB MP4s) | 20 artists (0xDEAFBEEF, Rik Oostenbroek, Mika Tajima, Matt Kane, …). Recovery from the 30-min signed-URL trap via HEAD-MD5 trick saved hours of bandwidth. Mixed source hosts inside metadata: GCS signed + Arweave + pre-existing `ipfs://` for Matt Kane's 100-token *Picture of the Planets* drop. |
 | Grails II | 1,178 | 1,178 | 0 | **55** (extreme dedup, ~21 editions/piece) | First time we saw explicit `ipfs.io` HTTP 429s during verify — 35× 429 + 6× 504, all cleared on retry. The 84 MB animated GIF used by 39 tokens was the only file that needed a solo retry pass (couldn't pin during parallel run). |
 | **Grails I** ⚠️ | 1,036 | 1,036 | 0 | **20** (most extreme dedup of all) | Unique URI construction: `tokenURI = baseURI + "/" + grailId + "/" + tokenId`. IPFS pin is **nested** as `<grailId>/<tokenId>`. The 20 grailIds (0..19) map 1:1 to the 20 per-artist OpenSea collection pages listed below. Argument **must NOT end with a slash**. |
@@ -123,7 +123,7 @@ function tokenURI(uint256 tokenId) public view virtual override returns (string 
 }
 ```
 
-**Grails IV** (`ABProjectPoolSellable.sol`, same base used by Grails V + Evolving Pixels):
+**Grails IV** (`ABProjectPoolSellable.sol`, same base used by Grails V):
 
 ```solidity
 function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
@@ -138,7 +138,7 @@ function tokenURI(uint256 tokenId) public view virtual override returns (string 
 
 Concretely for Diamond Exhibition: **only ~1,407 of 5,093 tokens** are affected by the baseURI flip. The other 3,686 ids stay on Art Blocks regardless. The contract has **no `setTokenURI(uint256, string)`** function in its ABI, so the per-token routing is hardcoded in contract logic — there is no per-token writable mapping to misconfigure.
 
-**Post-flip empirical check** (5 min, no risk): on Etherscan readContract, call `tokenURI(<an_AB_id>)` and confirm it still returns `token.artblocks.io/...`; call `tokenURI(<a_proof_id>)` and confirm it now returns `ipfs://<newCID>/<id>`. Each collection's `INSTRUCTIONS.md` lists known AB-routed ids in `state.json` → `skippedArtblocksIds` for testing.
+**Post-flip empirical check** (5 min, no risk): on Etherscan readContract, call `tokenURI(<an_AB_id>)` and confirm it still returns `token.artblocks.io/...`; call `tokenURI(<a_proof_id>)` and confirm it now returns `ipfs://<newCID>/<id>`. Each collection's `INSTRUCTIONS.md` lists known ArtBlocks-routed ids in `state.json` → `skippedArtblocksIds` for testing.
 
 ### Why Grails I is structurally different
 
@@ -184,7 +184,7 @@ The pipeline did not run cleanly on the first try for several collections. The i
 
 **Symptom.** Early version of `01-discover.js` skipped a contract entirely if `tokenURI(0)` resolved to an `artblocks.io` host. That meant Grails IV (~83% Proof-routed) and Diamond Exhibition (~28% Proof-routed) were being skipped wholesale.
 
-**Fix.** Replaced contract-wide skipping with a 30-sample `hostDistribution` in discovery, and added per-token filtering in `02-fetch-metadata.js` so individual ids that route to Art Blocks are recorded in `state.skippedArtblocksIds` and never fetched. The rest of the pipeline naturally produces a sparse-id pin for those collections. Verified safety from the Solidity source above: the Art Blocks branch never reads `_baseURI()`, so missing-from-pin AB ids never 404 against the new CID.
+**Fix.** Replaced contract-wide skipping with a 30-sample `hostDistribution` in discovery, and added per-token filtering in `02-fetch-metadata.js` so individual ids that route to Art Blocks are recorded in `state.skippedArtblocksIds` and never fetched. The rest of the pipeline naturally produces a sparse-id pin for those collections. Verified safety from the Solidity source above: the Art Blocks branch never reads `_baseURI()`, so missing-from-pin ArtBlocks ids never 404 against the new CID.
 
 ### 2. Pinata SDK deadlocks on large MP4s
 
@@ -228,13 +228,7 @@ The pipeline did not run cleanly on the first try for several collections. The i
 
 **Fix.** Renamed the repo's internal slugs to `grails-i` and `grails-ii` (local directory names, not OpenSea slugs), and added a callout in this README that the on-chain contract addresses (verified via `name()` + sample `tokenURI()` content) are authoritative, not OpenSea's slugs. Also discovered that OpenSea has fragmented Grails I, II, III, *and* IV into per-artist landing pages (e.g. `what-do-you-b-by-gary-vaynerchuk`, `belly-of-the-whale-01-by-tom-sachs`); Grails V is the only season with a single unified OpenSea page (`grails-v`). Full per-artist page list is below for cross-reference.
 
-### 9. Evolving Pixels' broken source ids (descoped)
-
-**Symptom.** Step 02 for Evolving Pixels reproducibly hit HTTP 503 for token ids 875 and 890 — every retry, every fresh attempt after a 30-second wait. Surrounding ids on the same `/evolving-pixels/curated/` path worked fine. Theory: a Proof-side backend issue specific to those two ids.
-
-**Decision.** Pinning then would have permanently baked two `ipfs://<CID>/875` → 404 holes into the mirror; the upstream is fixable in place. Collection was paused, then later **descoped** entirely by user direction. Partial state preserved in `collections/proof-curated-evolving-pixels/` for forensic reference.
-
-### 10. Pinata gateway / dedicated-gateway URLs leaked into committed state
+### 9. Pinata gateway / dedicated-gateway URLs leaked into committed state
 
 **Symptom.** The Pinata SDK's upload responses include a `gatewayUrl` that references the account's dedicated gateway subdomain. This was being saved into per-collection `state.json` files and would have published an account identifier in the public repo.
 

@@ -51,21 +51,6 @@
     }
   ],
   "skipped": [
-    {
-      "name": "Archive of Feelings by Mika Tajima",
-      "contract": "0x24607c7602e52ce6b1ab4ae7b5196e9ae4c13762",
-      "reason": "Removed from scope by user. Pipeline progress reached step 04 (15/1152 media pinned) before being descoped; partial state preserved on disk (collections/archive-of-feelings-by-mika-tajima/) for forensic reference. To resume in the future: rerun the pipeline starting from step 04 — it is idempotent."
-    },
-    {
-      "name": "The Journey",
-      "contract": "0xd5386794f57697ab4ecb930b049da70fc771900b",
-      "reason": "Removed from scope by user. The pipeline previously ran end-to-end and shipped: 96 metadata + 96 media pinned at metadataCID bafybeiagwvykjve4kgvxo7zku5kdivt26vmvkuhxgmjl6jbmc2lfznh6zu. Those pins still exist on Pinata and the per-collection INSTRUCTIONS.md was authored, but the migration is no longer recommended/active. Pins can be unpinned without affecting any other collection."
-    },
-    {
-      "name": "PROOF Curated: Evolving Pixels",
-      "contract": "0x48b17a2c46007471b3eb72d16268eaecdd1502b7",
-      "reason": "Removed from scope by user. (Originally paused: source metadata at https://metadata.proof.xyz/evolving-pixels/curated/875 and /890 consistently returned HTTP 503 — non-transient backend issue on Proof's side for those two specific ids, while surrounding ids worked. Pipeline got 522/524 metadata fetches; partial state cached at collections/proof-curated-evolving-pixels/.)"
-    },
     { "name": "COCKPUNCH by Tim Ferriss", "contract": "0xC178994cB9b66307Cd62dB8b411759Dd36D9C2EE", "reason": "PFP shape (5555 supply); explicit user skip." },
     { "name": "Run Ed (Moonbirds Miami)", "contract": "0x1165840AE3f426Bf09a9575e1696badEB4be5198", "reason": "Moonbirds-adjacent merch/event; out of art scope." },
     { "name": "Resurrection by Alma Thomas", "contract": "0x75ebBd11bA81089b200BDf8dD0b48B6506270A0C", "reason": "Already on ipfs:// — no mirroring needed." },

@@ -10,12 +10,12 @@ All six contracts use the same setter: **`setBaseTokenURI(string)`**, called fro
 
 | Collection | Contract (Etherscan Write) | Argument to pass | Caller |
 |---|---|---|---|
-| **Grails V** | [`0x92a50…349b8`](https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8#writeContract) | `ipfs://bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/` | AccessControl admin role |
-| **Grails IV** | [`0x069ee…b8885`](https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885#writeContract) | `ipfs://bafybeia2hwe5olpvk6eqguva7hb644bj3ccjbu7dszka5luzwtjzhlo66m/` | AccessControl admin role |
-| **Grails III** | [`0x503a3…84A3`](https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3#writeContract) | `ipfs://bafybeibywzutnorhrucp5lbhnd54kke5eclta7k5cgl34mhkyh45gl747q/` | `Ownable.owner()` |
-| **Grails II** | [`0xd78af…ed96b`](https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b#writeContract) | `ipfs://bafybeibmssdlwuorheuay6apc7vghpzhbj4y2q6knshkgmtb2y57w3lvrm/` | `Ownable.owner()` |
-| **Grails I** ⚠️ | [`0xb6329…b2b19`](https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19#writeContract) | `ipfs://bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m` &nbsp;**_(NO trailing slash)_** | `Ownable.owner()` |
-| **Diamond Exhibition** | [`0x68d0f…eec2e`](https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e#writeContract) | `ipfs://bafybeihutjrictszafrxcqbgj2rfmdmlhmsgbcubhlcl4x2mx4m7zpot6i/` | `Ownable.owner()` |
+| **Grails V** | <a href="https://etherscan.io/address/0x92a50fe6ede411bd26e171b97472e24d245349b8#writeContract" target="_blank" rel="noopener noreferrer"><code>0x92a50…349b8</code></a> | `ipfs://bafybeib7zuh3d5ok3zr2lfnz7gryqlbc2bf7z6qlte5gey6rrqv5au5scq/` | AccessControl admin role |
+| **Grails IV** | <a href="https://etherscan.io/address/0x069eeda3395242bd0d382e3ec5738704569b8885#writeContract" target="_blank" rel="noopener noreferrer"><code>0x069ee…b8885</code></a> | `ipfs://bafybeia2hwe5olpvk6eqguva7hb644bj3ccjbu7dszka5luzwtjzhlo66m/` | AccessControl admin role |
+| **Grails III** | <a href="https://etherscan.io/address/0x503a3039e9ce236e9a12E4008AECBB1FD8B384A3#writeContract" target="_blank" rel="noopener noreferrer"><code>0x503a3…84A3</code></a> | `ipfs://bafybeibywzutnorhrucp5lbhnd54kke5eclta7k5cgl34mhkyh45gl747q/` | `Ownable.owner()` |
+| **Grails II** | <a href="https://etherscan.io/address/0xd78afb925a21f87fa0e35abae2aead3f70ced96b#writeContract" target="_blank" rel="noopener noreferrer"><code>0xd78af…ed96b</code></a> | `ipfs://bafybeibmssdlwuorheuay6apc7vghpzhbj4y2q6knshkgmtb2y57w3lvrm/` | `Ownable.owner()` |
+| **Grails I** ⚠️ | <a href="https://etherscan.io/address/0xb6329bd2741c4e5e91e26c4e653db643e74b2b19#writeContract" target="_blank" rel="noopener noreferrer"><code>0xb6329…b2b19</code></a> | `ipfs://bafybeibvruyaookdhje675isb6xmsmn3tloh7hz5kijfbx4byrm7uxax2m` &nbsp;**_(NO trailing slash)_** | `Ownable.owner()` |
+| **Diamond Exhibition** | <a href="https://etherscan.io/address/0x68d0f6d1d99bb830e17ffaa8adb5bbed9d6eec2e#writeContract" target="_blank" rel="noopener noreferrer"><code>0x68d0f…eec2e</code></a> | `ipfs://bafybeihutjrictszafrxcqbgj2rfmdmlhmsgbcubhlcl4x2mx4m7zpot6i/` | `Ownable.owner()` |
 
 > ⚠️ **Grails I is structurally different from the others.** Its on-chain `tokenURI` is `baseTokenURI + "/" + grailId + "/" + tokenId`, so the IPFS pin is a **nested** `<grailId>/<tokenId>` directory and the argument **must not end with a slash**. Read [`collections/grails-i/INSTRUCTIONS.md`](collections/grails-i/INSTRUCTIONS.md) before sending.
 
@@ -303,7 +303,7 @@ Each script is idempotent — re-running picks up wherever state.json left off.
 | `OPENSEA_API_KEY` | slug → contract resolution | [docs.opensea.io](https://docs.opensea.io/reference/api-keys) |
 | `PINATA_JWT` | upload auth (scoped: `pinFileToIPFS` + `pinJSONToIPFS`) | [app.pinata.cloud](https://app.pinata.cloud) → API Keys |
 | `PINATA_GATEWAY` | dedicated gateway subdomain (no scheme, no path) — e.g. `your-gateway.mypinata.cloud`. Use `gateway.pinata.cloud` if you don't have a dedicated one. | [app.pinata.cloud](https://app.pinata.cloud) → Gateways |
-| `ETHERSCAN_API_KEY` *(optional)* | direct Etherscan ABI lookup; falls back to keyless Sourcify if absent | [etherscan.io/myapikey](https://etherscan.io/myapikey) |
+| `ETHERSCAN_API_KEY` *(optional)* | direct Etherscan ABI lookup; falls back to keyless Sourcify if absent | <a href="https://etherscan.io/myapikey" target="_blank" rel="noopener noreferrer">etherscan.io/myapikey</a> |
 
 ---
 
